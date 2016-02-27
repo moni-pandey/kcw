@@ -23,11 +23,11 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <plugin name="phonegap-facebook-plugin" spec="~0.12.0">
-        <variable name="APP_ID" value="741117309366534" />
-        <variable name="APP_NAME" value="KCW" />
+        <param name="APP_ID" value="741117309366534" />
+        <param name="APP_NAME" value="KCW" />
     </plugin>
     <plugin name="cordova-plugin-googleplus" spec="~4.0.6">
-        <variable name="REVERSED_CLIENT_ID" value="115192106254-03koee612kjek476rj82f5onf19ajc6h.apps.googleusercontent.com" />
+        <param name="REVERSED_CLIENT_ID" value="115192106254-03koee612kjek476rj82f5onf19ajc6h.apps.googleusercontent.com" />
     </plugin>
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
     <plugin name="cordova-plugin-network-information" spec="~1.1.0" />

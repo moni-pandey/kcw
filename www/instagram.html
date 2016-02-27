@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<title>Instagram</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
+	    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/commonmethods.js"></script>
+
+		
+		
+	</head>
+	<body>
+	      
+	 <nav class="side_nav">
+         <a href="#" class="nav-toggle-btn"></a>
+            <div class = "menu_header">  <p  class="nav_header">MENU</p></div>
+            <ul id="test">
+				<li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
+				<li><a href="tech_support.html"><i class="fa fa-cog"></i>Tech Support</span></a></li>
+				<li> <a href="privacy.html"><i class="fa fa-lock"></i>Privacy Policy </span></a>
+				</li>
+				<li><a href="Contact-Us.html"><i class="fa fa-mobile"></i>Contact Us</a></li>
+				<li><a href="index.html" ><i class="fa fa-sign-out"></i>Sign Out</a></li>
+				<li onclick="rateus()"><a  ><i class="fa fa-star-o"></i>Rate</a></li>
+				<li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
+            </ul>
+          </nav>
+		    <div class="container-fluids login_bg">
+			    <div class="row">
+				    <div class="col-xs-2">
+				       
+					</div>
+				    <div class="col-xs-8">
+				        <p class="page-title">Instagram</p>
+					</div>
+					<div class="col-xs-2">
+                    </div>
+				</div>
+				
+			<!--	<div class="row pic-top-margin">
+				    <div class="col-xs-6">
+					    <img src="./assets/img/image1.png" class="img-responsive album-pic">
+						<p class="pic-name">Photo Name</p>
+					</div>
+					<div class="col-xs-6">
+						<img src="./assets/img/image1.png" class="img-responsive album-pic">
+						<p class="pic-name">Photo Name</p>
+					</div>
+				</div>
+				-->
+
+				
+			</div>
+        
+		
+		<script src="js/bootstrap.min.js"></script>
+		
+		<script type="text/javascript" src="js/sidemenu.js"></script>
+				<script>
+		
+		$(document).ready(function() {
+		
+		//var album_id = localStorage.getItem('albumid');
+		//alert(album_id);
+		
+		/*****************************/
+			$.ajax({
+      type: 'GET',
+      url: "https://api.instagram.com/v1/users/search?q=pandeymoni08&access_token=2777117055.6250f51.37f9031e035541c7b3ea25ce8900ca1f",
+      data:
+      {
+
+
+},
+      success: function(data){
+      alert(JSON.stringify(data));
+      var q= JSON.stringify(data);
+//$('#addinsta').append(data);
+	  //alert(data.html);
+      // alert(data.username);
+      // alert(data[0].username);
+       //alert(q.id);
+	   
+	   $.ajax({
+       url: 'https://api.instagram.com/v1/users/' + data.data[0].id+ '/media/recent',
+	dataType: 'jsonp',
+	type: 'GET',
+	data: {access_token:'2777117055.6250f51.37f9031e035541c7b3ea25ce8900ca1f'},
+	success: function(data){
+	alert(JSON.stringify(data));
+ 		console.log(data);
+		//for( x in data.data ){
+		//	$('ul').append('<li><img src="'+data.data[x].images.low_resolution.url+'"></li>'); // data.data[x].images.low_resolution.url - URL of image, 306?306
+		   
+			  for(j=0 ; j< data.data.length; j += 2)
+		{  // alert(j);
+		    //console.log(parsealbumdata.data[j].images[j].source);
+		    //console.log(parsealbumdata.data[j+1].images[j+1].source);
+			  $('.container-fluids').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					    <img src="'+data.data[j].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name">Photo Name</p>\
+					</div>\
+					<div class="col-xs-6">\
+						<img src="'+data.data[j+1].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name">Photo Name</p>\
+					</div>\
+				</div>');
+				
+				
+				}
+   
+		//}
+	},
+	error: function(data){
+		console.log(data); // send the error notifications to console
+	}
+});
+	   
+	   
+	  
+      },
+      error: function(xhr, status, error) {
+
+  showAlert(xhr.status);
+  alert(xhr.responseText);
+  console.log(xhr);
+}
+    });
+		
+		
+		
+		/*****************************/
+		
+		
+		
+		 $(document).bind("deviceready", function() {
+		 
+		 facebookConnectPlugin.api('/'+album_id+'/photos?fields=images&limit=100', ["user_photos"], function(response){
+      if (!response || response.error) {
+        albums = response.error;
+      } else {
+       	console.log(response);
+		console.log("response: " + JSON.stringify(response));
+			  
+			    var albumdata = JSON.stringify(response);
+				localStorage.setItem('albumdata' ,' ');
+				localStorage.setItem('albumdata' ,albumdata);
+				var parsealbumdata =JSON.parse(localStorage.getItem('albumdata'));
+	
+			  for(j=0 ; j< parsealbumdata.data.length; j += 2)
+		{  // alert(j);
+		    console.log(parsealbumdata.data[j].images[j].source);
+		    console.log(parsealbumdata.data[j+1].images[j+1].source);
+			  $('.container-fluids').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					    <img src="'+parsealbumdata.data[j].images[j].source+'" class="img-responsive album-pic">\
+						<p class="pic-name">Photo Name</p>\
+					</div>\
+					<div class="col-xs-6">\
+						<img src="'+parsealbumdata.data[j+1].images[j+1].source+'" class="img-responsive album-pic">\
+						<p class="pic-name">Photo Name</p>\
+					</div>\
+				</div>');
+				
+				
+				}
+   
+}
+});	
+
+		 });
+		
+
+		});
+		
+		</script>
+	
+	</body>
+</html>

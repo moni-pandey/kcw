@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ls.kcw" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>KCW</name>
+    <description>
+            KCW
+        </description>
+    <author email="vineet@logic-square.com" href="http://logic-square.com">
+            Vineet
+        </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <plugin name="phonegap-facebook-plugin" spec="~0.12.0">
+        <variable name="APP_ID" value="741117309366534" />
+        <variable name="APP_NAME" value="KCW" />
+    </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="~4.0.6">
+        <variable name="REVERSED_CLIENT_ID" value="115192106254-03koee612kjek476rj82f5onf19ajc6h.apps.googleusercontent.com" />
+    </plugin>
+    <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
+    <plugin name="cordova-plugin-network-information" spec="~1.1.0" />
+    <plugin name="cordova-plugin-geolocation" spec="~1.0.1" />
+    <plugin name="cordova-plugin-device" spec="~1.1.0" />
+    <plugin name="cordova-plugin-dialogs" spec="~1.2.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.1.1" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="TwitterConsumerKey" value="g3nq2n2CUO66WnhLUgkXqDdhL" />
+    <preference name="TwitterConsumerSecret" value="hFEd1G8YMcHNqNsn4GaM321m78bvAJLNtT4Il1kCuHaHmDGHEh" />
+    <!--<plugin name="twitter-connect-plugin" spec="~0.5.0">
+        <variable name="FABRIC_KEY" value="7647ab5a13d67d7d9d28c9ed3768558c27e91fd2" />
+    </plugin>-->
+</widget>

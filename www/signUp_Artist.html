@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title>Sign Up- Artist</title>
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container login_bg">
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="sign-up-patron_text">Sign Up</p>
+                <img src="./assets/img/profile.png" alt="logo" class="upload-pic" id="profilepic">
+                <p class="profile-pic_text">Profile picture</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="i-am-a_text">I am a</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 login-button_padding">
+                <button id="artistbtn" onclick="showPatronDetails();" class="btn btn-block patron-artist-select_bg" type="button">
+                    <img src="./assets/img/deactive_light.png" class="patron-deactive-icon">
+                    <span class="patron-disable-text">Patron</span>
+                    <span>
+                    <img src="./assets/img/slide_right.png">
+                    </span>
+                    <span class="artist-enable-text">Artist 
+                <img src="./assets/img/active_light.png" class="artist-enable-icon">
+                </span>
+                </button>
+                <button id="patronbtn" onclick="showArtistDetails();" class="btn btn-block patron-artist-select_bg" type="button" style="display:none">
+                    <img src="./assets/img/active_light.png" class="patron-active-icon">
+                    <span class="patron-enable-text">Patron</span>
+                    <span>
+                <img src="./assets/img/slide_left.png">
+                </span>
+                    <span class="artist-disable-text">Artist 
+                 <img src="./assets/img/deactive_light.png" class="artist-disable-icon">
+                 </span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="col-sm-12">
+                    <p class="city_text">City</p>
+                    <div class="form-group placeholder-padding">
+                        <input type="text" class="form-control form-text text-color" id="cityname" placeholder="Enter city">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="what-kind-of-art_text">What kind of artist</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                <p class="art-options">
+                    <input type="checkbox" id='Street_Art' name=""> Street Art</p>
+            </div>
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-5 no-left-padding">
+                <p class="art-options">
+                    <input type="checkbox" id="Visual_Art " name=""> Visual Art</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                <p class="art-options">
+                    <input type="checkbox" id="Graffiti" name=""> Graffiti</p>
+            </div>
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-5 no-left-padding">
+                <p class="art-options">
+                    <input type="checkbox" id="Theatre" name=""> Theatre</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-5">
+                <p class="art-options">
+                    <input type="checkbox" id="Live_Music" name=""> Live Music</p>
+            </div>
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-5 no-left-padding">
+                <p class="art-options">
+                    <!-- <img src="./assets/img/tick_white.png" class="white-tick-img"> -->
+                    <input type="checkbox" id="others" name="">Others</p>
+            </div>
+        </div>
+        <div class="row patronblock">
+            <div class="col-sm-12">
+                <p class="income-range_text">What is your income range</p>
+            </div>
+        </div>
+        <div class="row patronblock">
+            <div class="col-xs-6 no-right-padding">
+                <p class="income-options">
+                    <input type="radio" name="incomeradio"  id="incomeradio" value="0-50">Upto $50k</p>
+            </div>
+            <div class="col-xs-6 no-left-padding">
+                <p class="income-options">
+                    <input type="radio" name="incomeradio" id="incomeradio" value="50-100">Upto $50k - 100k</p>
+            </div>
+        </div>
+        <div class="row patronblock">
+            <div class="col-xs-6 no-right-padding">
+                <p class="income-options">
+                    <input type="radio" name="incomeradio" id="incomeradio" value="100-250">Upto $100k - 250k</p>
+            </div>
+            <div class="col-xs-6 no-left-padding">
+                <p class="income-options">
+                    <input type="radio" name="incomeradio" id="incomeradio" value="250 above">Above 250k</p>
+            </div>
+        </div>
+        <div class="row patronblock">
+            <div class="col-xs-8 no-right-padding">
+                <p class="income-options">
+                    <!-- <img src="./assets/img/tick_white.png" class="white-tick-img"> -->
+                    <input type="radio" name="incomeradio" id="incomeradio" value="Do not wish to disclose"> Do not wish to disclose</p>
+            </div>
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="row artistblock">
+            <div class="col-sm-12">
+                <p class="income-range_text">Link Accounts</p>
+            </div>
+        </div>
+        <div class="row social-icons_side-padding">
+            <div class="col-xs-2">
+                <img src="./assets/img/Facebook_circle.png" alt="Link Facebook">
+            </div>
+            <div class="col-xs-2">
+                <img src="./assets/img/Twitter_circle.png" alt="Link Twitter">
+            </div>
+            <div class="col-xs-2">
+                <img src="./assets/img/google.png" alt="Link Google" onclick="linkGoogleplus();">
+            </div>
+            <div class="col-xs-2">
+                <img src="./assets/img/Instagram.png" alt="Link Instagram" onclick="linkInstagram();">
+            </div>
+            <div class="col-xs-2">
+                <img src="./assets/img/Youtube.png" alt="Link Youtube" onclick="linkYoutube();">
+            </div>
+            <div class="col-xs-2">
+                <img src="./assets/img/Vine.png" alt="Link Vine" onclick="linkVine();">
+            </div>
+        </div>
+        <div class="row sign-up-btn_top-margin">
+            <div class="col-sm-12 login-button_padding">
+                <button class="btn btn btn-block login_button" id="signupbutton">SIGN UP</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/commonmethods.js"></script>
+    <script type="text/javascript" src="js/profile.js"></script>
+	 <script src="js/signup.js"></script>
+</body>
+
+</html>

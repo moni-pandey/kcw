@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<title>Comment Page - KCW</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+        
+		<div class="container comment-bg">
+		    <div class="row ">
+			    <div class="col-xs-12">
+				    <img src="./assets/img/Closed.png" class="cross-icon">
+				</div>
+			</div>
+			<div class="showComments">
+			<div class="row top-spacing">
+				    
+				 
+			</div>
+		
+			</div>
+			<form class="form-inline">
+                <div class="form-group">
+                    <div class="input-group chat-box">
+                        <input type="text" class="form-control comment-box text-color" placeholder="Comment on this...." id='commentbox'>
+                            <div class="input-group-addon">Send <img src="./assets/img/Send-icon.png" class="send-icon"></div>
+                    </div>
+                </div>
+           </form>
+			
+		</div>
+		
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/comment.js"></script>
+		<script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();   
+            });
+        </script>
+	</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang=en>
+	<head>
+		<title>Artist Fund Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="js/fundArtist_patron.js"></script>
+	</head>
+	<body>
+	      
+		    <div class="container login_bg">
+		        <div class="row">
+				    <div class="col-xs-3 no-right-padding">
+				        <p class="back-text"><img src="./assets/img/Back_white.png" alt="logo" class="back-img">Back</p>
+					</div>
+				    <div class="col-xs-9">
+				        <p class="artist-expenses_text">Artist Expenses</p>
+					</div>
+				</div>
+				
+				<div class="row top-margin_above-artist">
+					<div class="col-xs-4">
+					    <img src="./assets/img/people.png" alt="logo" class="artist-img">
+					</div>
+					<div class="col-xs-8">
+					    <p class="artist-name">James Edward</p>
+						<p class="artist_occupation">Graffiti</p>
+						
+						<div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="bar-of-progress">
+                                
+                            </div>
+                        </div>
+						
+						<div class="row">
+						    <div class="col-xs-6 no-right-padding">
+							    <p class="amt-from-funds">$0<span class="funds-text"> in Funds</span></p>
+							</div>
+							<div class="col-xs-6 no-left-padding">
+							    <p class="total-amt">$0<span class="total-text"> Total</span></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+				    <div class="col-xs-12">
+				        <p class="my-expenses_text">MY EXPENSES</p>
+					</div>
+				</div>
+				<div id="dynamicdiv">
+		
+				</div>
+				
+				<div class="row">
+				    <p class="total-amt_text">Total:<span class="total-amt_number"> $0</span></p>
+				</div>
+				<div class="row">
+				    <button class="btn add-expenses-btn paid" id="payexp" type="submit" style="width:70px" >Pay </button>
+				</div>
+				 <div class="row">
+								 <form role="form" id="venmo-form">
+				  <div class="form-group">
+					<label for="email">Email address:</label>
+					<input type="email" class="form-control" id="email">
+				  </div>
+				  <div class="form-group">
+					<label for="pwd">Password:</label>
+					<input type="password" class="form-control" id="pwd">
+				  </div>
+				  <div class="checkbox">
+					<label><input type="checkbox"> Remember me</label>
+				  </div>
+				  <button type="submit" class="btn add-expenses-btn " id="subform" style="width:70px">Submit</button>
+				</form>
+				 </div>
+					
+			</div>
+			
+		
+		<script src="js/bootstrap.min.js"></script>
+		
+		
+	
+	</body>
+</html>

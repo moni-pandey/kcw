@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title>Artist Fund Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
+    <script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="js/commonmethods.js"></script>
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="artistprofile.js"></script>
+	
+</head>
+
+<body>
+<nav class="side_nav" >
+         <a href="#" class="nav-toggle-btn"></a>
+            <div class = "menu_header">  <p  class="nav_header">MENU</p></div>
+            <ul id="test">
+				<li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
+				<li><a href="tech_support.html"><i class="fa fa-cog"></i>Tech Support</span></a></li>
+				<li> <a href="privacy.html"><i class="fa fa-lock"></i>Privacy Policy </span></a>
+				</li>
+				<li><a href="Contact-Us.html"><i class="fa fa-mobile"></i>Contact Us</a></li>
+				<li><a href="index.html" ><i class="fa fa-sign-out"></i>Sign Out</a></li>
+				<li onclick="rateus()"><a  ><i class="fa fa-star-o"></i>Rate</a></li>
+				<li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
+            </ul>
+          </nav>
+
+
+    <div class="container login_bg">
+    
+        <div class="row">
+            <div class="col-xs-2">
+                
+            </div>
+            <div class="col-xs-8">
+                <p class="proflie_text">Profile</p>
+            </div>
+            <div class="col-xs-2">
+                <img id='fb_pic' src="./assets/img/Fb_gray.png" class="fb_pic">
+                <img src="./assets/img/Twitter_circle.png" class="twitter_pic">
+                <img src="./assets/img/Vine.png" class="vine_pic">
+                <img src="./assets/img/Instagram_gray.png" class="instagram_pic">
+                <img src="./assets/img/youtube_gray.png" class="youtube_pic">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="./assets/img/profile.png" class="profile_img">
+                <p class="name-of-artist">James Edward</p>
+                <p class="artist-info">Graffiti <span class="artist-fund-amt">$0</span> in Funds Seattle</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="my-content_text">My Content</p>
+                <div class="upload upload-content-btn" style="font-weight:bold ; border-radius:2px">
+                    <img src="./assets/img/attachment.png" class="attachment-icon">&nbsp Upload
+                    <input class="btn  uploader" type="file" name="file" />
+                </div>
+            </div>
+        </div>
+		<br>
+		<br>
+        <div class="row">
+            <div class="col-xs-12 your-class">
+	
+          <div id="myCarousel" class="carousel slide" data-ride="carousel" style="height:200px" data-interval="false">
+    <!-- Indicators -->
+    <ol class="carousel-indicators" id="crouselOrderedList">
+	<!-- append indicatore-!-->
+   
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox" id='crouselItems'>
+         	<!--append item class!-->
+
+  
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <i class="fa fa-angle-left" style="font-size:24px"></i>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <i class="fa fa-angle-right" style="font-size:24px"></i>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="name-of-art">"Frozen Dreams"</p>
+                <p class="type-of-art">Spray, Oil Paint. Sharpie Marker</p>
+                <p class="small-line">________</p>
+                <p class="like-amt"><img src="./assets/img/fav.png" class="fav-img">147 <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">14</span></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 fund-me-button_padding">
+                <button class="btn btn-block login_button" type="submit" id="fundbtn" style='padding-bottom:10px'>FUND ME!</button>
+            </div>
+        </div>
+    </div>
+  
+    
+    <script type="text/javascript" src="js/cloudinary/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="js/cloudinary/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="js/cloudinary/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="js/cloudinary/jquery.cloudinary.js"></script>
+   <script type="text/javascript" src="js/sidemenu.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+	
+	
+	
+</body>
+
+</html>

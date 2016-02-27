@@ -1,0 +1,99 @@
+
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family: Open Sans, Arial, sans-serif;
+                overflow-x: hidden;
+            }
+            
+            nav {
+                position: fixed;
+                z-index: 1000;
+                top: 0;
+                bottom: 0;
+                width: 200px;
+				
+                background-image : url("./assets/img/sidemenu_bg.png");
+                transform: translate3d(-200px, 0, 0);
+                transition: transform 0.4s ease;
+				text-decoration: none;
+			
+            }
+            .active-nav nav {
+                transform: translate3d(0, 0, 0);
+            }
+            nav ul {
+                list-style: none;
+                margin-top: 100px;
+            }
+            nav ul li a {
+                text-decoration: none;
+                display: block;
+                text-align : centre;
+                color: #ffffff;
+                padding: 10px 0;
+				font-size: 20px;
+				
+            }
+			
+			   nav ul li {
+			border-bottom: 1px solid #545454;
+				
+            }
+		li a:hover {
+				background-color: #24e6bf;
+				color : black;
+				text-decoration: none;
+			}
+            .nav-toggle-btn {
+                display: block;
+                position: absolute;
+				margin-top: 11px;
+                left: 200px;
+                width: 22px;
+                height: 20px;
+                background-image : url("./assets/img/menu.png");
+            }
+            
+            .content {
+               
+                text-align: center;
+                transition: transform 0.4s ease;
+            }
+            .active-nav .content {
+                transform: translate3d(200px, 0, 0);
+            }
+			
+			.nav-menu-icon {
+			
+			margin-left : 20px ;
+			margin-top : 20px ;
+			color: #24e6bf;
+			
+			}
+			.menu_header {
+		      width:80px;
+		     color: white;
+			 
+			 font-size : 20px;
+			 
+			
+			}
+			.menu_header img {
+		     float:left;
+			 margin-top:30px;
+			}
+	 .nav_header {
+
+	margin-left:60px;
+		margin-top: 30px;
+			}
+	
+	.fa-mobile,.fa-lock ,.fa-cog ,.fa-question-circle ,.fa-sign-out , .fa-share-alt-square ,.fa-star-o {
+			    float: left;
+				margin-left :20px;
+				margin-right:20px;
+   
+			}

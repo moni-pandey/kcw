@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title>New Account</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container login_bg">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="./assets/img/Logo.png" alt="logo" class="logo-center">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="alarm-text">Password !</p>
+                <p id="doesnt-match_text">Doesn't match confirmation</p>
+            </div>
+        </div>
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="col-sm-12">
+                    <div class="form-group placeholder-padding">
+                        <input type="text" class="form-control form-text text-color" placeholder="Name" id="sname">
+                        <input type="email" class="form-control form-text text-color" placeholder="Email address" id="smail">
+                        <input type="password" class="form-control form-text text-color" placeholder="Password" id="spassword">
+                        <input type="password" class="form-control form-text text-color" placeholder="Password confirmation" id="scpassword">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 login-button_padding">
+                <button class="btn btn-block login_button" type="button" id="screatebtn">CONTINUE</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/commonmethods.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
+</body>
+
+</html>

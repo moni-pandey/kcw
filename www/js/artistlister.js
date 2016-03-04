@@ -147,6 +147,48 @@ $.ajax({
 				//alert('each');
 				
 				//$('.artistlistcontainer').append('');
+				                          if(val.art[(val.art.length)-1])
+										  { if(val.art[(val.art.length)-1].url!=='null'){
+											  var first=decodeURIComponent(val.art[(val.art.length)-1].url)
+										  }
+											 else 
+											 {
+												var first ='./assets/img/no_img.jpg'
+												 
+											 }
+										  }
+										  else
+											  first ='./assets/img/no_img.jpg'
+										  
+											 if(val.art[(val.art.length)-2])
+											 {
+											 if(val.art[(val.art.length)-2].url!=='null')
+											 {
+												var second =decodeURIComponent(val.art[(val.art.length)-2].url)
+											 }
+											 else 
+											 {
+												var second ='./assets/img/no_img.jpg'
+												 
+											 }
+											 }
+											 else
+												var second ='./assets/img/no_img.jpg' 
+
+											 if(val.art[(val.art.length)-3])
+											 {
+											 if(val.art[(val.art.length)-3].url!=='null')
+											 {
+												var third =val.art[(val.art.length)-3].url
+											 }
+											 else 
+											 {
+												 var third  ='./assets/img/no_img.jpg'
+												 
+											 }}
+											 else 
+												var third  ='./assets/img/no_img.jpg'
+				
 				
 				$('.artistlistcontainer').append('<div class="row fbbox" id="'+val.art[i].artID+'">\
 				    <div class="col-xs-12 ">\
@@ -156,9 +198,9 @@ $.ajax({
 			      		<p class="name-of-occupation '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</p>\
 						<P class="follow_text"><button class="dollarbt dollaricon" id="'+val.artistID+'">$ &nbsp;&nbsp;&nbsp;&nbsp;</button><img src="./assets/img/unfollow.png" class="unfollow_img" id="'+val.artistID+'">&nbsp;&nbspUnfollow</P>\
 						<p class="recent-uploaded_text">Recent uploaded images</p>\
-						<img src="'+decodeURIComponent(val.art[(val.art.length)-1].url)+'" style="height:90px;width:69px" class="img-responsive artwork1_img">\
-						<img src="'+decodeURIComponent(val.art[(val.art.length)-2].url)+'" style="height:90px;width:69px" class="img-responsive artwork2_img">\
-						<img src="'+decodeURIComponent(val.art[(val.art.length)-3].url)+'" style="height:90px;width:69px" class="img-responsive artwork3_img">\
+						<img src="'+first+'" style="height:90px;width:69px" class="img-responsive artwork1_img">\
+						<img src="'+second+'" style="height:90px;width:69px" class="img-responsive artwork2_img">\
+						<img src="'+third+'" style="height:90px;width:69px" class="img-responsive artwork3_img">\
 					</div>\
 				</div>');
 				

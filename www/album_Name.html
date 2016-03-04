@@ -37,7 +37,7 @@
 				       
 					</div>
 				    <div class="col-xs-8">
-				        <p class="page-title">Album Name</p>
+				        <p class="page-title">Album Pics</p>
 					</div>
 					<div class="col-xs-2">
                     </div>
@@ -68,10 +68,121 @@
 		
 		var album_id = localStorage.getItem('albumid');
 		//alert(album_id);
-		
-		 $(document).bind("deviceready", function() {
+		  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
+         localStorage.refreshgoogletoken = true ;
+		 if(localStorage.fromgoogle) 
+		 {
+		 window.plugins.googleplus.disconnect(
+    function (msg) {
+      //alert(msg);
+localStorage.fromgoogle=false	  // do something useful instead of alerting
+    }
+);
 		 
-		 facebookConnectPlugin.api('/'+album_id+'/photos?fields=images&limit=100', ["user_photos"], function(response){
+		 }
+		 
+		 parent.history.back();
+	}, false);
+ $(document).bind("deviceready", function() {
+		 
+	if(localStorage.fromgoogle)
+	{localStorage.fromgoogle=false
+	 $.ajax({
+	    type : 'GET',
+	    url: 'https://picasaweb.google.com/data/feed/api/user/'+localStorage.picuserId+'/albumid/'+localStorage.picalbumid  ,
+		
+		data : {
+		'alt':'json',
+	     "access_token":localStorage.access_tokeng ,
+		"access":'all'
+},
+	   success : function(data)
+			    { 
+				//returns all the album 
+				
+				console.log(data);
+				/************************/
+				
+if(data.feed.entry.length!=0) {
+			
+		 if(data.feed.entry.length%2==0)
+		{ 
+		//localStorage.picuserId=data.feed.entry[0].gphoto$user.$t
+		for(var i=0;i < data.feed.entry.length; i += 2)
+		 {
+		        
+		  $('.container-fluids').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
+						<img src="'+data.feed.entry[i].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i].gphoto$id.$t+'" class="img-responsive album-image">\
+						<p class="album-name" ></p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[i].gphoto$commentCount.$t+'</p>\
+					</div>\
+					<div class="col-xs-6">\
+					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
+						<img src="'+data.feed.entry[i+1].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i+1].gphoto$id.$t+'" class="img-responsive album-image">\
+						<p class="album-name" ></p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[i+1].gphoto$commentCount.$t+'</p>\
+					</div>\
+				</div>');
+		 
+		 
+		 } }
+		 
+		 else
+		 {
+	
+		 for(i=0;i < data.feed.entry.length-1; i += 2)
+		 {
+		  $('.container-fluids').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
+						<img src="'+data.feed.entry[i].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i].gphoto$id.$t+'" class="img-responsive album-image">\
+						<p class="album-name" ></p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[i].gphoto$commentCount.$t+'</p>\
+					</div>\
+					<div class="col-xs-6">\
+					     <img src="./assets/img/Frame.png" class="img-responsive frame">\
+						<img src="'+data.feed.entry[i+1].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i+1].gphoto$id.$t+'" class="img-responsive album-image">\
+						<p class="album-name" ></p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[i+1].gphoto$commentCount.$t+'</p>\
+					</div>\
+				</div>');
+		 
+		 
+		 }
+		            
+		  //var lastname =data.feed.entry[data.feed.entry.length-1].gphoto$name.$t.replace(/^(.{8}[^\s]*).*/, "$1");
+		  $('.container-fluids').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					      <img src="./assets/img/Frame.png" class="img-responsive frame">\
+						<img src="'+data.feed.entry[data.feed.entry.length-1].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[data.feed.entry.length-1].gphoto$id.$t+'" class="img-responsive album-image">\
+						<p class="album-name" ></p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[data.feed.entry.length-1].gphoto$commentCount.$t+'</p>\
+										</div>\
+					<div class="col-xs-6">\
+				</div>\
+				</div>');
+		 
+		 }
+		 }else
+		 showAlert("No Album found");
+				
+				
+				
+				/************************/
+				
+	
+	} ,
+	
+	error   : function (xhr, status, error)
+	{console.log(xhr);}						 
+		
+		
+		});//end of ajax call 
+	}
+else{
+	facebookConnectPlugin.api('/'+album_id+'/photos?fields=images&limit=100', ["user_photos"], function(response){
       if (!response || response.error) {
         albums = response.error;
       } else {
@@ -90,11 +201,11 @@
 			  $('.container-fluids').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="'+parsealbumdata.data[j].images[j].source+'" class="img-responsive album-pic">\
-						<p class="pic-name">Photo Name</p>\
+						<p class="pic-name"></p>\
 					</div>\
 					<div class="col-xs-6">\
 						<img src="'+parsealbumdata.data[j+1].images[j+1].source+'" class="img-responsive album-pic">\
-						<p class="pic-name">Photo Name</p>\
+						<p class="pic-name"></p>\
 					</div>\
 				</div>');
 				
@@ -104,9 +215,9 @@
 }
 });	
 
-		 });
+		 }
 		
-
+});
 		});
 		
 		</script>

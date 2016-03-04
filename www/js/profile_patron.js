@@ -4,6 +4,9 @@ $("document").ready(function() {
 
  Lcounter=10;
  Ccounter =14
+ newindex=0
+ firsttime=true;
+ artistidnew=''
 	      $(document).bind("deviceready", function() {
 
 			});
@@ -23,65 +26,20 @@ $('.name-of-artist').text(localStorage.getItem('fromartistname'));
 //alert(localStorage.getItem('fromGetArtistID'))
 //alert(localStorage.getItem('crouseldata'));
 //$('.artist_info').html(""+localStorage.getItem('fromarttype')+" <span class='artist-fund-amt'>$0</span> in Funds Seattle</p>");
+artistidnew=localStorage.getItem('fromGetArtistID');
+callforcarouselimages();
 
-$.ajax({
-	    type : 'GET',
-	    url: "http://107.170.201.114:5001/artist/profile",
-		contentType: "application/json",
-	    dataType: "json",
-		data : {
-		"artistID" :localStorage.getItem('fromGetArtistID'),
-},
-	   success : function(data)
-			    { 
-			    
-			    
-			var crouseldat = JSON.stringify(data);
-			//alert(JSON.stringify(data))
-			  localStorage.setItem('crouseldata' ,' ');
-			 // alert(localStorage.getItem('crouseldata'));
-			 localStorage.setItem('crouseldata' ,crouseldat);
-			   setCrousel(); 
-		
-			//alert(localStorage.getItem('crouseldata'));
-			 
-				} ,
-					
-					error   : function (xhr, status, error)
-					{console.log(xhr);}						 
-						
-						
-});	}
+	}
 else
 {
 console.log(localStorage.getItem('fromartistname'));
-
+artistidnew=localStorage.getItem('loggedINuserartistid')
 $('#patronname').text(localStorage.getItem('fromartistname'));
-$.ajax({
-	    type : 'GET',
-	    url: "http://107.170.201.114:5001/artist/profile",
-		contentType: "application/json",
-	    dataType: "json",
-		data : {
-		"artistID" :localStorage.getItem('loggedINuserartistid'),
-},
-	   success : function(data)
-			    { 
-			
-				var crouseldat = JSON.stringify(data);
-localStorage.setItem('crouseldata' ,' ');		
-	    localStorage.setItem('crouseldata' ,crouseldat);
-		  setCrousel(); 
-					} ,
-					
-					error   : function (xhr, status, error)
-					{console.log(xhr);}						 
-						
-						
-						});//end of ajax call 
+callforcarouselimages();
 						}
 	  
-		if(localStorage.getItem('changenextpageBTN')=='true')
+	  
+if(localStorage.getItem('changenextpageBTN')=='true')
 		 {  
 		  // alert('if(localStorage.getItem(');
 		$('#followbtn').html('Unfollow');
@@ -90,7 +48,7 @@ localStorage.setItem('crouseldata' ,' ');
 		localStorage.setItem('fromGetArtist','false')
 		
 		}
-	 currentindex= -1;
+	
     
 	  // comment on art 
 	  
@@ -100,9 +58,13 @@ localStorage.setItem('crouseldata' ,' ');
 	  
 	  });
 	  $('#commentOnart').bind('click' ,function(){
-          $("#myCarousel").carousel('pause');
+          
 		  localStorage.setItem('fromArtistPage','false');
-	window.location='comment_Page_new.html'
+		   var imagid =$('.carousel-inner .active').attr('id')
+
+  localStorage.setItem('crouselartid' ,imagid)
+window.location = 'comment_Page_new.html' ;
+	
 	
 
 });	
@@ -246,255 +208,699 @@ localStorage.setItem('crouseldata' ,' ');
 	  
    
 	  
-       
-					/*******for changing  art name n type on image change************/
+      	
+	    	/*******for changing  art name n type on image change************/
 					
 	$(document).on('slide.bs.carousel','#myCarousel',function(e){
-
-    var slideFrom = $(this).find('.active').index();
+    // var left = $('#myCarousel').find('.item.active.left');
+    // var right = $('#myCarousel').find('.item.active.right');
+	var parsedata =JSON.parse(localStorage.getItem('cdata'));
+	var lastindex = parsedata.art.length 
+	var slideFrom = $(this).find('.active').index();
     var slideTo = $(e.relatedTarget).index();
-	
-		 var id = $(e.relatedTarget).id;
-	console.log(id);
-	if(id=='myVideo')
-	localStorage.setItem('yo','true')
-    else 
-	localStorage.setItem('yo','false')
-  var parsedata =JSON.parse(localStorage.getItem('crouseldata'));
-  if(slideFrom=='0')
-     { 
-	  //localStorage.setItem('crouselartid' ,parsedata.art[currentindex-2].artID)
-	  localStorage.setItem('crouselartid' ,parsedata.art[currentindex].artID);
-	  	console.log('slidefrom==0')
-	  console.log(localStorage.getItem('crouselartid' ));
-	
-	
-	}
-	  if(slideTo=='0')
-     {  console.log('calling setCrouel');
-	//s//etTimeout(setCrousel, 000);;
-	  $('#myCarousel ol').html("");
-      $('#crouselItems').html(" ");
-	  localStorage.setItem('crouselartid' ,parsedata.art[currentindex].artID);
-	 
-
-//	 localStorage.setItem('crouselartid' ,parsedata.art[currentindex-2].artID)
-	  	console.log('slideTo==0')
-	  console.log(localStorage.getItem('crouselartid' ));
-	setCrousel();
-	
-	}
-     if(slideFrom=='1')
-         { 
-		 localStorage.setItem('crouselartid' ,parsedata.art[currentindex-2].artID)
-		 console.log('slidefrom==1');
-		 console.log(currentindex);
-		 console.log(localStorage.getItem('crouselartid' ));
-		 
+	 var cc = $('.carousel-inner .active').next().data('comment')
+	 var lc = $('.carousel-inner .active').next().data('likecount')
+	$('#likecounter').text(lc);
+     $('#cmntcounter').text(cc);
+	if(slideTo=='0')
+	{   
+       console.log('slide to ')
+		if(newindex>lastindex)
+		{ newindex =0
+	      console.log('images over ')
+		  firsttime=true
+	      SetCrousel();
+	    }
+	     else
+		 {  console.log('images left')
+			 SetCrousel();
 		 }
-	
-	if(slideFrom=='2')
-	{
-	
-	localStorage.setItem('crouselartid' ,parsedata.art[currentindex-1].artID);
-	console.log('slidefrom==2');
-	console.log(localStorage.getItem('crouselartid' ));
-	}
-	var intin = parseInt(slideTo);
-
-	
-	if(intin!=0)
-	{
-	
-	 $('.type-of-art').text(parsedata.art[intin].artType);
-	  $('.name-of-art').text(parsedata.art[intin].caption);
 	}
 
-	  
-	
 	
 });
-			
 
-	});
+});
 			
+/*********************/
 
-function setCrousel()
+
+
+
+function SetCrousel()
 {
-var active=0;
+	
+
 var j =0;
 $('#myCarousel ol').html("");
 $('#crouselItems').html(" ");
 
-
 var parsedata =JSON.parse(localStorage.getItem('crouseldata'));
-//alert('setCrousel();');
-//alert(parsedata);
-//alert(localStorage.getItem('crouseldata'));
-	var targetindex = currentindex+3;
-	//console.log(currentindex);
-	//console.log(targetindex);
+console.log(parsedata);
 
-	var lastindex = parsedata.art.length ;
-	localStorage.setItem('crouselartid' ,parsedata.art[0].artID)
-		//alert(lastindex);
-	if(currentindex <=lastindex)
-	  {
-	       console.log('if 230');
-	       if(targetindex <= lastindex)
-			  {
-			  console.log('233targetindex<lastindex');
+	if(parsedata.art.length=='0')
+		 return;
+	   
+	var lastindex = parsedata.art.length 
+	if(firsttime)
+	{
+	$('#likecounter').text(parsedata.art[0].likecount);
+	$('#cmntcounter').text(parsedata.art[0].commentcount);
+	firsttime= false
+	}
+	var target = newindex+3 ;
+       /*******************************************/
+	   if(newindex < lastindex) 
+		   
+		   {	
+		   
+		   
+		   for(var k=newindex ; k < target ;k++)
+	{    console.log(target)
+	    console.log(k)
+		var uri_dec = decodeURIComponent(parsedata.art[k].url)
+		if(uri_dec!="null")
+		{}
+	else
+	{	console.log('null')
+uri_dec='./assets/img/no_img.jpg'
+   }
+    if(lastindex%3 == 2)
+	
+    {  if(lastindex==2)
+		{
+			if(uri_dec.indexOf('video')> -1)
+										  {
+										     if(parsedata.art[k+1].url!=='null')
+											 {
+												var b = parsedata.art[k+1].url!=='null'
+											 }
+											 else 
+											 {
+												 var b = './assets/img/no_img.jpg'
+												 
+											 }
+											  if(parsedata.art[0].url!=='null')
+											 {
+												var bk = parsedata.art[0].url!=='null'
+											 }
+											 else 
+											 {
+												 var bk = './assets/img/no_img.jpg'
+												 
+											 }
+												 
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active" id="'+parsedata.art[k].artID+'li"></li>\
+											<li data-target="#myCarousel" data-slide-to="1" ></li>\
+											<li data-target="#myCarousel" data-slide-to="2" ></li>\
+											');
+										       $('#crouselItems').append('<div class="item active" width="300px" id="'+parsedata.art[k].artID+'"  data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'"  >\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
+                                                    </video>\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[k+1].artID+'"  data-comment="'+parsedata.art[k+1].commentcount+'" data-likecount="'+parsedata.art[k+1].likecount+'" >\
+												<img src="'+b+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[0].artID+'"  data-comment="'+parsedata.art[0].commentcount+'" data-likecount="'+parsedata.art[0].likecount+'" >\
+												<img src="'+bk+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   ');
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  //$('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											  // $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+										  
+										  }
+                                        else{
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="active"></li>\
+										<li data-target="#myCarousel" data-slide-to="1" ></li>\
+											<li data-target="#myCarousel" data-slide-to="2" ></li>\
+											');
+										$('#crouselItems').append('<div class="item active" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'" >\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
+											   </div>\
+											    <div class="item" id="'+parsedata.art[k+1].artID+'" data-comment="'+parsedata.art[k+1].commentcount+'" data-likecount="'+parsedata.art[k+1].likecount+'">\
+												<img src="'+decodeURIComponent(parsedata.art[k+1].url)+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[0].artID+'" data-comment="'+parsedata.art[0].commentcount+'" data-likecount="'+parsedata.art[0].likecount+'">\
+												<img src="'+decodeURIComponent(parsedata.art[0].url)+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   ');
+											 //  $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											// $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+                                        }	
+							 newindex=0
+		   return;
+			
+			
+		}
+		
+		if(k==lastindex-1)
+		  return;
+                     
+                     						 
+					 if(k==lastindex-2)	
+						{
+						if(uri_dec.indexOf('video')> -1)
+										  {
+										     if(parsedata.art[k+1].url!=='null')
+											 {
+												var b = parsedata.art[k+1].url!=='null'
+											 }
+											 else 
+											 {
+												 var b = './assets/img/no_img.jpg'
+												 
+											 }
+											  if(parsedata.art[0].url!=='null')
+											 {
+												var bk = parsedata.art[0].url!=='null'
+											 }
+											 else 
+											 {
+												 var bk = './assets/img/no_img.jpg'
+												 
+											 }
+												 
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active" id="'+parsedata.art[k].artID+'li"></li>\
+											<li data-target="#myCarousel" data-slide-to="1" ></li>\
+											<li data-target="#myCarousel" data-slide-to="2" ></li>\
+											');
+										       $('#crouselItems').append('<div class="item active" width="300px" id="'+parsedata.art[k].artID+'"  data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'"  >\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
+                                                    </video>\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[k+1].artID+'"  data-comment="'+parsedata.art[k+1].commentcount+'" data-likecount="'+parsedata.art[k+1].likecount+'" >\
+												<img src="'+b+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[0].artID+'"  data-comment="'+parsedata.art[0].commentcount+'" data-likecount="'+parsedata.art[0].likecount+'" >\
+												<img src="'+bk+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   ');
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  //$('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											  // $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+										  
+										  }
+                                        else{
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="active"></li>\
+										<li data-target="#myCarousel" data-slide-to="1" ></li>\
+											<li data-target="#myCarousel" data-slide-to="2" ></li>\
+											');
+										$('#crouselItems').append('<div class="item active" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'" >\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
+											   </div>\
+											    <div class="item" id="'+parsedata.art[k+1].artID+'" data-comment="'+parsedata.art[k+1].commentcount+'" data-likecount="'+parsedata.art[k+1].likecount+'">\
+												<img src="'+decodeURIComponent(parsedata.art[k+1].url)+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[0].artID+'" data-comment="'+parsedata.art[0].commentcount+'" data-likecount="'+parsedata.art[0].likecount+'">\
+												<img src="'+decodeURIComponent(parsedata.art[0].url)+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   ');
+											 //  $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											// $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+                                        }	
 							
-					$(parsedata.art).each(function(i,val){
-					//console.log('236each');
-						 if(j!=3 && i >currentindex )
-							{     console.log('j');
-							
-							//console.log(j);
-							  if(i<=targetindex)
-					         	  {  //console.log(i);
-								  var uri_dec = decodeURIComponent(val.url);
+						newindex=0
+					  setTimeout(callforcarouselimages, 20000);
+						}							
 
-										//console.log(uri_dec);
-					                  if(i=="0")
-				                      { 
-				                       //console.log('i==0');
-				                          if(uri_dec.indexOf('video')> -1)
+else{
+						  if(k==(target-3))
+						   {  console.log('k==0')
+						    console.log(parsedata.art[k].commentcount)
+						   if(uri_dec.indexOf('video')> -1)
 										  {
 										  
-										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active"></li>');
-										       $('#crouselItems').append('<div class="item active" width="300px" id="myVideo">\
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active" id="'+parsedata.art[k].artID+'li"></li>');
+										       $('#crouselItems').append('<div class="item active" width="300px" id="'+parsedata.art[k].artID+'"  data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
 									 			<video width="100%" height="200px"  controls >\
                                                 <source src="'+uri_dec+'"  type="video/mp4">\
                                                     </video>\
 											   </div>');
-											  $('.type-of-art').text(val.artType);
-											  $('.name-of-art').text(val.caption);
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											 // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											 // $('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
 										  
 										  }
                                         else{
-										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active"></li>');
-										$('#crouselItems').append('<div class="item active">\
-												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="active" id="'+parsedata.art[k].artID+'li"></li>');
+										$('#crouselItems').append('<div class="item active" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px" >\
 											   </div>');
-											  $('.type-of-art').text(val.artType);
-											  $('.name-of-art').text(val.caption);
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											// $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											 // $('.type-of-art-lcount').text(parsedata.art[k].likecount);
                                         }
-	 
-	                                    }
-										 else 
-										{
-									//	console.log('i==0else');
-                                         if(i==targetindex-2)
-										 
-										 {
-										 
-										 
-										  if(uri_dec.indexOf('video')> -1)
+						   }
+						   else {
+							   
+							   
+							    if(uri_dec.indexOf('video')> -1)
 										  {
 										  
-										  	$('#myCarousel ol').append('<li data-target="#myCarousel"data-slide-to="'+j+'" class="active"></li>');
-										       $('#crouselItems').append('<div class="item active" id="myVideo" width="300px" >\
-												<video width="100%" height="200px"  controls >\
-                                        <source src="'+uri_dec+'"  type="video/mp4">\
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class=""  id="'+parsedata.art[k].artID+'li"></li>');
+										       $('#crouselItems').append('<div class="item " width="300px" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
                                                     </video>\
 											   </div>');
-											  $('.type-of-art').text(val.artType);
-											  $('.name-of-art').text(val.caption);
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  //$('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											  //$('.like-amt').html(' ')
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
 										  
 										  }
-										 else
-										 {
-										 $('#myCarousel ol').append('<li data-target="#myCarousel"data-slide-to="'+j+'" class="active"></li>');
-										 $('#crouselItems').append('<div class="item active">\
+                                        else{
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="" id="'+parsedata.art[k].artID+'li"></li>');
+										$('#crouselItems').append('<div class="item " id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
 												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
 											   </div>');
-											  $('.type-of-art').text(val.artType);
-											  $('.name-of-art').text(val.caption);
-										 
-										 }
-										 
-										 
-										 }
-										 
-										 //i==targetindex-2
-										 else
-										 {
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  console.log(parsedata.art[k].commentcount)
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											   //$('.like-amt').html(' ')
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+                                        }
+							   
+	}}
+						   
+						   j++;
 										
-                                         if(uri_dec.indexOf('video')> -1)
+		
+   
+			
+		
+		
+}
+
+else if(lastindex%3==1)
+{
+	
+	   if(lastindex==1)
+	   {
+		   if(uri_dec.indexOf('video')> -1)
 										  {
 										  
-										  	$('#myCarousel ol').append('<li data-target="#myCarousel"data-slide-to='+j+'></li>');
-										       $('#crouselItems').append('<div class="item " id="myVideo" width="300px">\
-												<video width="100%" height="200px" controls  >\
-                                        <source src="'+uri_dec+'"  type="video/mp4">\
+											 
+												 
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active" id="'+parsedata.art[k].artID+'li"></li>\
+										\
+											');
+										       $('#crouselItems').append('<div class="item active" width="300px" id="'+parsedata.art[k].artID+'"  data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'"  >\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
                                                     </video>\
-											   </div>');
-											  $('.type-of-art').text(val.artType);
-											  $('.name-of-art').text(val.caption);
+											   </div>\
+											   \
+											   ');
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  //$('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											  // $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
 										  
 										  }
-										 
-										 else{
-										$('#myCarousel ol').append('<li data-target="#myCarousel"data-slide-to="'+j+'"></li>');
-										$('#crouselItems').append('<div class="item">\
-												<img src="'+uri_dec+'" alt="Chania" style="height:200px">\
-										  </div>');
-										      $('.type-of-art').text(val.artType);
-											  $('.name-of-art').text(val.caption);
+                                        else{
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="active"></li>\
+										\
+											');
+										$('#crouselItems').append('<div class="item active" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'" >\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   \
+											   ');
+											 
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											;
+                                        }	
+							
+		   newindex=0
+		   return;
+		   
+		   
+	   }
+	
+					 if(k==lastindex-1)	
+						{
+							 if(parsedata.art[0].url!=='null')
+											 {
+												var b0 = parsedata.art[0].url!=='null'
+											 }
+											 else 
+											 {
+												 var b0= './assets/img/no_img.jpg'
+												 
+											 }
+											  if(parsedata.art[1].url!=='null')
+											 {
+												var b1 = parsedata.art[1].url!=='null'
+											 }
+											 else 
+											 {
+												 var b1 = './assets/img/no_img.jpg'
+												 
+											 }
+							
+						if(uri_dec.indexOf('video')> -1)
+										  {
 										  
+											 
+												 
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active" id="'+parsedata.art[k].artID+'li"></li>\
+											<li data-target="#myCarousel" data-slide-to="1" ></li>\
+											<li data-target="#myCarousel" data-slide-to="2" ></li>\
+											');
+										       $('#crouselItems').append('<div class="item active" width="300px" id="'+parsedata.art[k].artID+'"  data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'"  >\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
+                                                    </video>\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[0].artID+'"  data-comment="'+parsedata.art[0].commentcount+'" data-likecount="'+parsedata.art[0].likecount+'" >\
+												<img src="'+b0+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[0].artID+'"  data-comment="'+parsedata.art[1].commentcount+'" data-likecount="'+parsedata.art[1].likecount+'" >\
+												<img src="'+b1+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   ');
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  //$('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											  // $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+										  
+										  }
+                                        else{
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="active"></li>\
+										<li data-target="#myCarousel" data-slide-to="1" ></li>\
+											<li data-target="#myCarousel" data-slide-to="2" ></li>\
+											');
+										$('#crouselItems').append('<div class="item active" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'" >\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
+											   </div>\
+											    <div class="item" id="'+parsedata.art[0].artID+'" data-comment="'+parsedata.art[0].commentcount+'" data-likecount="'+parsedata.art[0].likecount+'">\
+												<img src="'+b0+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   <div class="item" id="'+parsedata.art[1].artID+'" data-comment="'+parsedata.art[1].commentcount+'" data-likecount="'+parsedata.art[1].likecount+'">\
+												<img src="'+b1+'"alt="Chania" style="height:200px">\
+											   </div>\
+											   ');
+											 //  $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											// $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+                                        }	
+							
+						newindex=0
+					   setTimeout(callforcarouselimages, 20000);
+						}							
+
+else{
+						  if(k==(target-3))
+						   {  console.log('k==0')
+						    console.log(parsedata.art[k].commentcount)
+						   if(uri_dec.indexOf('video')> -1)
+										  {
+										  
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active" id="'+parsedata.art[k].artID+'li"></li>');
+										       $('#crouselItems').append('<div class="item active" width="300px" id="'+parsedata.art[k].artID+'"  data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
+                                                    </video>\
+											   </div>');
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											 // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											 // $('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+										  
+										  }
+                                        else{
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="active" id="'+parsedata.art[k].artID+'li"></li>');
+										$('#crouselItems').append('<div class="item active" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px" >\
+											   </div>');
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											// $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											 // $('.type-of-art-lcount').text(parsedata.art[k].likecount);
+                                        }
+						   }
+						   else {
+							   
+							   
+							    if(uri_dec.indexOf('video')> -1)
+										  {
+										  
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class=""  id="'+parsedata.art[k].artID+'li"></li>');
+										       $('#crouselItems').append('<div class="item " width="300px" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
+                                                    </video>\
+											   </div>');
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  //$('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											  //$('.like-amt').html(' ')
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+										  
+										  }
+                                        else{
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="" id="'+parsedata.art[k].artID+'li"></li>');
+										$('#crouselItems').append('<div class="item " id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
+											   </div>');
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  console.log(parsedata.art[k].commentcount)
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											   //$('.like-amt').html(' ')
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+                                        }
+							   
+	}}
+						   
+						   j++;
+										
+		
+   
+		
+	
+	
 }
+else{
+	
+	 if(k==target-3)
+	 	   {  console.log('k==0')
+						    console.log(parsedata.art[k].commentcount)
+						   if(uri_dec.indexOf('video')> -1)
+										  {
+										  
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class="active" id="'+parsedata.art[k].artID+'li"></li>');
+										       $('#crouselItems').append('<div class="item active" width="300px" id="'+parsedata.art[k].artID+'"  data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
+                                                    </video>\
+											   </div>');
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											 // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											 // $('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+										  
+										  }
+										  
+                                        else {
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="active" id="'+parsedata.art[k].artID+'li"></li>');
+										$('#crouselItems').append('<div class="item active" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px" >\
+											   </div>');
+											  // $('.like-amt').html(' ')
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											// $('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											 // $('.type-of-art-lcount').text(parsedata.art[k].likecount);
+                                        }
+						   }
+						   else {
+							   
+							   
+							    if(uri_dec.indexOf('video')> -1)
+										  {
+										  
+										  	$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'" class=""  id="'+parsedata.art[k].artID+'li"></li>');
+										       $('#crouselItems').append('<div class="item " width="300px" id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+									 			<video width="100%" height="200px"  controls >\
+                                                <source src="'+uri_dec+'"  type="video/mp4">\
+                                                    </video>\
+											   </div>');
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  //$('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											  //$('.like-amt').html(' ')
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+										  
+										  }
+                                        else{
+										$('#myCarousel ol').append('<li data-target="#myCarousel" data-slide-to="'+j+'"  class="" id="'+parsedata.art[k].artID+'li"></li>');
+										$('#crouselItems').append('<div class="item " id="'+parsedata.art[k].artID+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
+												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
+											   </div>');
+											  $('.type-of-art').text(parsedata.art[k].artType);
+											  $('.name-of-art').text(parsedata.art[k].caption);
+											  console.log(parsedata.art[k].commentcount)
+											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
+											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
+											   //$('.like-amt').html(' ')
+											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
+											  
+                                        }
+							   
 }
-										}
-
-                                       currentindex ++
- 
-                                    }
-									
-									else 
-									{
-									//console.log('true');
-									return true ;
-
-									}
-									j++;
-									}
-else if (targetindex>lastindex )
-
-{
-//console.log('(targetindex>lastindex )');
-currentindex=0
-targetindex=0
-//setcrousel();
-
-
+						   
+						   j++;
+										
+		
+   
+		
+	
+	
+	
+	
 }
 
+}
+	
+	
+	
+			
+			newindex=k
+			console.log(newindex)
+			/**********************************************************/
+		//localStorage.setItem('crouselartid' ,parsedata.art[0].artID)
+				//alert(lastindex);
+			
+		$('.carousel').carousel({
+			 interval :false,
+		   pause: 'true'
+		 
+		});
+}
 else 
 {
-//console.log('returning true');
-return ;
+	newindex=0
+  setTimeout(callforcarouselimages, 20000);
+}
 
 }
 
 
-
-});//each 
-}
-else 
+function callforcarouselimages()
 {
-console.log('(targetindex>lastindex 351)');
-currentindex=0
-targetindex=0
-setCrousel();
+if(localStorage.bckbtn)
+	{newindex=0
+firsttime=true
+localStorage.bckbtn=false;
 }
-}
-$('.carousel').carousel({
-     interval :false,
-   pause: 'true'
- 
-});
+	
+	
+	//alert(localStorage.getItem('loggedINuserartistid'));
+	console.log(localStorage.getItem('fbsignup'));
+	// if(ajaxflag) 
+	  
+		  $.ajax({
+	    type : 'GET',
+	    url: localStorage.getItem('webserviceurl')+"artist/profile",
+		contentType: "application/json",
+	    dataType: "json",
+		data : {
+		"artistID" :artistidnew
+},
+	   success : function(data)
+			    { 
+				//alert('inside getArtistSuccess loaddddddddd');
+				//alert(data);
+				
+			   var crouseldat = JSON.stringify(data);
+			//alert(JSON.stringify(data))
+			  localStorage.setItem('crouseldata' ,' ');
+			 // alert(localStorage.getItem('crouseldata'));
+			 localStorage.setItem('crouseldata' ,crouseldat);
+			 console.log('calling set')
+			    ajaxflag =false
+			    SetCrousel(); 
+				
+	
+	} ,
+	
+	error   : function (xhr, status, error)
+	{console.log(xhr);}						 
+		
+		
+		});//end of ajax call 
 
+		  
+		  
+	  
+	
+	
 }
+
 
 

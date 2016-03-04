@@ -4,6 +4,7 @@ if(localStorage.getItem('fromfeedtrend')=='true')
 {
 localStorage.getItem('fromfeedtrend','false');
 console.log('calling getArt');
+//alert(localStorage.getItem('crouselartid'))
  getArtComments();
 }
 else{
@@ -14,6 +15,8 @@ getcomments(); }
 	  //alert(localStorage.getItem('crouselartid'));
 	  $('.cross-icon').click(function(){
 	  //alert('imageclicked');
+	   localStorage.crossicon=true;
+	  
 		parent.history.back();
 		return false;
 	}); 
@@ -167,7 +170,7 @@ function getcomments()
 										<h6 class="couple-name_position">'+val.name+'<span class="msg-posted_time">\
 										<img src="./assets/img/time.png" alt="clock" class="msg-posted-time_pic"> '+agotime+ ' ago</span></h6>\
 										<h6 class="wishing-text">'+val.comment+'</h6>\
-				                       </div></div');
+				                       </div></div>');
 							
 							});	 
 						
@@ -212,7 +215,7 @@ function getArtComments()
 						dataType: "json",
 						data : {
 						//"artID" : '20' // for demo purpose cuz comment are avalable for artID 20
-					"artID" :localStorage.getItem('getfeedtrend') //(uncomment befor production)
+					"artID" :localStorage.getItem('crouselartid') 
 					  },
 					   success : function(data)
 								{

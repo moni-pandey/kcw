@@ -2,6 +2,9 @@ $(document).ready(function(){
  usertype= ''
  type=''
   someObj={};
+  mediaToken =''
+  incomeRange=''
+  smAcctType=''
 $('#screatebtn').bind('click', function() { 
         // alert('inside continue click ');
 		 
@@ -19,7 +22,7 @@ $('#screatebtn').bind('click', function() {
 			showAlert("Please Enter your password again");
 			$("#scpassword").focus();
 		} else {
-		
+		localStorage.mediaicon=false
 		window.location="signUp_Artist.html"
 		}
      localStorage.setItem('sname',document.getElementById('sname').value);
@@ -47,18 +50,40 @@ $('#screatebtn').bind('click', function() {
 				});
                
 			   /* if fb signup*/
-			   if(localStorage.getItem('fbicon')=='true')
-			   {
-				   localStorage.getItem('fbicon' ,'false');
+			   
+			   if(localStorage.mediaicon == true)
+			{   localStorage.mediaicon=false
+				   if(localStorage.getItem('icon')=='fb') 
+				   {
+			        mediaToken =localStorage.getItem('fbaccesstoken')
+					smAcctType ='F'
+			        }
+					else if(localStorage.getItem('icon')=='gp')
+					{
+						var gpdata = JSON.parse(localStorage.getItem('googlelogindata'));
+						mediaToken =gpdata.oauthToken
+					     smAcctType ='G'
+						
+					}
+					/*else
+					{
+						var gpdata = JSON.parse(localStorage.getItem('twitterlogindata'));
+						mediaToken =gpdata.token
+					     smAcctType ='T'
+					}*/
 			     if($('#patronbtn').css('display') ==='block')
 				   { 
-			   usertype='P'
-				   type='P'	}	
+			   console.log('yes')
+			       usertype='P'
+				   type='P'
+                   incomeRange= localStorage.getItem('incomerange')
+				   }	
                  else{
+					 console.log('no')
 					 usertype='A'
-				   type='A'
-					 
-				 }
+				     type='A'
+				     incomeRange=''
+				}
           				
                     callforsocialMediaLogin()						
 			   
@@ -187,28 +212,45 @@ $("input[name='incomeradio']").on("click", function() {
 
 function callforsocialMediaLogin()
 {
-	
-	if (checkConnection()) { $.ajax({
+	localStorage.mediaicon=false
+	if (checkConnection()) 
+	{ $.ajax({
 					  type: 'POST',
 					  url: localStorage.getItem('webserviceurl')+"user/socialmedia",
 					  contentType: "application/json",
 					  data:
 			 JSON.stringify({
-				 "token" : localStorage.getItem('fbaccesstoken'),
-		         "smAcctType" : "F",
+				 "token" : mediaToken,
+		         "smAcctType" : smAcctType,
 				"usertype" : usertype,
 				"type" : type,
 				"city" : $("#cityname").val(),
-				"incomeRange" :'',
+				"incomeRange" :incomeRange,
 				"artTypes":someObj.artTypes,
 				}),
 					  success: function(data){
-					 var fbdata =JSON.stringify(data);
-						alert(data.user[0].smAcctID);
-						console.log(data)
-						localStorage.setItem('smid',data.user[0].smAcctID)
-						localStorage.setItem('smartistid',data.user[0].artistID)
+						  
+						  
+					    var fbdata =JSON.stringify(data);
 						
+						if(localStorage.getItem('icon')=='fb')  
+						{
+							 var fbdata =JSON.stringify(data);
+							 localStorage.setItem('fbsignup',fbdata)
+							
+							
+						}else 
+						{
+						 var gpdata =JSON.stringify(data);
+						 console.log(gpdata);
+						   localStorage.setItem('gpsignup',gpdata)
+							
+						}
+						//alert(data.user[0].smAcctID);
+						//console.log(data)
+						//localStorage.setItem('smid',data.user[0].smAcctID)
+						//localStorage.setItem('smartistid',data.user[0].artistID)
+						window.location='index.html'
 					  },
 					  error: function(xhr ,status,error){
 						//console.log('inside error');

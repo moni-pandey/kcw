@@ -3,8 +3,10 @@ $(document).ready(function(){
 
   var  longituted_detected = ' ';
   var  latitude_detected = ' '
+ 
 
     $(document).bind("deviceready", function() {
+		//initiate_geolocation();
 			document.addEventListener("backbutton", function() {
 						console.log("Disabled Back button");
 			});
@@ -12,13 +14,33 @@ $(document).ready(function(){
 			
 $('.search').hide();
 
+if(localStorage.crossicon == 'true')
+{
+	
+	if(localStorage.getItem('feedclicked')=='true')
+	{ localStorage.setItem('feedclicked' ,'false');	
+	window.location='home1_Patron.html'
+}
+	else if(localStorage.getItem('trendclicked')=='true')
+	{localStorage.setItem('trendclicked' ,'false');
+       
+		window.location='home3_Patron.html'
+	}
+	else
+	window.location='home2_Patron.html'
+
+localStorage.crossicon = false 
+}
  $(document).on('click' , '.feed-btn', function () {
        localStorage.setItem('feedclicked' ,'true');
+	 localStorage.setItem('trendclicked' ,'false');
       window.location='home1_Patron.html'
 	  });
 	  
 $(document).on('click' , '.trending-btn', function () {
+	
 localStorage.setItem('feedclicked' ,'false');
+localStorage.setItem('trendclicked' ,'true');
      window.location='home3_Patron.html'
 	  });
 	  
@@ -159,6 +181,8 @@ $(document).on('click', '.search-icon', function () {
 	  $(document).on('click','.share-img' ,function(e){
            localStorage.setItem('fromfeedtrend',true);
 		  localStorage.setItem('getfeedtrend',e.target.id);
+		  var artid= parseInt(e.target.id)
+		  localStorage.setItem('crouselartid',artid) 
 	window.location='comment_Page_new.html'
 	
 
@@ -180,6 +204,7 @@ $(document).on('click', '.search-icon', function () {
 
 				 $('.trending-btn').css({"background-color": "transparent"})
 				 $('.trending-btn').css({"color":"white"})
+				 
           
 			
 }
@@ -207,25 +232,27 @@ console.log('trending');
          },
 	     success : function(data)
 			    {
-				
+				console.log(data)
 //alert(JSON.stringify(data));
 
      //
 			$(data.artists).each(function(i,val){
 				//alert('each');
-				$('.artistlistcontainer').append('<div class="row fbbox" id="'+val.artID+'">\
+			$('.artistlistcontainer').append('<div class="row fbbox" id="'+val.artID+'">\
 				    <div class="col-xs-12">\
 				        <img src="'+decodeURIComponent(val.url)+'" width="647" height="408" class="img-responsive pic1">\
 				        <img src="./assets/img/people-small.png" class="small-img" id="'+val.artistID+'" onclick="getprof(this)">\
-						<p class="name-artist" value="james" >'+val.name+'</p>\
+						<p class="name-artist" value="james" id="'+val.artistID+'name" >'+val.name+'</p>\
 						<p class="name-occupation '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</p>\
 						<p class="art-name">'+val.caption+'</p>\
 						<p class="art-type ">'+val.tag+'</p>\
 						<p class="fav-count" id="'+val.artID+'fav"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike" onclick="callLikeUnlike(this)" id="'+val.artID+'img"> <span class="likeimg" id="'+val.artID+'likecounter">'+val.likecount+'</span></p>\
 						<p class="share-count">'+val.commentcount+'</p>\
-						<img src="./assets/img/Comment.png"  class="share-img" id="'+val.artID+'">\
+						<img src="./assets/img/Comment.png"  class="share-img" id="'+val.artID+'cmt">\
 					</div> \
 				</div>');
+				
+			
 			
 				
 				});
@@ -252,6 +279,8 @@ console.log('trending');
 			
 			 function initiate_geolocation() {
 			 //alert('inside geo loc')
+			 
+	//var options = {maximumAge: 0, timeout: 10000, enableHighAccuracy:false};
             navigator.geolocation.getCurrentPosition(handle_geolocation_query,handle_errors);
         }
  
@@ -323,17 +352,31 @@ $.ajax({
 				//alert(data.artists);
 				$(data.artists).each(function(i,val){
 				//alert('each');
-				$('.artistlistcontainer').append('<div class="row fbbox"  id="'+val.artID+'">\
+			/*	$('.artistlistcontainer').append('<div class="row fbbox"  id="'+val.artID+'">\
 				    <div class="col-xs-12">\
 				        <img src="'+decodeURIComponent(val.url)+'" width="647" height="408" class="img-responsive pic1">\
 				        <img src="./assets/img/people-small.png" class="small-img" id="'+val.artistID+'" onclick="getprof(this)">\
-						<p class="name-artist" value="james" >"'+val.name+'"</p>\
+						<p class="name-artist" value="james"  id="'+val.artistID+'name">"'+val.name+'"</p>\
 						<p class="name-occupation '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</p>\
 						<p class="art-name">'+val.caption+'</p>\
 						<p class="art-type ">'+val.tag+'</p>\
 						<p class="fav-count" id="'+val.artID+'fav"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike" onclick="callLikeUnlike(this)" id="'+val.artID+'img"> <span id="'+val.artID+'likecounter">'+val.likeCount+'</span></p>\
 						<p  class="comment-img" >'+val.commentcount+'</p>\
-						<img src="./assets/img/Comment.png"   class="share-img" id="'+val.artID+'">\
+						<img src="./assets/img/Comment.png"   class="share-img" id="'+val.artID+'cmt">\
+					</div> \
+				</div>');*/
+				
+					$('.artistlistcontainer').append('<div class="row fbbox" id="'+val.artID+'">\
+				    <div class="col-xs-12">\
+				        <img src="'+decodeURIComponent(val.url)+'" width="647" height="408" class="img-responsive pic1">\
+				        <img src="./assets/img/people-small.png" class="small-img" id="'+val.artistID+'" onclick="getprof(this)">\
+						<p class="name-artist" value="james" id="'+val.artistID+'name" >'+val.name+'</p>\
+						<p class="name-occupation '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</p>\
+						<p class="art-name">'+val.caption+'</p>\
+						<p class="art-type ">'+val.tag+'</p>\
+						<p class="fav-count" id="'+val.artID+'fav"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike" onclick="callLikeUnlike(this)" id="'+val.artID+'img"> <span class="likeimg" id="'+val.artID+'likecounter">'+val.likeCount+'</span></p>\
+						<p class="share-count">'+val.commentcount+'</p>\
+						<img src="./assets/img/Comment.png"  class="share-img" id="'+val.artID+'cmt">\
 					</div> \
 				</div>');
 			localStorage.setItem('feedclicked','false');
@@ -427,6 +470,9 @@ function callLikeUnlike(artid)
 function getprof(id)
 {
 	var imgartid = $(id).attr("id")
+	var nameid= imgartid +'name'
+	var artistname = $('#'+nameid).text();
+	localStorage.setItem('fromartistname',artistname)
 	 localStorage.setItem('loggedINuserartistid' ,imgartid);
 	 localStorage.setItem('fromGetArtistID',imgartid),
      

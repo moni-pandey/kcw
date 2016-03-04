@@ -1,5 +1,10 @@
-@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css");
 
+.socailmedia
+{
+	z-index:999
+	
+	
+}
 /* for homw_patron.html*/
 .wrapper {
     width:100%;
@@ -121,11 +126,11 @@ font-size:20px;}
     padding-left: 30px;
     padding-right: 30px;
 }
-.tech-support_text {
+.tech-support_text {            /* changed 3/3/16  */
     color: white;
     text-align: center;
-    margin-top: 8px;
-    margin-left: -80px;
+    margin-top: 7px;                     
+    margin-left: -65px;
     font-size: 20px;
     font-family: Source Sans Pro;
     opacity: .9;
@@ -522,21 +527,17 @@ color:#24e6bf;
 
 /* page 6a  */
 
-.back-text {
+.back-text {                                /* changed 3/3/16  */
     color: #ffffff;
     font-size: 15px;
     font-family: Source Sans Pro;
-    margin-top: 10px;
-    opacity: .85;
-
-	
+    margin-top: 14px;
+    opacity: .85;	
 }
 
-
-
-.back-img {
-    padding-right: 8px;
-    margin-top: -1px;
+.back-img {                                 /* changed 3/3/16  */
+    padding-right: 6px;
+    margin-top: -3px;
 
 }
 
@@ -643,7 +644,7 @@ color:#24e6bf;
     float: left;
     color: #24e6bf;
     margin-top: 13px;
-    margin-left: -14px;
+    margin-left: 0px;
     font-size: 14px;
     font-family: Source Sans Pro;
     opacity: .85;
@@ -707,7 +708,7 @@ border:none;
      float: right;
     font-size: 13px;
     margin-top: 16px;
-    margin-right: 60px;
+    margin-right: 20px;
     color: #24e6bf;
 	font-family: Source Sans Pro;
     font-weight: bold;
@@ -1647,33 +1648,34 @@ padding-top:10px;
 }
 
 
-.panel-default>.panel-heading {
-   background-color:#ffffff;
-  
- }
+ .panel-default>.panel-heading {
+   background-color:#545454;          /* changed 3/3/16  */
+  border-radius:0;
+ }   
  .yo{
- 
- background-color:#545454;
+                                        /* changed 3/3/16  */
+ /* background-color:#545454; */
  }
  .panel-group .panel {
     margin-bottom: 15px;
     border-radius: 0;
+	border:1px solid #545454;
 }
  
- 
-.faq {
-	border-bottom:3px solid #c7c7c7;
+.faq {                                           /* changed 3/3/16  */
+    border-bottom:3px solid #c7c7c7;	
+	border-radius:0;
 }
 
-.panel-default>.panel-body {
+.panel-default>.panel-body {                         /* changed 3/3/16  */
     border-top-color: #545454;
 }
+
 .panel-title {
     margin-top: -2px;
     margin-bottom: -8px;
     font-size: 16px;
-    color: #575757;
-	  background-color: #575757;
+    
 }
 .panel-title  a{
 
@@ -1683,6 +1685,7 @@ padding-top:10px;
   color:black;
   font-family:Roboto;
   font-size:30px;
+  margin-left:-8px;
 }
 .question-answerQ   {
   color:#24e6bf;
@@ -1749,7 +1752,7 @@ margin:10px
 }
 
 .album-name  {
-  position:absolute; top:66%; left:15%; color:#fff; font-size:15px; font-family: Source Sans Pro;
+  position:absolute; top:66%; left:15%; color:#24e6bf;  font-size:15px; font-family: Source Sans Pro;
 }
 
 .album-pic-count  {
@@ -1802,5 +1805,24 @@ margin:10px
    position:absolute; top:78%; left:14%; color:#fff; font-size:15px; font-family: Source Sans Pro;
  }
 
+ 
+ 
+ /*youtube */
+ .paging-button {
+  visibility: hidden;
+}
+
+.button-container {
+  clear: both;
+}
 }
  
+
+/* css date-3/3/2016  */
+
+.zero-side-margin   {
+margin-left:0 !important; margin-right:0 !important;
+}
+
+.panel-group .panel-heading+.panel-collapse>.faq-bg  {
+  border-top:none}

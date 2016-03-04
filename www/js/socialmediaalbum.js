@@ -1,13 +1,16 @@
     $(document).ready(function() {
             
              
-     // alert('welcome');
+   //  alert('welcome');
 	  
       $(document).bind("deviceready", function() {
+
 	  
-	  		 // alert('evice');
-      // console.log('bind');
-	  //facebook album 
+	  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
+         localStorage.fbLinked = true ;
+		 localStorage.bckbtn=true
+		 parent.history.back();
+	}, false);
 	var userid = localStorage.getItem('fbuserid');
     var albums;
      facebookConnectPlugin.api('/'+userid+'/albums?fields=picture,name,id,count', ["user_photos"], function(response){
@@ -15,36 +18,14 @@
         albums = response.error;
       } else {
         albums = response;
-		console.log('moni album');
+		console.log(' album');
 		console.log(response);
-		   //  alert("response: " + JSON.stringify(response));
+		    //alert("response: " + JSON.stringify(response));
 		       var newdata = JSON.stringify(response);
 			   
 				localStorage.setItem('newdata' ,newdata);
 				var parsedata =JSON.parse(localStorage.getItem('newdata'));
-		//alert(parsedata.data.length)
-	/*	 $(parsedata.data).each(function(i,val){
-		 console.log( val.name);
 	
-		  //$('#yourSelectBoxId').append(new Option(val.name, val.id));
-		 
-		 // $('#photos_header').append('<img src="'+val.picture.data.url+'"  height="150px"/>');
-		  $('.container-fluid').append('<div class="row album-top-margin">\
-				    <div class="col-xs-6">\
-					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
-						<img src="./assets/img/image1.png" class="img-responsive album-image">\
-						<p class="album-name">Album Name</p>\
-						<p class="album-pic-count"><img src="./assets/img/image-icon.png"> 32</p>\
-					</div>\
-					<div class="col-xs-6">\
-					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
-						<img src="./assets/img/image1.png" class="img-responsive album-image">\
-						<p class="album-name">Album Name</p>\
-						<p class="album-pic-count"><img src="./assets/img/image-icon.png"> 32</p>\
-					</div>\
-				</div>');
-		 });
-		 */
 		 if(parsedata.data.length%2==0)
 		{ for(i=0;i < parsedata.data.length; i += 2)
 		 {
@@ -72,7 +53,7 @@
 		 
 		 for(i=0;i < parsedata.data.length-1; i += 2)
 		 {
-		 
+		  
 		  $('.container-fluid').append('<div class="row album-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="./assets/img/Frame.png" class="img-responsive frame">\

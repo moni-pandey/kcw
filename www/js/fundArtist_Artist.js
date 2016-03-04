@@ -292,6 +292,7 @@ if (confirm('to confirm deletion click on OK')) {
 			}),
 			success : function(data)
 			{  
+			$('#'+number).hide();
 			//will swap it vd commonmethod.js function
 			navigator.notification.alert(
             'expense deleted!',  // message

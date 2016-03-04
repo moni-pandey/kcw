@@ -1,7 +1,9 @@
 $(document).ready(function() {
-
+	
+  linkedAcctTypesocial =''
 localStorage.setItem('webserviceurl' ,'http://107.170.201.114:5001/')
-localStorage.setItem('fbicon' ,'false');
+//localStorage.setItem('icon' ,'');
+//localStorage.setItem('mediaicon' ,'false');
     /** Email Login */
     $('#logINbtn').bind('click', function() {
         if ($("#indexusername").val() == "") {
@@ -26,10 +28,37 @@ localStorage.setItem('fbicon' ,'false');
 // Social Media based Login Methods-Begins
 var gpLoginSuccess = function(gpUserData) {
     //Success Method of Google Login
+	localStorage.gpemail=gpUserData.email
+	linkedAcctTypesocial ='G'
     localStorage.setItem('googlelogindata', JSON.stringify(gpUserData));
-	alert(JSON.stringify(gpUserData));
-	alert(JSON.stringify(gpUserData.oauthToken));
-    //window.location = "signUp_Artist.html";
+	        localStorage.setItem('icon','gp');
+            localStorage.setItem('mediaicon','true');
+	//alert(JSON.stringify(gpUserData));
+	
+	  checkalreadyregisterd()
+	
+  /* if(localStorage.getItem('gpsignup'))
+			{
+			 var fbdata =   JSON.parse(localStorage.getItem('gpsignup'));
+			 //alert(fbdata)
+			 localStorage.setItem('loggedINusertype' ,fbdata.user[0].usertype)
+			 localStorage.setItem('loggedINusername',fbdata.user[0].displayName)
+			  if (localStorage.getItem('loggedINusertype') == 'P')
+				  
+                localStorage.setItem('loggedINuserpatronid', fbdata.user[0].patronID);
+            else
+                localStorage.setItem('loggedINuserartistid', fbdata.user[0].artistID);
+			// localStorage.setItem('loggedINuserartistid' ,fbdata.user[0].artistID)
+			 loadprofile();
+				 
+			 }			 
+			
+			else {
+				
+				  window.location = "signUp_Artist.html";
+				
+				
+				}*/
 };
 
 var fbLoginSuccess = function(fbUserData) {
@@ -37,6 +66,8 @@ var fbLoginSuccess = function(fbUserData) {
     //alert('inside fbloginsucess');
     console.log(JSON.stringify(fbUserData.authResponse));
     localStorage.setItem('fbuserid', fbUserData.authResponse.userID);
+    localStorage.setItem('fbaccesstoken', fbUserData.authResponse.accessToken);
+	//alert(localStorage.getItem('fbaccesstoken'))
     fetchFBDetails();
 	
    // alert('fetched details //call signup');
@@ -50,18 +81,30 @@ function fetchFBDetails() {
     facebookConnectPlugin.api("/me?fields=email,name,picture", ['public_profile' ,"user_photos"],
         function(fbPermissions) {
             showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
-            localStorage.setItem('socialMediaEmailFB', fbPermissions.email);
-            localStorage.setItem('socialMediaNameFB', fbPermissions.name);
+            //localStorage.setItem('socialMediaEmailFB', fbPermissions.email);
+            //localStorage.setItem('socialMediaNameFB', fbPermissions.name);
             localStorage.setItem('facebooklogindata', JSON.stringify(fbPermissions));//Saved facebook data in LS on Jan8th
-            localStorage.setItem('fbicon','true');
-			//alert(localStorage.getItem('smid'));
-			//alert(localStorage.getItem('smid'));
-			if(localStorage.getItem('smartistid'))
+            localStorage.setItem('icon','fb');
+            localStorage.mediaicon=true
+linkedAcctTypesocial ='F'
+localStorage.gpemail =fbPermissions.email
+checkalreadyregisterd()
+			/*if(localStorage.getItem('fbsignup'))
 			{
-            localStorage.setItem('loggedINuserartistid' ,localStorage.getItem('smartistid'))
-            window.location = "profile_Artist.html";			
-			}
-			else {window.location = "signUp_Artist.html";}
+			 var fbdata =   JSON.parse(localStorage.getItem('fbsignup'));
+			 //alert(fbdata)
+			 localStorage.setItem('loggedINusertype' ,fbdata.user[0].usertype)
+			 localStorage.setItem('loggedINusername',fbdata.user[0].displayName)
+			 if (localStorage.getItem('loggedINusertype') == 'P')
+                localStorage.setItem('loggedINuserpatronid', fbdata.user[0].patronID);
+            else
+                localStorage.setItem('loggedINuserartistid', fbdata.user[0].artistID);
+			 //localStorage.setItem('loggedINuserartistid' ,fbdata.user[0].artistID)
+			 loadprofile();
+				 
+			 			 
+			}//
+			else {window.location = "signUp_Artist.html";} */
 			
         },
         function(fetchFBDetailsError) {
@@ -99,25 +142,14 @@ function fbLogin() {
             console.warn(data);
         });
     } else showAlert("Please Connect to Internet to Login");
-    /* if (localStorage.getItem('fbuserid') === null || localStorage.getItem('fbuserid') === " ") {
-         if (checkConnection()) {
-             facebookConnectPlugin.login(["public_profile", "email"],
-                 fbLoginSuccess,
-                 function(fbLoginError) {
-                     showAlert("fbLoginError" + JSON.stringify(fbLoginError));
-                 });
-         } else showAlert("Please Connect to Internet to Login");
-
-     } else {
-         logIn();
-         alert('fblogin else');
-
-     }*/
+  
 }
 
 function gpLogin() {
     if (checkConnection()) {
         window.plugins.googleplus.login({
+			'offline': true,
+			'scopes': 'email'
 			
             }, gpLoginSuccess,
             function(gpLoginError) {
@@ -133,7 +165,14 @@ function twitterLogin() {
         function(result) {
             console.log('Successful login!');
             localStorage.setItem('twitterlogindata', JSON.stringify(result));
-    window.location = "signUp_Artist.html";
+			console.log(JSON.stringify(result))
+			       localStorage.setItem('icon','twitter');
+            localStorage.mediaicon=true
+linkedAcctTypesocial ='T'
+localStorage.gpemail =result.userName
+			//checkalreadyregisterd();
+			
+    //window.location = "signUp_Artist.html";
         },
         function(error) {
             console.log('Error logging in');
@@ -182,8 +221,8 @@ function logEIn() {
 
         },
         error: function(xhr, status, errorThrown) {
-            alert(xhr.status);
-            alert(xhr.responseText);
+            alert('Re-try login');
+          //  alert(xhr.responseText);
             console.log(xhr.status);
 
             //console.log(error);
@@ -193,61 +232,7 @@ function logEIn() {
 
 }
 
-function logIn() {
-  alert('moni login');
 
-
-    //alert('inside if)');
-    $.ajax({
-        type: 'POST',
-        url: "http://128.199.252.61:5001/user/signin",
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify({
-            linkedAcctType: "F",
-            smAcctID: localStorage.getItem('fbuserid'),
-            email: localStorage.getItem('socialMediaEmailFB'),
-            password: ''
-
-        }),
-        success: function(data) {
-          //  alert(JSON.stringify(data));
-           // alert(data.message);
-            console.log(data);
-            console.log(data.user.usertype);
-            //alert(data.user.artistID)
-            console.log(data.user.artistID);
-            //alert(data.user.patronID);
-            localStorage.setItem('loggedINusertype', data.user.usertype);
-            localStorage.setItem('loggedINusercity', data.user.city);
-
-            localStorage.setItem('loggedINuserartistType', data.user.artistType);
-            localStorage.setItem('loggedINuserprofilepicurl', data.user.profilePicURL);
-            localStorage.setItem('loggedINusername', data.user.name);
-            //alert(localStorage.getItem('loggedINusertype'));
-            if (localStorage.getItem('loggedINusertype') == 'P')
-                localStorage.setItem('loggedINuserpatronid', data.user.patronID);
-            else
-                localStorage.setItem('loggedINuserartistid', data.user.artistID);
-
-            //alert(localStorage.getItem('loggedINuserartistid'));
-            loadprofile();
-
-        },
-        error: function(xhr, status, errorThrown) {
-            alert(xhr.status);
-            alert(xhr.responseText);
-            console.log(xhr.status);
-
-            //console.log(error);
-        }
-    });
-
-
-
-
-
-}
 
 function loadprofile() { //calling getexp
 
@@ -255,10 +240,12 @@ function loadprofile() { //calling getexp
 
 
     if (localStorage.getItem('loggedINusertype') === 'P') { // alert('if');
-        $('#patronname').text(localStorage.getItem('loggedINusername'));
+      //  $('#patronname').text(localStorage.getItem('loggedINusername'));
         window.location = "home2_Patron.html";
     } else {
         //alert('else');
+		
+		//$('#patronname').text(localStorage.getItem('loggedINusername'));
         window.location = "profile_Artist.html";
 
     }
@@ -266,3 +253,57 @@ function loadprofile() { //calling getexp
 }
 
 //});
+
+
+function checkalreadyregisterd()
+{
+	
+ $.ajax({
+        type: 'POST',
+        url: localStorage.getItem('webserviceurl')+"user/exists",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+            linkedAcctType: linkedAcctTypesocial,
+            
+            email: localStorage.gpemail
+            
+
+        }),
+        success: function(data) {
+          
+          console.log(data);
+		  if(data.user)
+		  {
+			//  var fbdata =   JSON.stringify(data.user)
+			 //console.log(fbdata)
+			 localStorage.setItem('loggedINusertype' ,data.user.usertype)
+			 localStorage.setItem('loggedINusername',data.user.name)
+			  if (localStorage.getItem('loggedINusertype') == 'P')
+				  
+                localStorage.setItem('loggedINuserpatronid', data.user.patronID);
+            else
+			{ localStorage.setItem('loggedINuserartistid', data.user.artistID);}
+			
+			 loadprofile();
+				 
+			  
+		  }
+		  else
+			  window.location = "signUp_Artist.html"
+
+        },
+        error: function(xhr, status, errorThrown) {
+            alert('Re-try login');
+          //  alert(xhr.responseText);
+            console.log(xhr.status);
+
+            //console.log(error);
+        }
+    });
+	
+	
+	
+	
+}
+

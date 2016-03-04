@@ -23,10 +23,10 @@
         <allow-intent href="itms-apps:*" />
     </platform>
 	<preference name="android-build-tool" value="gradle" />
-    <plugin name="phonegap-facebook-plugin" spec="~0.12.0">
+   <!-- <plugin name="phonegap-facebook-plugin" spec="~0.12.0">
         <param name="APP_ID" value="741117309366534" />
         <param name="APP_NAME" value="KCW" />
-    </plugin>
+    </plugin>-->
       <plugin name="cordova-plugin-googleplus" spec="~4.0.6">
     <param name="REVERSED_CLIENT_ID" value="115192106254-03koee612kjek476rj82f5onf19ajc6h.apps.googleusercontent.com" />
     </plugin>

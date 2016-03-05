@@ -32,7 +32,7 @@
       <plugin name="cordova-plugin-googleplus" spec="~4.0.6">
     <param name="REVERSED_CLIENT_ID" value="115192106254-03koee612kjek476rj82f5onf19ajc6h.apps.googleusercontent.com" />
     </plugin>
-	<plugin name="org.pushandplay.cordova.apprate" />
+	<plugin name="org.pushandplay.cordova.apprate"  source="npm"/>
 	<!--<plugin name="cordova-plugin-googleplus" spec="~4.0.6">
         <param name="REVERSED_CLIENT_ID" value="41731640131-151bkq734u5gl6lm27js0qnhsj3t2cm1.apps.googleusercontent.com" />
     </plugin>-->

@@ -28,9 +28,7 @@
         <param name="APP_ID" value="741117309366534" />
         <param name="APP_NAME" value="KCW" />
     </plugin>
-	<plugin name="SocialSharing">
-  <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
-</plugin>
+	<plugin name="cordova-plugin-x-socialsharing" source="npm" />
       <plugin name="cordova-plugin-googleplus" spec="~4.0.6">
     <param name="REVERSED_CLIENT_ID" value="115192106254-03koee612kjek476rj82f5onf19ajc6h.apps.googleusercontent.com" />
     </plugin>

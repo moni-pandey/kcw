@@ -41,7 +41,7 @@
     <plugin name="cordova-plugin-geolocation" spec="~1.0.0" />
     <plugin name="cordova-plugin-device" spec="~1.1.0" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.0" />
-    <plugin name="cordova-plugin-inappbrowser" source="pgp"  />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1.2.1"  />
 
     <!-- <plugin name="cordova-plugin-googleplayservices" /> -->
     <preference name="exit-on-suspend" value="false" />

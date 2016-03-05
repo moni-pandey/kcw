@@ -61,8 +61,13 @@ font-size:20px;}
   right:20px;
   font-size:30px
 }
+  .fa-angle-left  
+  {      margin-top: 70px;
+    font-size: 50px;} 
   
-	  
+  .fa-angle-right  
+  {     margin-top: 70px;
+    font-size: 50px;}
 	  
   
   .carousel-inner > .item > img,
@@ -126,11 +131,11 @@ font-size:20px;}
     padding-left: 30px;
     padding-right: 30px;
 }
-.tech-support_text {            /* changed 3/3/16  */
+.tech-support_text {            /* changed 3/3/16  */   /* changed 4/3/16  */
     color: white;
     text-align: center;
-    margin-top: 7px;                     
-    margin-left: -65px;
+    margin-top: 12px;                     
+  /*  margin-left: -65px;  */ 
     font-size: 20px;
     font-family: Source Sans Pro;
     opacity: .9;
@@ -139,7 +144,7 @@ font-size:20px;}
     color: white;
     
     margin-top: 8px;
-    margin-left: 20px;
+   /* margin-left: 20px;  */    /* changed 4/3/16  */
    
     font-size: 16px;
     font-family: Source Sans Pro;
@@ -147,11 +152,10 @@ font-size:20px;}
 }
 .new_tech-support_text{
     color: white;
-    
     margin-top: 8px;
     margin-left: 10px;
-   
-    font-size: 15px;
+	margin-right:10px;
+   font-size: 15px;
     font-family: Source Sans Pro;
     opacity: .9;
 }
@@ -1148,6 +1152,15 @@ border:none;
     padding: 5px 24px 5px 16px;
     font-weight: bold;
 }
+.artist-btn{
+    background-color: transparent;
+    color: white;
+    border-color: #24e6bf;
+    font-family: Source Sans Pro;
+    font-size: 12px;
+    padding: 5px 24px 5px 16px;
+    opacity: .9;
+}
 
 .feed-btn:hover {
     background-color: transparent;
@@ -1826,3 +1839,75 @@ margin-left:0 !important; margin-right:0 !important;
 
 .panel-group .panel-heading+.panel-collapse>.faq-bg  {
   border-top:none}
+  
+    
+ 
+ /* css added 4/3/16  */
+ 
+ .cross-icon {
+    margin-top: 17px;
+    float: right;
+}
+ 
+ .top-spacing {
+    margin-top: 10px;
+   
+}
+
+ .tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #fff;
+}
+
+.tip-left {
+  top: 10px;
+  left: -20px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.tip-right {
+  top: 10px;
+  right: -20px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+
+.dialogbox .box {
+  position: relative;
+    max-width: 640px;
+    height: auto;
+    margin: 1px 1px 15px 20px;
+    padding: 5px 5px 5px 10px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border: 1px solid #fff;
+}
+
+.box .message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Roboto;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #797979;
+}
+
+.comment-person  {
+   font:bold 13px Roboto; color:#3a3a3a;
+}
+
+.comment-time  {
+  float:right; font:11px Roboto; color:#999; margin-top:2px;
+  }
+  
+ .comment-time img {
+    margin-top: -2px;
+    padding-right: 2px;
+}

@@ -198,13 +198,14 @@ function logEIn() {
 
         }),
         success: function(data) {
-          // alert(JSON.stringify(data));
-          // alert(data.message);
+         
             console.log(data);
+			var loggeduser = JSON.stringify(data)
+			localStorage.setItem('loggeduser',loggeduser);
             console.log(data.user.usertype);
-            //alert(data.user.artistID)
+            
             console.log(data.user.artistID);
-            //alert(data.user.patronID);
+           
             localStorage.setItem('loggedINusertype', data.user.usertype);
             localStorage.setItem('loggedINusercity', data.user.city);
 

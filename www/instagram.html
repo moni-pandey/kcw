@@ -77,7 +77,7 @@
 		/*****************************/
 			$.ajax({
       type: 'GET',
-      url: "https://api.instagram.com/v1/users/search?q=pandeymoni08&access_token=2777117055.6250f51.37f9031e035541c7b3ea25ce8900ca1f",
+      url: "https://api.instagram.com/v1/users/search?q=pandeymoni08&access_token="+localStorage.getItem('instagramtoken'),
       data:
       {
 
@@ -110,11 +110,11 @@
 			  $('.container-fluids').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="'+data.data[j].images.low_resolution.url+'" class="img-responsive album-pic">\
-						<p class="pic-name">Photo Name</p>\
+						<p class="pic-name"></p>\
 					</div>\
 					<div class="col-xs-6">\
 						<img src="'+data.data[j+1].images.low_resolution.url+'" class="img-responsive album-pic">\
-						<p class="pic-name">Photo Name</p>\
+						<p class="pic-name"></p>\
 					</div>\
 				</div>');
 				

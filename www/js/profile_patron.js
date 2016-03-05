@@ -39,7 +39,7 @@ callforcarouselimages();
 						}
 	  
 	  
-if(localStorage.getItem('changenextpageBTN')=='true')
+/*if(localStorage.getItem('changenextpageBTN')=='true')
 		 {  
 		  // alert('if(localStorage.getItem(');
 		$('#followbtn').html('Unfollow');
@@ -47,7 +47,7 @@ if(localStorage.getItem('changenextpageBTN')=='true')
 		$('#followbtn').addClass('unfollow');
 		localStorage.setItem('fromGetArtist','false')
 		
-		}
+		}*/
 	
     
 	  // comment on art 
@@ -218,10 +218,23 @@ window.location = 'comment_Page_new.html' ;
 	var lastindex = parsedata.art.length 
 	var slideFrom = $(this).find('.active').index();
     var slideTo = $(e.relatedTarget).index();
+var direction =e.direction;
+	 
+	  if(direction=='left')
+	 {
 	 var cc = $('.carousel-inner .active').next().data('comment')
 	 var lc = $('.carousel-inner .active').next().data('likecount')
-	$('#likecounter').text(lc);
-     $('#cmntcounter').text(cc);
+	$('.type-of-art-ccount').text(cc);
+     $('.type-of-art-lcount').text(lc);
+	 
+	 }else{
+		 
+		 var cc = $('.carousel-inner .active').prev().data('comment')
+	 var lc = $('.carousel-inner .active').prev().data('likecount')
+	$('.type-of-art-ccount').text(cc);
+     $('.type-of-art-lcount').text(lc); 
+		 
+	 }
 	if(slideTo=='0')
 	{   
        console.log('slide to ')
@@ -883,6 +896,20 @@ localStorage.bckbtn=false;
 			 // alert(localStorage.getItem('crouseldata'));
 			 localStorage.setItem('crouseldata' ,crouseldat);
 			 console.log('calling set')
+			 var userdata =JSON.parse(localStorage.getItem('loggeduser'))
+			 for(var k =0 ;k<data.followers.length ;k++)
+				 
+			        {   
+					if(userdata.user.patronID==data.followers[k].patronid)
+			             {
+							 $('#followbtn').html('Unfollow');
+				            $('#followbtn').removeClass('follow');
+							$('#followbtn').addClass('unfollow');
+							 $('.follow_text').css('color', '#24e6bf');
+			             	console.log('following')
+			             }
+			             else 
+			             console.log('not following ')}
 			    ajaxflag =false
 			    SetCrousel(); 
 				

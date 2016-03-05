@@ -1,32 +1,27 @@
 $("document").ready(function() {
 var comment ='';
+
 if(localStorage.getItem('fromfeedtrend')=='true')
 {
 localStorage.getItem('fromfeedtrend','false');
 console.log('calling getArt');
-//alert(localStorage.getItem('crouselartid'))
+
  getArtComments();
 }
 else{
 
-//alert('getcomments()');
-getcomments(); }
 
-	  //alert(localStorage.getItem('crouselartid'));
+getcomments(); } 
+
 	  $('.cross-icon').click(function(){
-	  //alert('imageclicked');
+	
 	   localStorage.crossicon=true;
 	  
 		parent.history.back();
 		return false;
 	}); 
 
-/*if(localStorage.getItem('fromArtistPage')==='true')
-   {
-    $(".input-group-addon").attr('disabled', true); 
-    $(".comment-box ").attr('disabled', true); 
-   //$(".chat-box").children().prop('disabled',true);
-   }*/
+
    $('#commentbox').on('change', function () {
     comment = $("#txtYear").val();
 
@@ -39,15 +34,22 @@ console.log('cmnt send')
 console.log(localStorage.getItem('crouselartid'));
 console.log(comment);
 
+       var userdata =JSON.parse(localStorage.getItem('loggeduser'))
+	   if(userdata.user.usertype=='A')
+		   var reqID = userdata.user.artistID
+	   else
+		   var reqID = userdata.user.patronID
+	   
 $.ajax({
 	    type : 'POST',
 	    url: localStorage.getItem('webserviceurl')+"artist/art/comment",
 		contentType: "application/json",
 	    dataType: "json",
 		data : JSON.stringify({
-		"patronID" : localStorage.getItem('loggedINuserpatronid'),
+		"patronID" : reqID,
         "artID"  :localStorage.getItem('crouselartid'),
-        "comment":comment
+        "comment":comment,
+		 "type" : userdata.user.usertype,
          }),
 	     success : function(data)
 			    {
@@ -131,7 +133,7 @@ console.log(new Date())
 
 
 function getcomments()
-{ //alert(localStorage.getItem('crouselartid'));
+{ 
 	$.ajax({
 						type : 'GET',
 						url: localStorage.getItem('webserviceurl')+"artist/art/comments",
@@ -151,16 +153,10 @@ function getcomments()
 									var ret = val.createdon.split(" ");
 									var commentdate = ret[0];
 									console.log(i);
-									//var datesplit= ret[0].split('-');
+								
 									var commenttime = ret[1];
 									var agotime = timeSince(val.createdon);
 									
-									//var difference = Math.abs(toSeconds(systime) - toSeconds(commenttime));
-									//hoursdiff = Math.floor(difference / 3600);
-							
-									   // var 	today = new Date()
-                                       // var  past = new Date(datesplit[0],datesplit[1],datesplit[2]);
-										//a = calcDate(today,past)
 										 
 							$('.showComments').append('<div class="row top-spacing">\
 				                       <div class="col-xs-2">\
@@ -227,16 +223,10 @@ function getArtComments()
 									var ret = val.createdon.split(" ");
 									var commentdate = ret[0];
 									console.log(i);
-									//var datesplit= ret[0].split('-');
+									
 									var commenttime = ret[1];
 									var agotime = timeSince(val.createdon);
 									
-									//var difference = Math.abs(toSeconds(systime) - toSeconds(commenttime));
-									//hoursdiff = Math.floor(difference / 3600);
-							
-									   // var 	today = new Date()
-                                       // var  past = new Date(datesplit[0],datesplit[1],datesplit[2]);
-										//a = calcDate(today,past)
 										 
 							$('.showComments').append('<div class="row top-spacing">\
 				                       <div class="col-xs-2">\

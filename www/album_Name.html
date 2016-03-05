@@ -70,7 +70,7 @@
 		//alert(album_id);
 		  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
          localStorage.refreshgoogletoken = true ;
-		 if(localStorage.fromgoogle) 
+	/*	if(localStorage.fromgoogle) 
 		 {
 		 window.plugins.googleplus.disconnect(
     function (msg) {
@@ -79,7 +79,7 @@ localStorage.fromgoogle=false	  // do something useful instead of alerting
     }
 );
 		 
-		 }
+		 }*/
 		 
 		 parent.history.back();
 	}, false);

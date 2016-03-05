@@ -6,19 +6,30 @@
 	 at=''
 	 document.addEventListener('deviceready', function() {
 	 
-	 if(localStorage.access_tokeng)
-		    loadalbum();
+	 if(localStorage.access_tokeng )
+	 { //alert(localStorage.access_tokeng)
+	 loadalbum();}
 		else
 		{
 			
 		 if (checkConnection()) {
-	     alert('calling goog')
+	   //  alert('calling goog')
         window.plugins.googleplus.login({
 			'offline': true,
-		'scopes': 'https://picasaweb.google.com/data/  '
+		'scopes': 'https://picasaweb.google.com/data/ https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.stream.read' 
 
 			
-            }, gpLoginSuccess,
+            }, function(gpUserData) {
+				
+				//alert(JSON.stringify(gpUserData));
+	userid = gpUserData.email 
+	//at=gpUserData.oauthToken;
+	localStorage.usergpmail=gpUserData.email 
+	localStorage.access_tokeng = gpUserData.oauthToken
+ loadalbum();
+	
+				
+			},
             function(gpLoginError) {
                 showAlert('gpLoginError: ' + gpLoginError);
             });
@@ -49,7 +60,7 @@
 	 });
 	 });
 	 
-var gpLoginSuccess = function(gpUserData) {
+/*var gpLoginSuccess = function(gpUserData) {
     //Success Method of Google Login
  
 	alert(JSON.stringify(gpUserData));
@@ -60,7 +71,7 @@ var gpLoginSuccess = function(gpUserData) {
  loadalbum();
 	
    
-};
+};*/
 function loadalbum()
 {
 	

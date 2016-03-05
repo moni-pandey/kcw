@@ -3,7 +3,6 @@ $("document").ready(function() {
 	videoplaylistid= new Array()
 	playlistid =''
 	devkey = 'AIzaSyA2JIFOgNwJSHRHKggrNDI5judZ-d_mooY'
-	prokey ='AIzaSyCQA1c7IStW4PmK-DvY2KwKxZeMDv_65Yw'
 	useremail=''
 	//alert('ready')
 	//$('video, audio').mediaelementplayer();
@@ -96,7 +95,7 @@ function retriveVideos() {
 		"part":"snippet",
          "maxResults":10,
          "playlistId":playlistid,
-         "key": prokey,
+         "key": devkey,
 	    
 },
 	   success : function(data)

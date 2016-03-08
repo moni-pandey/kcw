@@ -42,7 +42,7 @@
         <param name="FABRIC_KEY" value="7647ab5a13d67d7d9d28c9ed3768558c27e91fd2" />
     </plugin>
     <plugin name="cordova-plugin-facebook4" spec="~1.6.3">
-        <variable name="APP_ID" value="741117309366534" />
-        <variable name="APP_NAME" value="KCW" />
+        <param name="APP_ID" value="741117309366534" />
+        <param name="APP_NAME" value="KCW" />
     </plugin>
 </widget>

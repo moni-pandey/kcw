@@ -51,7 +51,7 @@ $('#screatebtn').bind('click', function() {
                
 			   /* if fb signup*/
 			   
-			   if(localStorage.mediaicon == true)
+			   if(localStorage.mediaicon == 'true')
 			{   localStorage.mediaicon=false
 				   if(localStorage.getItem('icon')=='fb') 
 				   {
@@ -68,6 +68,7 @@ $('#screatebtn').bind('click', function() {
 					else
 					{
 						var gpdata = JSON.parse(localStorage.getItem('twitterlogindata'));
+						console.log(gpdata)
 						mediaToken =gpdata.token
 					     smAcctType ='T'
 					}
@@ -213,6 +214,17 @@ $("input[name='incomeradio']").on("click", function() {
 function callforsocialMediaLogin()
 {
 	localStorage.mediaicon=false
+var b={
+				 "token" : mediaToken,
+		         "smAcctType" : smAcctType,
+				"usertype" : usertype,
+				"type" : type,
+				"city" : $("#cityname").val(),
+				"incomeRange" :incomeRange,
+				"artTypes":someObj.artTypes,
+				}
+				
+				console.log(b)
 	if (checkConnection()) 
 	{ $.ajax({
 					  type: 'POST',

@@ -53,7 +53,7 @@ function fetchFBDetails() {
     /**added name parameter ,reuired for signin/login api included picture**/
     facebookConnectPlugin.api("/me?fields=email,name,picture", ['public_profile' ,"user_photos"],
         function(fbPermissions) {
-            showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
+           // showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
            
             localStorage.setItem('facebooklogindata', JSON.stringify(fbPermissions));//Saved facebook data in LS on Jan8th
             localStorage.setItem('icon','fb');
@@ -230,7 +230,7 @@ function checkalreadyregisterd()
         success: function(data) {
           
           console.log(data);
-		  if(data.user.length>1)
+		  if(data.user)
 		  {
 			//  var fbdata =   JSON.stringify(data.user)
 			 //console.log(fbdata)

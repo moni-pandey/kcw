@@ -41,12 +41,10 @@ function saveexpense()
 
 
 
-      localStorage.setItem('title_expense',$('#title_expense').val());
-		localStorage.setItem('amount_expense',$('#amount_expense').val());
-		localStorage.setItem('comments_expense',$('#comments_expense').val());
-//		alert(localStorage.getItem('title_expense'));
-//		alert(localStorage.getItem('loggedINuserartistid'));
-		$.ajax({
+    //  localStorage.setItem('title_expense',$('#title_expense').val());
+		//localStorage.setItem('amount_expense',$('#amount_expense').val());
+		//localStorage.setItem('comments_expense',$('#comments_expense').val());
+$.ajax({
 			type : 'POST',
 			url: localStorage.getItem('webserviceurl')+"artist/expense/add",
 			contentType: "application/json",
@@ -54,80 +52,27 @@ function saveexpense()
 			data : JSON.stringify({
 
 				"artistID" :localStorage.getItem('loggedINuserartistid'),
-				"expense"  :localStorage.getItem('title_expense'),
-				"amount"   :localStorage.getItem('amount_expense'),
+				"expense"  :$('#title_expense').val(),
+				"amount"   :$('#amount_expense').val(),
 				"frequency" : 'monthly' ,
-				"note"     :localStorage.getItem('comments_expense')
+				"note"     :$('#comments_expense').val()
 
 
 			}),
 			success : function(data)
 			{
-				 alert('inside success');
-				$('.rent-amt').text("$"+ data.expence[0].amount);
-				$('.rent-text').text(data.expence[0].expense);
-				/*
-				 * alert(data.expence[0].expenseID);
-				 * alert(data.expence[0].amount);
-				 * $('#generalid').attr('id',data.expence[0].expenseID);
-				 * 
-				 * 
-				 * //will do it later
-				 */
-
-				//$("#add_dynamic_div").before('<div class="row"><div class="col-xs-1"></div><div class="col-xs-10 top-border"><p class="rent-text"><img src="./assets/img/Rent.png" class="rent-img">Title</p><p class="rent-amt">$Expense</p><img src="./assets/img/Edit.png" alt="logo" class="edit-icon" id="rent_edit"><img src="./assets/img/delete.png" alt="logo" class="delete-icon"><div  class="form_rent"><div class="form-group placeholder_side-margin" ><input type="text" class="form-control fund-page_form text-color" placeholder="Expense title"></div><div class="form-group placeholder_side-margin"><input type="text" class="form-control fund-page_form text-color" placeholder="enter your expense" id="data.expence.expenseID"></div><div class="form-group placeholder_side-margin"><input type="text" class="form-control fund-page_form text-color" placeholder="Comments" id="rent_comments" ></div></div></div><div class="col-xs-1"></div></div>'
-				//);
 				
-				$("#add_dynamic_div").append('<div id="'+expence.expenseID+'"><div class="row">\
-						<div class="col-xs-1">\
-						</div>\
-						<div class="col-xs-10 top-border">\
-						<p class="rent-text"><img src="./assets/img/Rent.png" class="rent-img">'+expence.expense+'</p>\
-						<p class="rent-amt">$'+expence.amount+'</p>\
-						<img src="./assets/img/Edit.png" alt="logo" class="edit-icon" id="'+expence.expenseID+'edit">\
-						<img src="./assets/img/delete.png" alt="logo" class="delete-icon" id="'+expence.expenseID+'delid">\
-						<div  class="'+expence.expenseID+'form_rent">\
-						<div class="form-group placeholder_side-margin" >\
-						<input type="text" class="form-control fund-page_form text-color "'+expence.expenseID+'class" " placeholder="'+expence.expense+'"id="'+expence.expenseID+'exp">\
-						</div>\
-						<div class="form-group placeholder_side-margin">\
-						<input type="text" class="form-control fund-page_form text-color "'+expence.expenseID+'class" " placeholder="'+expence.amount+'"id="'+expence.expenseID+'amt" >\
-						</div>\
-						<div class="form-group placeholder_side-margin">\
-						<input type="text" class="form-control fund-page_form text-color "'+expence.expenseID+'class" " placeholder="'+expence.note+'" id="'+expence.expenseID+'cmnt">\
-						</div>\
-						</div>\
-						</div>\
-						<div class="col-xs-1">\
-						</div>\
-						</div>\
-						<div class="row">\
-						<div class="col-xs-1">\
-						</div>\
-						<div class="col-xs-10 bottom-border  '+val.expenseID+'c">\
-						<p class="rent_comments  " id="update_comments">'+expence.note+'</p>\
-						</div>\
-						<div class="col-xs-1">\
-						</div>\
-				</div></div>');
+			console.log(data)
+			alert(data.message)
+			setTimeout(explode, 2000);
 				
-										$(document).on('DOMSubtreeModified', '#add_dynamic_div', function(e){
-						var classname = val.expenseID+'form_rent';
-							 //alert(classname)	
-							 document.getElementsByClassName(classname)[0].style.visibility='hidden';
-							 document.getElementsByClassName(classname)[0].style.display='none';
-
-						});
-
 						
-						//$("#add_dynamic_div1").append('<div class="row"><div class="col-xs-1"></div><div class="col-xs-10 top-border"><p class="rent-text"><img src="./assets/img/Rent.png" class="rent-img">Title</p><p class="rent-amt">$Expense</p><img src="./assets/img/Edit.png" alt="logo" class="edit-icon" id="rent_edit"><img src="./assets/img/delete.png" alt="logo" class="delete-icon"><div  class="form_rent"><div class="form-group placeholder_side-margin" ><input type="text" class="form-control fund-page_form text-color" placeholder="Expense title"></div><div class="form-group placeholder_side-margin"><input type="text" class="form-control fund-page_form text-color" placeholder="enter your expense" id="data.expence.expenseID"></div><div class="form-group placeholder_side-margin"><input type="text" class="form-control fund-page_form text-color" placeholder="Comments" id="rent_comments" ></div></div></div><div class="col-xs-1"></div></div>'
-									//);
-				
+						
 
 			} ,
 			error   : function (xhr, status, error)
 			{
-				alert('inside failure');
+				alert('error');
 				alert(xhr.responseText);
 			}						 
 
@@ -191,7 +136,7 @@ function loadprof(data)
 						</div>\
 				</div>');
 
-	 $(document).on('DOMSubtreeModified', '#add_dynamic_div ', function(e){
+	$(document).on('DOMSubtreeModified', '#add_dynamic_div ', function(e){
          var classname = val.expenseID+'form_rent';
 	 //alert('callinghide')	
 	 document.getElementsByClassName(classname)[0].style.visibility='hidden';
@@ -227,15 +172,13 @@ var lastid = parsedata.expenses[parsedata.expenses.length-1].expenseID+'form_ren
 
 
 $(document).on('change', '.fund-page_form ', function(e){
-     var boxid = e.target.id ;
-	// alert(e.target.value);
-
-    answer = boxid.replace(/[0-9]/g, '');
+     var answer = e.target.id ;
 	
-	 if(answer=='amt')     
+	
+	 if(answer=='amount_expense')     
              {
 			 
-			     amtval = $(this).val()
+			     amtval = $('#amount_expense').val()
 			    if(amtval=="" || (!($.isNumeric(amtval))))
 			        {
 					
@@ -245,8 +188,8 @@ $(document).on('change', '.fund-page_form ', function(e){
 					}
 				 
 			 }
-	 else if(answer=='cmnt')  { 
-	     notval 	= $(this).val();
+	 else if(answer=='comments_expense')  { 
+	     notval 	= $('#comments_expense').val();
 		       
 			   if(notval=="" )
 			        {
@@ -389,8 +332,8 @@ $(document).on('click', '.save-icon', function(e){
  var notvall = document.getElementById(noteid).value
  var expvall =document.getElementById(expid).value
  
- if(amtvall=="please enter numeric value"||notvall=="please enter comment" ||expvall=="please enter expense title")
-           return;
+ if(amtvall==="please enter numeric value"||notvall==="please enter comment" || expvall==="please enter expense title" || amtvall=="" || (!($.isNumeric(amtvall))))
+ {  return; }
 	
 		 $.ajax({
 			type : 'POST',
@@ -431,7 +374,7 @@ document.getElementById(imageid).className='edit-icon';
 			} ,
 			error   : function (xhr, status, error)
 			{
-				alert('inside failure');
+				alert('error');
 				console.log(xhr.responseText);
 			}						 
 
@@ -483,4 +426,52 @@ alert(xhr.responseText);
 				  
 });
 }
+function explode()
+{
+	
+	
+	$('.rent-amt').text("$"+ data.expence[0].amount);
+				$('.rent-text').text(data.expence[0].expense);
+				$("#add_dynamic_div").append('<div id="'+expence.expenseID+'"><div class="row">\
+						<div class="col-xs-1">\
+						</div>\
+						<div class="col-xs-10 top-border">\
+						<p class="rent-text"><img src="./assets/img/Rent.png" class="rent-img">'+expence.expense+'</p>\
+						<p class="rent-amt">$'+expence.amount+'</p>\
+						<img src="./assets/img/Edit.png" alt="logo" class="edit-icon" id="'+expence.expenseID+'edit">\
+						<img src="./assets/img/delete.png" alt="logo" class="delete-icon" id="'+expence.expenseID+'delid">\
+						<div  class="'+expence.expenseID+'form_rent">\
+						<div class="form-group placeholder_side-margin" >\
+						<input type="text" class="form-control fund-page_form text-color "'+expence.expenseID+'class" " placeholder="'+expence.expense+'"id="'+expence.expenseID+'exp">\
+						</div>\
+						<div class="form-group placeholder_side-margin">\
+						<input type="text" class="form-control fund-page_form text-color "'+expence.expenseID+'class" " placeholder="'+expence.amount+'"id="'+expence.expenseID+'amt" >\
+						</div>\
+						<div class="form-group placeholder_side-margin">\
+						<input type="text" class="form-control fund-page_form text-color "'+expence.expenseID+'class" " placeholder="'+expence.note+'" id="'+expence.expenseID+'cmnt">\
+						</div>\
+						</div>\
+						</div>\
+						<div class="col-xs-1">\
+						</div>\
+						</div>\
+						<div class="row">\
+						<div class="col-xs-1">\
+						</div>\
+						<div class="col-xs-10 bottom-border  '+val.expenseID+'c">\
+						<p class="rent_comments  " id="update_comments">'+expence.note+'</p>\
+						</div>\
+						<div class="col-xs-1">\
+						</div>\
+				</div></div>');
+				
+								/*	$(document).on('DOMSubtreeModified', '#add_dynamic_div', function(e){
+						           var classname = val.expenseID+'form_rent';
+							
+							 document.getElementsByClassName(classname)[0].style.visibility='hidden';
+							 document.getElementsByClassName(classname)[0].style.display='none';
 
+						});*/
+
+	
+}

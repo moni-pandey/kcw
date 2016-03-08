@@ -32,8 +32,8 @@
 				<li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
             </ul>
           </nav>
-		    <div class="container-fluids login_bg">
-			    <div class="row">
+		    <div class="container-fluids login_bg ">
+			    <div class="row zero-side-margin">
 				    <div class="col-xs-2">
 				       
 					</div>
@@ -67,46 +67,36 @@
 		
 		$(document).ready(function() {
 		
-		//var album_id = localStorage.getItem('albumid');
-		//alert(album_id);
-		 document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
-         localStorage.instaLinked = true ;
-		 localStorage.bckbtn=true
-		 parent.history.back();
-	}, false);
-		/*****************************/
-			$.ajax({
-      type: 'GET',
-      url: "https://api.instagram.com/v1/users/search?q=pandeymoni08&access_token="+localStorage.getItem('instagramtoken'),
-      data:
-      {
-
-
-},
-      success: function(data){
-      //alert(JSON.stringify(data));
-      var q= JSON.stringify(data);
-//$('#addinsta').append(data);
-	  //alert(data.html);
-      // alert(data.username);
-      // alert(data[0].username);
-       //alert(q.id);
+		var data = JSON.parse(localStorage.instaAlbum)
+		 console.log(data)
+	     console.log(data.data.length)
 	   
-	   $.ajax({
-       url: 'https://api.instagram.com/v1/users/' + data.data[0].id+ '/media/recent',
-	dataType: 'jsonp',
-	type: 'GET',
-	data: {access_token:'2777117055.6250f51.37f9031e035541c7b3ea25ce8900ca1f'},
-	success: function(data){
-	//alert(JSON.stringify(data));
- 		console.log(data);
-		//for( x in data.data ){
-		//	$('ul').append('<li><img src="'+data.data[x].images.low_resolution.url+'"></li>'); // data.data[x].images.low_resolution.url - URL of image, 306?306
-		   
-			  for(j=0 ; j< data.data.length; j += 2)
-		{  // alert(j);
-		    //console.log(parsealbumdata.data[j].images[j].source);
-		    //console.log(parsealbumdata.data[j+1].images[j+1].source);
+	   		   if(data.data.length % 2 ==0)
+		{
+		 for(var j=0 ; j< data.data.length; j += 2)
+		{  
+		    $('.container-fluids').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					    <img src="'+data.data[j].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name"></p>\
+					</div>\
+					<div class="col-xs-6">\
+						<img src="'+data.data[j+1].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name"></p>\
+					</div>\
+				</div>');
+				
+			}	
+		
+		
+		}
+		
+		else
+		{
+		for(var j=0 ; j< data.data.length-1; j += 2)
+				{
+				
+		
 			  $('.container-fluids').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="'+data.data[j].images.low_resolution.url+'" class="img-responsive album-pic">\
@@ -118,73 +108,29 @@
 					</div>\
 				</div>');
 				
-				
 				}
-   
-		//}
-	},
-	error: function(data){
-		console.log(data); // send the error notifications to console
-	}
-});
-	   
-	   
-	  
-      },
-      error: function(xhr, status, error) {
-
-  showAlert('error');
-  //alert(xhr.responseText);
-  console.log(xhr);
-}
-    });
 		
-		
-		
-		/*****************************/
-		
-		
-		
-		 $(document).bind("deviceready", function() {
-		 
-		 facebookConnectPlugin.api('/'+album_id+'/photos?fields=images&limit=100', ["user_photos"], function(response){
-      if (!response || response.error) {
-        albums = response.error;
-      } else {
-       	console.log(response);
-		console.log("response: " + JSON.stringify(response));
-			  
-			    var albumdata = JSON.stringify(response);
-				localStorage.setItem('albumdata' ,' ');
-				localStorage.setItem('albumdata' ,albumdata);
-				var parsealbumdata =JSON.parse(localStorage.getItem('albumdata'));
-	
-			  for(j=0 ; j< parsealbumdata.data.length; j += 2)
-		{  // alert(j);
-		    console.log(parsealbumdata.data[j].images[j].source);
-		    console.log(parsealbumdata.data[j+1].images[j+1].source);
-			  $('.container-fluids').append('<div class="row pic-top-margin">\
+		  $('.container-fluids').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
-					    <img src="'+parsealbumdata.data[j].images[j].source+'" class="img-responsive album-pic">\
-						<p class="pic-name">Photo Name</p>\
+					    <img src="'+data.data[data.data.length-1].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name"></p>\
 					</div>\
 					<div class="col-xs-6">\
-						<img src="'+parsealbumdata.data[j+1].images[j+1].source+'" class="img-responsive album-pic">\
-						<p class="pic-name">Photo Name</p>\
+						\
 					</div>\
 				</div>');
 				
-				
-				}
+		
+		/******/
+		
+		}
+	   
+	   
+	   
+	   
+	  
    
-}
-});	
-
-		 });
-		
-
 		});
-		
 		</script>
 	
 	</body>

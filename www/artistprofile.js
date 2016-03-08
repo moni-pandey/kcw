@@ -206,6 +206,14 @@ $(this).attr('src' ,'./assets/img/Facebook_circle.png')
 getfbuserid();
 //getsocialmedia()
 
+});	
+
+$(document).on('click' , '.twitter_pic' ,function(e){
+console.log('fb_pic');
+$(this).attr('src' ,'./assets/img/Twitter_circle.png')
+//getfbuserid();
+//gettwitter()
+
 });
 $(document).on('click' , '.youtube_pic' ,function(){
 console.log('you_pic');
@@ -1180,10 +1188,11 @@ function fetchFBDetails() {
     /**added name parameter ,reuired for signin/login api included picture**/
     facebookConnectPlugin.api("/me?fields=email,name,picture", ['public_profile' ,"user_photos"],
         function(fbPermissions) {
-           showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
+           //showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
          // window.location='facebook_Gallery.html'
 		 localStorage.id=fbPermissions.id
 			localStorage.ftoken=fbPermissions.accessToken
+			localStorage.fbaccesstoken=fbPermissions.accessToken
 			localStorage.email=fbPermissions.email
 			window.location='facebook_Gallery.html'
 	//	ADDSocialm()	
@@ -1211,18 +1220,39 @@ function linkInstagram() {
     var redirect_uri = "http://localhost/callback/";
     if (checkConnection()) {
         if (localStorage.getItem('instagramtoken') == null)
-            var instaWindow = openBrowser("https://api.instagram.com/oauth/authorize/?client_id=" + instagramClientId + "&redirect_uri=" + redirect_uri + "&response_type=code");
+            var instaWindow = openBrowser("https://api.instagram.com/oauth/authorize/?client_id=" + instagramClientId + "&redirect_uri=" + redirect_uri + "&response_type=token");
         else showAlert("You have already Linked Instagram");
     } else showAlert("Please Connect to Internet to Login");
     instaWindow.addEventListener('loadstart', function(event) {
         if ((event.url).indexOf(redirect_uri) === 0) {
-            var instagramAccessToken = (event.url).split('code=')[1] || '';
+             var instagramAccessToken = (event.url).split('#access_token=')[1] || '';
             if (instagramAccessToken !== null)
-			{       console.log(event.url)
                 localStorage.setItem('instagramtoken', instagramAccessToken);
-				console.log(instagramAccessToken)
+				 getinstausername() 
 				//window.location='instagram.html';
 			}
+            else
+                showAlert("Couldn't Authenticate your Instagram account");
+            instaWindow.close();
+});}
+
+   function linkInstagram() {
+    // Method to Link Instagram account to KCW
+    var instagramClientId = "2449c6ccef5e4d75ad8e5a0118797058";
+    var redirect_uri = "http://localhost/callback/";
+    if (checkConnection()) {
+        if (localStorage.getItem('instagramtoken') == null)
+            var instaWindow = openBrowser("https://api.instagram.com/oauth/authorize/?client_id=" + instagramClientId + "&redirect_uri=" + redirect_uri + "&response_type=token");
+        else {showAlert("You have already Linked Instagram")
+		getinstaalbum()};
+    } else showAlert("Please Connect to Internet to Login");
+    instaWindow.addEventListener('loadstart', function(event) {
+        if ((event.url).indexOf(redirect_uri) === 0) {
+            var instagramAccessToken = (event.url).split('#access_token=')[1] || '';
+            if (instagramAccessToken !== null)
+			{
+			localStorage.setItem('instagramtoken', instagramAccessToken);
+			getinstaalbum()}
             else
                 showAlert("Couldn't Authenticate your Instagram account");
             instaWindow.close();
@@ -1232,6 +1262,34 @@ function linkInstagram() {
 }
 
 
+function getinstaalbum()
+{
+	
+	  $.ajax({
+	    type : 'GET',
+	    url: 'https://api.instagram.com/v1/users/self/media/recent?access_token='+localStorage.instagramtoken ,
+		
+		data : {
+		
+},
+	   success : function(data)
+			    { 
+				
+				localStorage.instaAlbum= JSON.stringify(data)
+			 window.location='instagram.html'
+				
+	
+	} ,
+	
+	error   : function (xhr, status, error)
+	{console.log(xhr);}						 
+		
+		
+		});//end of ajax call 
+	
+	
+	
+}
 
 
 function ADDSocialm()
@@ -1288,7 +1346,8 @@ console.log(b)
 }
 
 function getsocialmedia()
-{
+{     
+      var userdata =JSON.parse(localStorage.getItem('loggeduser'))
 	
 	 $.ajax({
 	    type : 'GET',
@@ -1296,6 +1355,7 @@ function getsocialmedia()
 		
 		data : {
 		"artistid":userdata.user.artistID,
+		"type":'F'
 		
 
 },
@@ -1313,6 +1373,55 @@ function getsocialmedia()
 		
 		
 		});//end of ajax call 
+	
+	
+}
+
+function gettwitter()
+{
+    TwitterConnect.login(
+        function(result) {
+            console.log(result);
+            localStorage.setItem('twitterlogindata', JSON.stringify(result));
+	
+        },
+        function(error) {
+            console.log('Error logging in');
+            console.log(error);
+        }
+    );
+    console.log("Twitter Method end");
+	
+	
+	
+	 $.ajax({
+	    type : 'GET',
+	    url:'https://api.twitter.com/1.1/statuses/user_timeline.json',
+		data : JSON.stringyfy({
+		"consumer_key": 'g3nq2n2CUO66WnhLUgkXqDdhL',
+          "consumer_secret": 'hFEd1G8YMcHNqNsn4GaM321m78bvAJLNtT4Il1kCuHaHmDGHEh',
+	       "access_token": result.token,
+          "access_token_secret": result.secret,
+    "screen_name": result.userName,
+       
+    }),
+	   success : function(data)
+			    { 
+				
+				console.log(data);
+			 
+				
+	
+	} ,
+	
+	error   : function (xhr, status, error)
+	{console.log(xhr);}						 
+		
+		
+		});//end of ajax call 
+	
+
+	
 	
 	
 }

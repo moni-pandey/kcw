@@ -5,6 +5,7 @@ $(document).ready(function(){
   mediaToken =''
   incomeRange=''
   smAcctType=''
+  secret=''
 $('#screatebtn').bind('click', function() { 
         // alert('inside continue click ');
 		 
@@ -57,19 +58,21 @@ $('#screatebtn').bind('click', function() {
 				   {
 			        mediaToken =localStorage.getItem('fbaccesstoken')
 					smAcctType ='F'
+					secret=''
 			        }
 					else if(localStorage.getItem('icon')=='gp')
 					{
 						var gpdata = JSON.parse(localStorage.getItem('googlelogindata'));
 						mediaToken =gpdata.oauthToken
 					     smAcctType ='G'
-						
+						secret=''
 					}
 					else
 					{
 						var gpdata = JSON.parse(localStorage.getItem('twitterlogindata'));
 						console.log(gpdata)
 						mediaToken =gpdata.token
+						secret=gpdata.secret
 					     smAcctType ='T'
 					}
 			     if($('#patronbtn').css('display') ==='block')
@@ -222,6 +225,7 @@ var b={
 				"city" : $("#cityname").val(),
 				"incomeRange" :incomeRange,
 				"artTypes":someObj.artTypes,
+				"secret": secret
 				}
 				
 				console.log(b)
@@ -239,6 +243,7 @@ var b={
 				"city" : $("#cityname").val(),
 				"incomeRange" :incomeRange,
 				"artTypes":someObj.artTypes,
+				"secret": secret
 				}),
 					  success: function(data){
 						  

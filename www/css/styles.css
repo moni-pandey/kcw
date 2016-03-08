@@ -62,12 +62,13 @@ font-size:20px;}
   font-size:30px
 }
   .fa-angle-left  
-  {      margin-top: 70px;
-    font-size: 50px;} 
+  {  margin-top: 70px;
+    font-size: 50px !important ;
+	} 
   
   .fa-angle-right  
   {     margin-top: 70px;
-    font-size: 50px;}
+    font-size: 50px !important;}
 	  
   
   .carousel-inner > .item > img,

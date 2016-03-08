@@ -23,31 +23,26 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-	<preference name="android-build-tool" value="gradle" />
-    <plugin name="cordova-plugin-facebook4">
-        <param name="APP_ID" value="741117309366534" />
-        <param name="APP_NAME" value="KCW" />
-    </plugin>
-	<plugin name="cordova-plugin-x-socialsharing" source="npm" />
-      <plugin name="cordova-plugin-googleplus" spec="~4.0.6">
-    <param name="REVERSED_CLIENT_ID" value="115192106254-03koee612kjek476rj82f5onf19ajc6h.apps.googleusercontent.com" />
-    </plugin>
-	<plugin name="org.pushandplay.cordova.apprate" spec="1.1.7" source="pgb" />
-	<!--<plugin name="cordova-plugin-googleplus" spec="~4.0.6">
+    <preference name="android-build-tool" value="gradle" />
+    <plugin name="cordova-plugin-x-socialsharing" source="npm" />
+    <plugin name="cordova-plugin-apprate" spec="https://github.com/pushandplay/cordova-plugin-apprate.git" />
+    <plugin name="cordova-plugin-googleplus" spec="~4.0.6">
         <param name="REVERSED_CLIENT_ID" value="41731640131-151bkq734u5gl6lm27js0qnhsj3t2cm1.apps.googleusercontent.com" />
-    </plugin>-->
+    </plugin>
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
     <plugin name="cordova-plugin-network-information" spec="~1.1.0" />
     <plugin name="cordova-plugin-geolocation" spec="~1.0.0" />
     <plugin name="cordova-plugin-device" spec="~1.1.0" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.0" />
-    <plugin name="cordova-plugin-inappbrowser" spec="~2"  />
-
-    <!-- <plugin name="cordova-plugin-googleplayservices" /> -->
+    <plugin name="cordova-plugin-inappbrowser" spec="~1" />
     <preference name="exit-on-suspend" value="false" />
-   <!-- <preference name="TwitterConsumerKey" value="g3nq2n2CUO66WnhLUgkXqDdhL" />
+    <preference name="TwitterConsumerKey" value="g3nq2n2CUO66WnhLUgkXqDdhL" />
     <preference name="TwitterConsumerSecret" value="hFEd1G8YMcHNqNsn4GaM321m78bvAJLNtT4Il1kCuHaHmDGHEh" />
     <plugin name="twitter-connect-plugin" spec="~0.5.0">
         <param name="FABRIC_KEY" value="7647ab5a13d67d7d9d28c9ed3768558c27e91fd2" />
-    </plugin>-->
+    </plugin>
+    <plugin name="cordova-plugin-facebook4" spec="~1.6.3">
+        <variable name="APP_ID" value="741117309366534" />
+        <variable name="APP_NAME" value="KCW" />
+    </plugin>
 </widget>

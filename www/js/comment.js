@@ -18,7 +18,7 @@ getcomments(); }
 	   localStorage.crossicon=true;
 	  
 		parent.history.back();
-		return false;
+		//return false;
 	}); 
 
 

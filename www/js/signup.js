@@ -65,12 +65,12 @@ $('#screatebtn').bind('click', function() {
 					     smAcctType ='G'
 						
 					}
-					/*else
+					else
 					{
 						var gpdata = JSON.parse(localStorage.getItem('twitterlogindata'));
 						mediaToken =gpdata.token
 					     smAcctType ='T'
-					}*/
+					}
 			     if($('#patronbtn').css('display') ==='block')
 				   { 
 			   console.log('yes')
@@ -239,12 +239,18 @@ function callforsocialMediaLogin()
 							 localStorage.setItem('fbsignup',fbdata)
 							
 							
-						}else 
+						}else if(localStorage.getItem('icon')=='gp')
 						{
 						 var gpdata =JSON.stringify(data);
 						 console.log(gpdata);
 						   localStorage.setItem('gpsignup',gpdata)
 							
+						}
+						else
+						{
+							var twdata =JSON.stringify(data);
+						 console.log(twdata);
+						   localStorage.setItem('twsignup',twdata)
 						}
 						//alert(data.user[0].smAcctID);
 						//console.log(data)

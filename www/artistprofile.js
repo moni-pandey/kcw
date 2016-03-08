@@ -204,7 +204,7 @@ $(document).on('click' , '#fb_pic' ,function(e){
 console.log('fb_pic');
 $(this).attr('src' ,'./assets/img/Facebook_circle.png')
 getfbuserid();
-
+//getsocialmedia()
 
 });
 $(document).on('click' , '.youtube_pic' ,function(){
@@ -263,11 +263,12 @@ $.ajax({
       
 
 	  //alert(data);
-       console.log(data);
+         console.log(data);
 	    showAlert("Uploaded Successfully");
 	    //ajaxflag=true
 		newindex=0
-		 callforcarouselimages();
+		console.log('calling for carousel ')
+		callforcarouselimages();
 	  
       },
       error: function(xhr, status, error) {
@@ -1179,9 +1180,13 @@ function fetchFBDetails() {
     /**added name parameter ,reuired for signin/login api included picture**/
     facebookConnectPlugin.api("/me?fields=email,name,picture", ['public_profile' ,"user_photos"],
         function(fbPermissions) {
-           // showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
-          window.location='facebook_Gallery.html'
-			
+           showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
+         // window.location='facebook_Gallery.html'
+		 localStorage.id=fbPermissions.id
+			localStorage.ftoken=fbPermissions.accessToken
+			localStorage.email=fbPermissions.email
+			window.location='facebook_Gallery.html'
+	//	ADDSocialm()	
 			
         },
         function(fetchFBDetailsError) {
@@ -1224,4 +1229,90 @@ function linkInstagram() {
         }
 
     });
+}
+
+
+
+
+function ADDSocialm()
+{
+	
+	var userdata =JSON.parse(localStorage.getItem('loggeduser'))
+	var b = 	{"artistid":userdata.user.artistID,
+		"token":localStorage.fbaccesstoken,
+		"email":localStorage.email,
+		"smacctid":localStorage.id,
+		"token1":"",
+		"token2":"",
+		"token3":"",
+		"token4":"",
+		"token5":"",
+		"token6":"",
+		"type":userdata.user.usertype
+
+}
+console.log(b)
+		  $.ajax({
+	    type : 'POST',
+	    url: localStorage.getItem('webserviceurl')+'artist/add/socialmedia',
+		
+		data : {
+		"artistid":userdata.user.artistID,
+		"token":localStorage.fbaccesstoken,
+		"email":localStorage.email,
+		"smacctid":localStorage.id,
+		"token1":"",
+		"token2":"",
+		"token3":"",
+		"token4":"",
+		"token5":"",
+		"token6":""
+
+},
+	   success : function(data)
+			    { 
+				
+				console.log(data);
+			 
+				
+	
+	} ,
+	
+	error   : function (xhr, status, error)
+	{console.log(xhr);}						 
+		
+		
+		});//end of ajax call 
+	
+
+}
+
+function getsocialmedia()
+{
+	
+	 $.ajax({
+	    type : 'GET',
+	    url: localStorage.getItem('webserviceurl')+'artist/add/socialmedia',
+		
+		data : {
+		"artistid":userdata.user.artistID,
+		
+
+},
+	   success : function(data)
+			    { 
+				
+				console.log(data);
+			 
+				
+	
+	} ,
+	
+	error   : function (xhr, status, error)
+	{console.log(xhr);}						 
+		
+		
+		});//end of ajax call 
+	
+	
 }

@@ -17,23 +17,23 @@ $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
 	   callforcarouselimages();
    
 	 	
-	    if(localStorage.googleLinked)
+	    if(localStorage.googleLinked=='true')
 		{
 			   $('.googl_pic').attr('src' ,'./assets/img/Red_google_plus.png')
 			localStorage.googleLinked =false
 			}
      
-	     if(localStorage.fbLinked)
+	     if(localStorage.fbLinked=='true')
 		 {
           $('#fb_pic').attr('src' ,'./assets/img/Facebook_circle.png')
      
 		localStorage.fbLinked =false }  
-	     if(localStorage.youLinked)
+	     if(localStorage.youLinked=='true')
 		 {
            $('.youtube_pic').attr('src' ,'./assets/img/Youtube.png')
          localStorage.youLinked=false       
 		 }      
-		 if(localStorage.instaLinked)
+		 if(localStorage.instaLinked=='true')
 		 {
 	     $('.instagram_pic').attr('src' ,'./assets/img/Instagram.png')
 	  localStorage.instaLinked=false }
@@ -1188,14 +1188,14 @@ function fetchFBDetails() {
     /**added name parameter ,reuired for signin/login api included picture**/
     facebookConnectPlugin.api("/me?fields=email,name,picture", ['public_profile' ,"user_photos"],
         function(fbPermissions) {
-           //showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
-         // window.location='facebook_Gallery.html'
+         
 		 localStorage.id=fbPermissions.id
+		 localStorage.fbuserid=fbPermissions.id
 			localStorage.ftoken=fbPermissions.accessToken
 			localStorage.fbaccesstoken=fbPermissions.accessToken
 			localStorage.email=fbPermissions.email
 			window.location='facebook_Gallery.html'
-	//	ADDSocialm()	
+		
 			
         },
         function(fetchFBDetailsError) {
@@ -1243,7 +1243,9 @@ function linkInstagram() {
     if (checkConnection()) {
         if (localStorage.getItem('instagramtoken') == null)
             var instaWindow = openBrowser("https://api.instagram.com/oauth/authorize/?client_id=" + instagramClientId + "&redirect_uri=" + redirect_uri + "&response_type=token");
-        else {showAlert("You have already Linked Instagram")
+        else {
+			
+			//showAlert("You have already Linked Instagram")
 		getinstaalbum()};
     } else showAlert("Please Connect to Internet to Login");
     instaWindow.addEventListener('loadstart', function(event) {
@@ -1275,8 +1277,9 @@ function getinstaalbum()
 	   success : function(data)
 			    { 
 				
-				localStorage.instaAlbum= JSON.stringify(data)
-			 window.location='instagram.html'
+	  localStorage.instaAlbum= JSON.stringify(data)
+	  localStorage.frominstagram=true
+	  window.location="album_Name.html"
 				
 	
 	} ,

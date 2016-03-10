@@ -31,7 +31,7 @@
 				<li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
             </ul>
           </nav>
-		    <div class="container-fluids login_bg">
+		    <div class="container-fluid login_bg">
 			    <div class="row">
 				    <div class="col-xs-2">
 				       
@@ -43,17 +43,10 @@
                     </div>
 				</div>
 				
-			<!--	<div class="row pic-top-margin">
-				    <div class="col-xs-6">
-					    <img src="./assets/img/image1.png" class="img-responsive album-pic">
-						<p class="pic-name">Photo Name</p>
-					</div>
-					<div class="col-xs-6">
-						<img src="./assets/img/image1.png" class="img-responsive album-pic">
-						<p class="pic-name">Photo Name</p>
-					</div>
+				<div class="row insertpic zero-side-margin">
+				    
 				</div>
-				-->
+				
 
 				
 			</div>
@@ -70,22 +63,13 @@
 		//alert(album_id);
 		  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
          localStorage.refreshgoogletoken = true ;
-	/*	if(localStorage.fromgoogle) 
-		 {
-		 window.plugins.googleplus.disconnect(
-    function (msg) {
-      //alert(msg);
-localStorage.fromgoogle=false	  // do something useful instead of alerting
-    }
-);
-		 
-		 }*/
-		 
-		 parent.history.back();
+		 localStorage.instaLinked = true ;
+          parent.history.back();
 	}, false);
- $(document).bind("deviceready", function() {
-		 
-	if(localStorage.fromgoogle)
+ 
+ 
+ $('.insertpic').html('')
+	if(localStorage.fromgoogle=='true')
 	{localStorage.fromgoogle=false
 	 $.ajax({
 	    type : 'GET',
@@ -111,7 +95,7 @@ if(data.feed.entry.length!=0) {
 		for(var i=0;i < data.feed.entry.length; i += 2)
 		 {
 		        
-		  $('.container-fluids').append('<div class="row pic-top-margin">\
+		  $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
 						<img src="'+data.feed.entry[i].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i].gphoto$id.$t+'" class="img-responsive album-image">\
@@ -134,7 +118,7 @@ if(data.feed.entry.length!=0) {
 	
 		 for(i=0;i < data.feed.entry.length-1; i += 2)
 		 {
-		  $('.container-fluids').append('<div class="row pic-top-margin">\
+		  $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
 						<img src="'+data.feed.entry[i].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i].gphoto$id.$t+'" class="img-responsive album-image">\
@@ -153,7 +137,7 @@ if(data.feed.entry.length!=0) {
 		 }
 		            
 		  //var lastname =data.feed.entry[data.feed.entry.length-1].gphoto$name.$t.replace(/^(.{8}[^\s]*).*/, "$1");
-		  $('.container-fluids').append('<div class="row pic-top-margin">\
+		  $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					      <img src="./assets/img/Frame.png" class="img-responsive frame">\
 						<img src="'+data.feed.entry[data.feed.entry.length-1].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[data.feed.entry.length-1].gphoto$id.$t+'" class="img-responsive album-image">\
@@ -181,6 +165,73 @@ if(data.feed.entry.length!=0) {
 		
 		});//end of ajax call 
 	}
+	else if(localStorage.frominstagram=='true')
+	{
+	localStorage.frominstagram=false
+	var data = JSON.parse(localStorage.instaAlbum)
+		 console.log(data)
+	     console.log(data.data.length)
+	   
+	   		   if(data.data.length % 2 ==0)
+		{
+		 for(var j=0 ; j< data.data.length; j += 2)
+		{  
+		    $('.insertpic').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					    <img src="'+data.data[j].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name"></p>\
+					</div>\
+					<div class="col-xs-6">\
+						<img src="'+data.data[j+1].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name"></p>\
+					</div>\
+				</div>');
+				
+			}	
+		
+		
+		}
+		
+		else
+		{
+		for(var j=0 ; j< data.data.length-1; j += 2)
+				{
+				
+		
+			  $('.insertpic').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					    <img src="'+data.data[j].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name"></p>\
+					</div>\
+					<div class="col-xs-6">\
+						<img src="'+data.data[j+1].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name"></p>\
+					</div>\
+				</div>');
+				
+				}
+		
+		  $('.insertpic').append('<div class="row pic-top-margin">\
+				    <div class="col-xs-6">\
+					    <img src="'+data.data[data.data.length-1].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<p class="pic-name"></p>\
+					</div>\
+					<div class="col-xs-6">\
+						\
+					</div>\
+				</div>');
+				
+		
+		/******/
+		
+		}
+	   
+	   
+	   
+	   
+	  
+	
+	}
 else{
 	facebookConnectPlugin.api('/'+album_id+'/photos?fields=images&limit=100', ["user_photos"], function(response){
       if (!response || response.error) {
@@ -198,7 +249,7 @@ else{
 		{  // alert(j);
 		    console.log(parsealbumdata.data[j].images[j].source);
 		    console.log(parsealbumdata.data[j+1].images[j+1].source);
-			  $('.container-fluids').append('<div class="row pic-top-margin">\
+			  $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="'+parsealbumdata.data[j].images[j].source+'" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\

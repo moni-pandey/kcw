@@ -6,7 +6,7 @@
 	 at=''
 	 document.addEventListener('deviceready', function() {
 	 
-	 if(localStorage.access_tokeng )
+/*	 if(localStorage.access_tokeng )
 	 { //alert(localStorage.access_tokeng)
 	 loadalbum();}
 		else
@@ -37,7 +37,7 @@
 			
 			
 			
-		}
+		}*/
 	
 	 });
 	 	document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
@@ -45,7 +45,7 @@
 		 localStorage.bckbtn=true
 		 parent.history.back();
 	}, false); 
-	
+	loadalbum();
 	
 			//connectg()
 	 $(document).on('click' ,'.album-image' ,function(e){
@@ -60,18 +60,7 @@
 	 });
 	 });
 	 
-/*var gpLoginSuccess = function(gpUserData) {
-    //Success Method of Google Login
- 
-	alert(JSON.stringify(gpUserData));
-	userid = gpUserData.email 
-	//at=gpUserData.oauthToken;
-	localStorage.usergpmail=gpUserData.email 
-	localStorage.access_tokeng = gpUserData.oauthToken
- loadalbum();
-	
-   
-};*/
+
 function loadalbum()
 {
 	

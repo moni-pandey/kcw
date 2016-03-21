@@ -1,11 +1,12 @@
 $("document").ready(function() {
-// alert("doc ready!");
+
 location_fetched  = ' ' ;
  ajaxflag = true 
  newindex = 0;
  ACCESS_TOKEN=''
  userid=''
  firsttime=true;
+ socialMediaType =''
 $(document).bind("deviceready", function() {
 			document.addEventListener("backbutton", function() {
 						console.log("Disabled Back button");
@@ -20,23 +21,25 @@ $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
 	    if(localStorage.googleLinked=='true')
 		{
 			   $('.googl_pic').attr('src' ,'./assets/img/Red_google_plus.png')
-			localStorage.googleLinked =false
+			//localStorage.googleLinked =false
 			}
      
 	     if(localStorage.fbLinked=='true')
 		 {
           $('#fb_pic').attr('src' ,'./assets/img/Facebook_circle.png')
      
-		localStorage.fbLinked =false }  
+		//localStorage.fbLinked =false 
+		}  
 	     if(localStorage.youLinked=='true')
 		 {
            $('.youtube_pic').attr('src' ,'./assets/img/Youtube.png')
-         localStorage.youLinked=false       
+        // localStorage.youLinked=false       
 		 }      
 		 if(localStorage.instaLinked=='true')
 		 {
 	     $('.instagram_pic').attr('src' ,'./assets/img/Instagram.png')
-	  localStorage.instaLinked=false }
+	  //localStorage.instaLinked=false
+	  }
 	  
 	  
 	  
@@ -204,6 +207,7 @@ $(document).on('click' , '#fb_pic' ,function(e){
 console.log('fb_pic');
 $(this).attr('src' ,'./assets/img/Facebook_circle.png')
 getfbuserid();
+socialMediaType='F'
 //getsocialmedia()
 
 });	
@@ -212,7 +216,7 @@ $(document).on('click' , '.twitter_pic' ,function(e){
 console.log('fb_pic');
 $(this).attr('src' ,'./assets/img/Twitter_circle.png')
 //getfbuserid();
-//gettwitter()
+gettwitter()
 
 });
 $(document).on('click' , '.youtube_pic' ,function(){
@@ -235,8 +239,10 @@ $(this).attr('src' ,'./assets/img/Red_google_plus.png')
 //getUserid()
 //localStorage.refreshgoogletoken=false
 localStorage.gpfrstime=true;
-window.location='google_gallery.html'
-
+socialMediaType=='G'
+//window.location='google_gallery.html'
+//getsocialmedia()
+gplogin()
 });
 
 
@@ -903,13 +909,7 @@ else{
                                                 <source src="'+uri_dec+'"  type="video/mp4">\
                                                     </video>\
 											   </div>');
-											 // $('.type-of-art').text(parsedata.art[k].artType);
-											 // $('.name-of-art').text(parsedata.art[k].caption);
-											  //$('.type-of-art-ccount').text(parsedata.art[k].commentcount);
-											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
-											  //$('.like-amt').html(' ')
-											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
-											  
+											
 										  
 										  }
                                         else{
@@ -917,14 +917,7 @@ else{
 										$('#crouselItems').append('<div class="item " id="'+parsedata.art[k].artID+'" data-caption="'+parsedata.art[k].caption+'" data-art="'+parsedata.art[k].artType+'" data-comment="'+parsedata.art[k].commentcount+'" data-likecount="'+parsedata.art[k].likecount+'">\
 												<img src="'+uri_dec+'"alt="Chania" style="height:200px">\
 											   </div>');
-//$('.type-of-art').text(parsedata.art[k].artType);
-											  //$('.name-of-art').text(parsedata.art[k].caption);
-											  //console.log(parsedata.art[k].commentcount)
-											  // $('.type-of-art-ccount').text(parsedata.art[k].commentcount);
-											  //$('.type-of-art-lcount').text(parsedata.art[k].likecount);
-											   //$('.like-amt').html(' ')
-											   //$('.like-amt').html('<img src="./assets/img/fav.png" class="fav-img">'+parsedata.art[k].likecount+' <img src="./assets/img/Comment.png" class="comment-img"><span id="commentcount">'+parsedata.art[k].commentcount+'</span>');
-											  
+ 
                                         }
 							   
 }
@@ -1025,7 +1018,8 @@ function gplogin() {
     if (checkConnection()) {
         window.plugins.googleplus.login({
 			'offline': true,
-			
+			'scopes': 'https://picasaweb.google.com/data/ https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.stream.read' 
+
 			
             }, gpLoginSuccess,
             function(gpLoginError) {
@@ -1044,9 +1038,16 @@ var gpLoginSuccess = function(gpUserData) {
     //Success Method of Google Login
     localStorage.setItem('googlelogindata', JSON.stringify(gpUserData));
 	  
-	alert(JSON.stringify(gpUserData));
-	ACCESS_TOKEN=gpUserData.oauthToken
-	callyoutubechannel()
+	//alert(JSON.stringify(gpUserData));
+	
+	localStorage.usergpmail=gpUserData.email 
+	localStorage.access_tokeng = gpUserData.oauthToken
+	localStorage.addtoken=gpUserData.oauthToken
+	 localStorage.addemail=gpUserData.email
+	 //localStorage.addid=fbPermissions.id
+	window.location="google_gallery.html" 
+	
+	
    
 };
 
@@ -1189,12 +1190,16 @@ function fetchFBDetails() {
     facebookConnectPlugin.api("/me?fields=email,name,picture", ['public_profile' ,"user_photos"],
         function(fbPermissions) {
          
-		 localStorage.id=fbPermissions.id
-		 localStorage.fbuserid=fbPermissions.id
-			localStorage.ftoken=fbPermissions.accessToken
-			localStorage.fbaccesstoken=fbPermissions.accessToken
-			localStorage.email=fbPermissions.email
-			window.location='facebook_Gallery.html'
+		     localStorage.id=fbPermissions.id
+		     localStorage.fbuserid=fbPermissions.id
+			  localStorage.ftoken=fbPermissions.accessToken
+			 localStorage.fbaccesstoken=fbPermissions.accessToken
+			 localStorage.email=fbPermissions.email
+			 //for adddsocila
+		localStorage.addtoken=fbPermissions.accessToken
+	 localStorage.addemail=fbPermissions.email
+	 localStorage.addid=fbPermissions.id
+			 window.location='facebook_Gallery.html'
 		
 			
         },
@@ -1214,27 +1219,7 @@ function alertDismissed()
 
 }
 
-function linkInstagram() {
-    // Method to Link Instagram account to KCW
-    var instagramClientId = "2449c6ccef5e4d75ad8e5a0118797058";
-    var redirect_uri = "http://localhost/callback/";
-    if (checkConnection()) {
-        if (localStorage.getItem('instagramtoken') == null)
-            var instaWindow = openBrowser("https://api.instagram.com/oauth/authorize/?client_id=" + instagramClientId + "&redirect_uri=" + redirect_uri + "&response_type=token");
-        else showAlert("You have already Linked Instagram");
-    } else showAlert("Please Connect to Internet to Login");
-    instaWindow.addEventListener('loadstart', function(event) {
-        if ((event.url).indexOf(redirect_uri) === 0) {
-             var instagramAccessToken = (event.url).split('#access_token=')[1] || '';
-            if (instagramAccessToken !== null)
-                localStorage.setItem('instagramtoken', instagramAccessToken);
-				 getinstausername() 
-				//window.location='instagram.html';
-			}
-            else
-                showAlert("Couldn't Authenticate your Instagram account");
-            instaWindow.close();
-});}
+
 
    function linkInstagram() {
     // Method to Link Instagram account to KCW
@@ -1296,13 +1281,15 @@ function getinstaalbum()
 
 
 function ADDSocialm()
-{
-	
+{   
+	 //localStorage.addtoken
+	 //localStorage.addemail
+	 //localStorage.addid
 	var userdata =JSON.parse(localStorage.getItem('loggeduser'))
 	var b = 	{"artistid":userdata.user.artistID,
-		"token":localStorage.fbaccesstoken,
-		"email":localStorage.email,
-		"smacctid":localStorage.id,
+		"token":localStorage.addtoken,
+		"email":localStorage.addemail,
+		"smacctid":localStorage.addid,
 		"token1":"",
 		"token2":"",
 		"token3":"",
@@ -1319,9 +1306,9 @@ console.log(b)
 		
 		data : {
 		"artistid":userdata.user.artistID,
-		"token":localStorage.fbaccesstoken,
-		"email":localStorage.email,
-		"smacctid":localStorage.id,
+		"token":localStorage.addtoken,
+		"email":localStorage.addemail,
+		"smacctid":localStorage.addid,
 		"token1":"",
 		"token2":"",
 		"token3":"",
@@ -1334,9 +1321,14 @@ console.log(b)
 			    { 
 				
 				console.log(data);
-			 
-				
-	
+			  if(socialMediaType=='F')
+			  {
+				  getfbuserid();
+			  }else if(socialMediaType=='G')
+			  {
+				gplogin();
+			  }
+				 
 	} ,
 	
 	error   : function (xhr, status, error)
@@ -1354,18 +1346,81 @@ function getsocialmedia()
 	
 	 $.ajax({
 	    type : 'GET',
-	    url: localStorage.getItem('webserviceurl')+'artist/add/socialmedia',
+	    url: localStorage.getItem('webserviceurl')+'artist/get/socialmedia',
 		
 		data : {
 		"artistid":userdata.user.artistID,
-		"type":'F'
+		"type":socialMediaType
 		
 
 },
 	   success : function(data)
 			    { 
+            var accountfind = socialMediaType ;
+				if(data.accounts.length=='0')
+				{
+					ADDSocialm()
+				}
+			    else
 				
-				console.log(data);
+				{
+					for(var k =0 ;k <data.accounts.length ;k++)
+					{
+						if(socialMediaType == data.accounts[k].smAcctType)
+						{   // accflag=true
+					
+					if(socialMediaType=='F')
+					{	 localStorage.id=data.accounts[k].smAcctID
+							 localStorage.fbuserid=data.accounts[0].smAcctID
+							  localStorage.ftoken=data.accounts[0].token
+							 localStorage.fbaccesstoken=data.accounts[0].token
+							 localStorage.email=data.accounts[0].email
+							 window.location='facebook_Gallery.html'
+						}
+								else   if(socialMediaType=='G')
+					{
+						  localStorage.usergpmail=data.accounts[0].email 
+						   localStorage.access_tokeng = data.accounts[0].token
+						  window.location="google_gallery.html" 
+					
+								}
+								else {
+									
+			//		
+								}
+									
+					
+					}
+					}
+				/*	if(accflag)
+				  {
+					  
+					  if(socialMediaType=='F')
+			    {
+				 localStorage.id=data.accounts[0].smAcctID
+		     localStorage.fbuserid=data.accounts[0].smAcctID
+			  localStorage.ftoken=data.accounts[0].token
+			 localStorage.fbaccesstoken=data.accounts[0].token
+			 localStorage.email=data.accounts[0].email
+			 window.location='facebook_Gallery.html'
+				
+			    }else   if(socialMediaType=='G')
+	{
+	      localStorage.usergpmail=data.accounts[0].email 
+	       localStorage.access_tokeng = data.accounts[0].token
+	      window.location="google_gallery.html" 
+	
+				}
+				else {
+					
+ADDSocialm()
+					
+				}
+				
+				}*/
+				}
+				
+			console.log(data);
 			 
 				
 	
@@ -1386,8 +1441,55 @@ function gettwitter()
         function(result) {
             console.log(result);
             localStorage.setItem('twitterlogindata', JSON.stringify(result));
+	      var grant_type = '3nq2n2CUO66WnhLUgkXqDdhL:hFEd1G8YMcHNqNsn4GaM321m78bvAJLNtT4Il1kCuHaHmDGHEh'
+		   var client_credentials =window.btoa(grant_type)
+		   var consumer_key="g3nq2n2CUO66WnhLUgkXqDdhL" 
+		   var  consumer_secret ="hFEd1G8YMcHNqNsn4GaM321m78bvAJLNtT4Il1kCuHaHmDGHEh"
+			   	 $.ajax({
+	    type : 'POST',
+	    url:'https://api.twitter.com/oauth2/token',
+	     headers: {
+    "Authorization": "Basic " + window.btoa(consumer_key + ":" + consumer_secret),
+    "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
+    
+  },
+		data : {
+		 "grant_type" : "client_credentials"	
+		},  
+	 success : function(data)
+			    { 
+				console.log(data);
+			$.ajax({
+	    type : 'GET',
+	   url:'https://api.twitter.com/1.1/statuses/user_timeline.json',
+     headers: {
+   "Authorization": "Bearer  " + window.btoa(data.access_token),
+ 
+ },
+data : {
+
+"count":"100",
+"screen_name":"pandeymoni08"
+},
+  success : function(data)
+   { console.log(data)
+				
 	
-        },
+	} ,
+	
+	error   : function (xhr, status, error)
+	{console.log(xhr);}						 
+		
+		
+		})	 
+	} ,
+	
+	error   : function (xhr, status, error)
+	{console.log(xhr);}						 
+		
+		
+		});  
+	 },
         function(error) {
             console.log('Error logging in');
             console.log(error);
@@ -1397,7 +1499,7 @@ function gettwitter()
 	
 	
 	
-	 $.ajax({
+	/* $.ajax({
 	    type : 'GET',
 	    url:'https://api.twitter.com/1.1/statuses/user_timeline.json',
 		data : JSON.stringyfy({
@@ -1423,7 +1525,7 @@ function gettwitter()
 		
 		});//end of ajax call 
 	
-
+*/
 	
 	
 	

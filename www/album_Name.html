@@ -61,6 +61,9 @@
 		
 		var album_id = localStorage.getItem('albumid');
 		//alert(album_id);
+		
+		
+			
 		  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
          localStorage.refreshgoogletoken = true ;
 		 localStorage.instaLinked = true ;
@@ -233,29 +236,43 @@ if(data.feed.entry.length!=0) {
 	
 	}
 else{
+
+$(document).bind("deviceready", function() {
+			//document.addEventListener("backbutton", function() {
+						//console.log("Disabled Back button");
+		
 	facebookConnectPlugin.api('/'+album_id+'/photos?fields=images&limit=100', ["user_photos"], function(response){
       if (!response || response.error) {
         albums = response.error;
       } else {
        	console.log(response);
 		console.log("response: " + JSON.stringify(response));
-			  
+			    
 			    var albumdata = JSON.stringify(response);
 				localStorage.setItem('albumdata' ,' ');
 				localStorage.setItem('albumdata' ,albumdata);
 				var parsealbumdata =JSON.parse(localStorage.getItem('albumdata'));
 	
 			  for(j=0 ; j< parsealbumdata.data.length; j += 2)
-		{  // alert(j);
-		    console.log(parsealbumdata.data[j].images[j].source);
-		    console.log(parsealbumdata.data[j+1].images[j+1].source);
+		{  console.log(j)
+		       var source1 ='./assets/img/no_img.jpg'
+				var source2 ='./assets/img/no_img.jpg'
+		    
+		   // console.log(parsealbumdata.data[j].images[j].source);
+		   // console.log(parsealbumdata.data[j+1].images[j+1].source);
+			
+			if(parsealbumdata.data[j].images[0])
+			    source1=parsealbumdata.data[j].images[0].source
+			if(parsealbumdata.data[j+1].images[0])
+			    source2=parsealbumdata.data[j+1].images[0].source
+			
 			  $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
-					    <img src="'+parsealbumdata.data[j].images[j].source+'" class="img-responsive album-pic">\
+					    <img src="'+source1+'" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 					<div class="col-xs-6">\
-						<img src="'+parsealbumdata.data[j+1].images[j+1].source+'" class="img-responsive album-pic">\
+						<img src="'+source2+'" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 				</div>');
@@ -265,11 +282,11 @@ else{
    
 }
 });	
-
+});
 		 }
 		
 });
-		});
+	
 		
 		</script>
 	

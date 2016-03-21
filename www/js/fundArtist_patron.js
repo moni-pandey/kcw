@@ -81,6 +81,37 @@ parent.history.back();
 		return false;
   
 });
+/*$('#payexp').on('click',function(e){
+         
+		 //authentication 
+		 
+    var venmoClientId = "2449c6ccef5e4d75ad8e5a0118797058";
+    var redirect_uri = "http://localhost/callback/";
+    if (checkConnection()) {
+        if (localStorage.getItem('venmotoken') == null)
+            var instaWindow = openBrowser("https://api.venmo.com/v1/oauth/authorize?client_id=" + instagramClientId + "&scope=make_payments&response_type=token");
+        else {
+			
+			//showAlert("You have already Linked Instagram")
+		//getinstaalbum()};
+		makepay()};
+    } else showAlert("Please Connect to Internet to Login");
+    instaWindow.addEventListener('loadstart', function(event) {
+        if ((event.url).indexOf(redirect_uri) === 0) {
+            var venmotoken = (event.url).split('#access_token=')[1] || '';
+            if (venmotoken !== null)
+			{
+			localStorage.setItem('venmotoken', venmotoken);
+			makepay()}
+            else
+                showAlert("Couldn't Authenticate your Instagram account");
+            instaWindow.close();
+        }
+
+    });
+
+  
+});  */
 
 $('#subform').bind('click',function(e){
 $('#venmo-form').hide();
@@ -140,3 +171,38 @@ function loadprof()
 
 
 }
+
+
+
+
+/*function makepay()
+{
+	$.ajax({
+	    type : 'POST',
+	    url:"https://api.venmo.com/v1/payments",
+		contentType: "application/json",
+		dataType: "json",
+
+		data : {
+       access_token : ,
+       email : ,
+       note : ,
+	   amount : 
+      },
+	   success : function(data)
+			    {
+
+			console.log(data);
+				  
+},error :function (xhr,status,error)
+{
+onsole.log('error')
+console.log(xhr.status);
+console.log(xhr.responseText);
+}
+				  
+});
+	
+	
+	
+}*/

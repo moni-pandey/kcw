@@ -2,6 +2,7 @@ $(document).ready(function() {
 	
   linkedAcctTypesocial =''
 localStorage.setItem('webserviceurl' ,'http://107.170.201.114:5001/')
+//localStorage.setItem('webserviceurl' ,'http://payment.keepcitiesweird.com:5001/')
 
     /** Email Login */
     $('#logINbtn').bind('click', function() {

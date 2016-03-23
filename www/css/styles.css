@@ -49,17 +49,17 @@ font-size:20px;}
 .search .fa-arrow-left { 
     position: absolute;
     top: 10px;
-    color: #24e6bf;
+    color: #22d7b3;
     left: 45px;
-	font-size:30px
+	font-size:25px
 }
 
 .search .fa-times { 
   position: absolute;
   top: 10px;
-  color:#24e6bf;
+  color:#22d7b3;
   right:20px;
-  font-size:30px
+  font-size:25px
 }
   .fa-angle-left  
   {  margin-top: 70px;
@@ -125,7 +125,28 @@ font-size:20px;}
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 30px;            /* changed 22/3/16  */
+}
+
+@media only screen and (min-height: 521px) and (max-height: 650px)  {
+.logo-center {
+    margin-top: 60px;                                /* added 22/3/16  */
+	margin-bottom:15px
+}
+}
+
+@media only screen and (min-height: 651px) and (max-height: 750px)  {
+.logo-center {
+    margin-top: 115px;                                /* added 22/3/16  */
+	margin-bottom:15px;
+}
+}
+
+@media only screen and (min-height: 751px) {
+.logo-center {
+    margin-top: 140px;                                /* added 22/3/16  */
+	margin-bottom:15px;
+}
 }
 
 .placeholder-padding {
@@ -165,8 +186,8 @@ font-size:20px;}
     color: #a8a8a8;
     
     margin-top: 8px;
-    margin-left: 10px;
-   
+    margin-left: 15px;
+   margin-right:15px;
     font-size: 15px;
     font-family: Source Sans Pro;
     opacity: .9;
@@ -190,7 +211,7 @@ color:#24e6bf;
     font-size: 15px;
     background-color: #5e6470;
     border-color: #5e6470;
-    padding: 20px 10px;
+    padding: 16px 10px 19px;                                  /* changed 22/3/2016  */
     font-family: Source Sans Pro;
     opacity: .8
 }
@@ -234,8 +255,8 @@ color:#24e6bf;
     background-color: #24e6bf;
     color: #374153;
     font-weight: bold;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 9px;
+    padding-bottom: 8px;
     font-size: 14px;
     font-family: Source Sans Pro;
 }
@@ -254,7 +275,6 @@ color:#24e6bf;
 
 
 /* login page  */
-
 .placeholder_top-margin {
     margin-top: 60px;
 }
@@ -305,7 +325,6 @@ color:#24e6bf;
 #google-icon {
     margin-top: 5px;
 }
-
 
 /* reset password page */
 
@@ -536,7 +555,7 @@ color:#24e6bf;
     color: #ffffff;
     font-size: 15px;
     font-family: Source Sans Pro;
-    margin-top: 14px;
+    margin-top: 15px;                        /* changed 22/3/16  */
     opacity: .85;	
 }
 
@@ -1663,7 +1682,7 @@ padding-top:10px;
 
 
  .panel-default>.panel-heading {
-   background-color:#545454;          /* changed 3/3/16  */
+    background-color:#ebebeb;           /* changed 3/3/16  */   /* changed 22/3/16  */
   border-radius:0;
  }   
  .yo{
@@ -1673,7 +1692,7 @@ padding-top:10px;
  .panel-group .panel {
     margin-bottom: 15px;
     border-radius: 0;
-	border:1px solid #545454;
+	border:1px solid #f5f5f5;
 }
  
 .faq {                                           /* changed 3/3/16  */
@@ -1682,12 +1701,12 @@ padding-top:10px;
 }
 
 .panel-default>.panel-body {                         /* changed 3/3/16  */
-    border-top-color: #545454;
+    border-top-color: #f5f5f5;
 }
 
 .panel-title {
     margin-top: -2px;
-    margin-bottom: -8px;
+    margin-bottom: -9px;
     font-size: 16px;
     
 }
@@ -1696,15 +1715,17 @@ padding-top:10px;
     background-color: #575757;
 }
 .question-answer   {
-  color:black;
-  font-family:Roboto;
+  color:#24e6bf;
+  font-family: Source Sans Pro;
   font-size:30px;
-  margin-left:-8px;
+  margin-left:-22px;
 }
 .question-answerQ   {
   color:#24e6bf;
-  font-family:Roboto;
-  font-size:30px;
+  font-family: Source Sans Pro;
+  font-size:28px;
+  margin-left:-5px;
+  margin-top:-5px;
 }
 
 .pggrp{
@@ -1712,8 +1733,8 @@ margin:10px
 
 }
 .question   {
-    color:white;
-  font-family:Roboto;
+    color:#4b4b4b;
+  font-family: Source Sans Pro;
   font-size:11px;
   text-align:left;
   margin-left:-21px;
@@ -1721,11 +1742,11 @@ margin:10px
 }
 
 .answer  {
-   color:black;
-  font-family:Roboto;
+   color:#4b4b4b;
+  font-family: Source Sans Pro;
   font-size:11px;
   text-align:left;
-  margin-left:-21px;
+  margin-left:-27px;
   margin-top:3px;
  }
  
@@ -1735,14 +1756,15 @@ margin:10px
   }
   
  .faq-bg  {
-    background-color:#545454;
+    background-color:#f6f6f6;
 }
  
 .innerfaqans {
-  background-color:#24e6bf;
+  background-color:#f6f6f6;
   border-radius:4px;
-  margin:5px;
-
+  margin-top:5px;
+  margin-left:5px;
+  margin-right:-10px;
 }
 
  
@@ -1911,4 +1933,13 @@ margin-left:0 !important; margin-right:0 !important;
  .comment-time img {
     margin-top: -2px;
     padding-right: 2px;
+}
+
+/* added 22/3/2016 */
+
+.privacy-bg  {
+  background-color:#1d263a;
+  padding-left:20px;
+  padding-right:20px;
+  padding-bottom:5px;
 }

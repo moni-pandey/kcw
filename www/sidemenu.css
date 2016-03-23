@@ -55,6 +55,7 @@
                 width: 22px;
                 height: 20px;
                 background-image : url("./assets/img/menu.png");
+				background-color : #29334e;
             }
             
             .content {
@@ -95,5 +96,5 @@
 			    float: left;
 				margin-left :20px;
 				margin-right:20px;
-   
+                margin-top:5px;
 			}

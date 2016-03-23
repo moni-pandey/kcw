@@ -32,7 +32,32 @@
 	});
 	  */
 	  
+	/*  $('.panel').on('hidden.bs.collapse', function (e) {
+    alert('Event fired on #' + e.currentTarget.id);
+})*/
+$('.panel').on('shown.bs.collapse', function (e) {
+        console.log('Calling #' + e.target.id);
+        console.log($('a[href="#'+e.target.id+'"]' ));
+        $('a[href="#'+e.target.id+'"]' ).find('img').attr('src' ,'./assets/img/arrow-up.png')
+    })
+	$('.panel').on('hidden.bs.collapse', function (e) {
+        console.log('Calling #' + e.target.id);
+        console.log($('a[href="#'+e.target.id+'"]' ));
+        $('a[href="#'+e.target.id+'"]' ).find('img').attr('src' ,'./assets/img/arrow_down.png')
+    })
+	  
           });
+		  
+		  
+		  /*function changarrowkey(el)
+		  {
+			  alert('yo')
+			if($(el).attr('aria-expanded')=='true')  
+			{var img= $(this).find('img')
+			img.attr('src', "./assets/img/arrow_up.png"); }
+			  
+		  }
+		  */
 		  
 	 function goback(){
 		  alert('imageclicked');

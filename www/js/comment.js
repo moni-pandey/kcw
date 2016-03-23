@@ -1,6 +1,6 @@
 $("document").ready(function() {
 var comment ='';
-
+//alert(localStorage.getItem('crouselartid')
 if(localStorage.getItem('fromfeedtrend')=='true')
 {
 localStorage.getItem('fromfeedtrend','false');
@@ -46,7 +46,7 @@ $.ajax({
 		contentType: "application/json",
 	    dataType: "json",
 		data : JSON.stringify({
-		"patronID" : reqID,
+		"id" : reqID,
         "artID"  :localStorage.getItem('crouselartid'),
         "comment":comment,
 		 "type" : userdata.user.usertype,
@@ -164,7 +164,7 @@ function getcomments()
 				                       </div> <div class="col-xs-10">\
 										<img src="./assets/img/chat_box.png" alt="" class="img-responsive" class="chat_box">\
 										<h6 class="couple-name_position">'+val.name+'<span class="msg-posted_time">\
-										<img src="./assets/img/time.png" alt="clock" class="msg-posted-time_pic"> '+agotime+ ' ago</span></h6>\
+										<img style="display:none" src="./assets/img/time.png" alt="clock" class="msg-posted-time_pic"> '+agotime+ ' ago</span></h6>\
 										<h6 class="wishing-text">'+val.comment+'</h6>\
 				                       </div></div>');
 							

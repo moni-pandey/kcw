@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
   linkedAcctTypesocial =''
 localStorage.setItem('webserviceurl' ,'http://107.170.201.114:5001/')
 //localStorage.setItem('webserviceurl' ,'http://payment.keepcitiesweird.com:5001/')
@@ -57,6 +57,8 @@ function fetchFBDetails() {
            // showAlert("fbPermissions: " + JSON.stringify(fbPermissions));
            
             localStorage.setItem('facebooklogindata', JSON.stringify(fbPermissions));//Saved facebook data in LS on Jan8th
+			localStorage.setItem('lastloggeduser','')
+            localStorage.setItem('lastloggeduser', JSON.stringify(fbPermissions));//Saved facebook data in LS on Jan8th
             localStorage.setItem('icon','fb');
             localStorage.mediaicon=true
 linkedAcctTypesocial ='F'
@@ -122,6 +124,9 @@ function twitterLogin() {
         function(result) {
             console.log('Successful login!');
             localStorage.setItem('twitterlogindata', JSON.stringify(result));
+			localStorage.setItem('lastloggeduser','')
+			localStorage.setItem('lastloggeduser',JSON.stringify(result))
+			// lastloggeduser = JSON.stringify(result)
 			console.log(JSON.stringify(result))
 			localStorage.setItem('icon','twitter');
             localStorage.mediaicon=true
@@ -158,7 +163,10 @@ function logEIn() {
          
             console.log(data);
 			var loggeduser = JSON.stringify(data)
+			//var lastloggeduser = JSON.stringify(data)
 			localStorage.setItem('loggeduser',loggeduser);
+		localStorage.setItem('lastloggeduser','')
+			localStorage.setItem('lastloggeduser',loggeduser);
             console.log(data.user.usertype);
             
             console.log(data.user.artistID);
@@ -223,8 +231,7 @@ function checkalreadyregisterd()
         dataType: "json",
         data: JSON.stringify({
             linkedAcctType: linkedAcctTypesocial,
-            
-            email: localStorage.gpemail
+           email: localStorage.gpemail
             
 
         }),

@@ -27,7 +27,7 @@
                             <div class="form-group placeholder-padding">
 							
                                 <input type="email" class="form-control form-text text-color" id="indexusername" placeholder="Username" >
-                                <input type="text" class="form-control form-text text-color " id="indexpass"  placeholder="Password" >
+                                <input type="password" class="form-control form-text text-color " id="indexpass"  placeholder="Password" >
 								<input type="text" id="txthidden" style="display:none" name="txthidden" size="15"/>
 								
                             </div>
@@ -71,7 +71,7 @@
                 
                 <div class="row">
                     <div class="col-sm-12">
-                        <p id="want-to-create_text">Want To create a new account ? <span id="sign-up_text">
+                        <p class="want-to-create_text">Want To create a new account ? <span id="sign-up_text">
                         <a href="newAccount.html">Sign Up</a></span></p>
                     </div>
                 </div>
@@ -82,7 +82,39 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/commonmethods.js"></script>
         <script type="text/javascript" src="js/login.js"></script>
+		  <script type="text/javascript">
+        $(document).ready(function() {
+		//alert('mon')
+		//alert(localStorage.lastloggeduser)
 		
+		if(localStorage.signout== 'true')
+		{
+		localStorage.removeItem('lastloggeduser');
+		localStorage.signout=false
+		}
+         if(localStorage.lastloggeduser == undefined)
+		 {
+		
+		 }
+		 else {
+		 
+		 
+		   console.log('mkmkmmkmkmkmk')
+		  if (localStorage.getItem('loggedINusertype') === 'P') { // alert('if');
+      //  $('#patronname').text(localStorage.getItem('loggedINusername'));
+        window.location = "home2_Patron.html";
+    } else {
+        //alert('else');
+		
+		//$('#patronname').text(localStorage.getItem('loggedINusername'));
+        window.location = "profile_Artist.html";
+
+    }
+		 
+		 }
+		 
+        });
+        </script>
 
     </body>
 </html>

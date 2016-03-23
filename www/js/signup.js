@@ -254,6 +254,8 @@ var b={
 						{
 							 var fbdata =JSON.stringify(data);
 							 localStorage.setItem('fbsignup',fbdata)
+							 localStorage.setItem('lastloggeduser',fbdata)
+							 
 							
 							
 						}else if(localStorage.getItem('icon')=='gp')
@@ -261,6 +263,7 @@ var b={
 						 var gpdata =JSON.stringify(data);
 						 console.log(gpdata);
 						   localStorage.setItem('gpsignup',gpdata)
+						   localStorage.setItem('lastloggeduser',gpdata)
 							
 						}
 						else
@@ -268,6 +271,7 @@ var b={
 							var twdata =JSON.stringify(data);
 						 console.log(twdata);
 						   localStorage.setItem('twsignup',twdata)
+						   localStorage.setItem('lastloggeduser',twdata)
 						}
 						//alert(data.user[0].smAcctID);
 						//console.log(data)

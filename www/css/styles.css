@@ -275,8 +275,9 @@ color:#24e6bf;
 
 
 /* login page  */
+
 .placeholder_top-margin {
-    margin-top: 60px;
+    margin-top: 30px;                                   /* changed 22/3/2016  */
 }
 
 .forgot-password {
@@ -284,7 +285,7 @@ color:#24e6bf;
     text-align: center;
     font-weight: bold;
     font-size: 13px;
-    margin-top: 20px;
+    margin-top: 12px;                                 /* changed 22/3/2016  */
     font-family: Source Sans Pro;
 }
 
@@ -293,18 +294,19 @@ color:#24e6bf;
     text-align: center;
     font-weight: bold;
     font-size: 14px;
-    margin-top: 30px;
+    margin-top: 10px;                                 /* changed 22/3/2016  */
     font-family: Source Sans Pro;
     opacity: .8;
 }
 
-#want-to-create_text {
+
+.want-to-create_text {
     color: #a3a6a5;
     font-size: 14px;
     text-align: center;
-    margin-top: 30px;
+    margin-top: 15px;                              /* changed 22/3/2016  */
     font-family: Source Sans Pro;
-    opacity: .7
+    opacity: .7;
 }
 
 #sign-up_text {
@@ -325,7 +327,6 @@ color:#24e6bf;
 #google-icon {
     margin-top: 5px;
 }
-
 /* reset password page */
 
 #did-not-find_text {
@@ -880,7 +881,7 @@ border:none;
 }
 
 .pic1 {
-    margin-top: 20px;
+    margin-top: 5px;
     position: relative;
     border-radius: 5px;
 	height: 250px;
@@ -1868,7 +1869,7 @@ margin-left:0 !important; margin-right:0 !important;
  /* css added 4/3/16  */
  
  .cross-icon {
-    margin-top: 17px;
+    margin-top: 15px;
     float: right;
 }
  
@@ -1942,4 +1943,36 @@ margin-left:0 !important; margin-right:0 !important;
   padding-left:20px;
   padding-right:20px;
   padding-bottom:5px;
+}
+
+
+
+
+.pay-btn {
+    color: #374153;
+    background-color: #24e6bf;
+    font-family: Source Sans Pro;
+    padding: 3px 15px;
+    display: block;
+    margin: 12px auto 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.comment-top-bg {
+    background-color: #151515;
+    border: none;
+	min-height:45px;
+}
+
+.fund-me_btn {
+    background-color: #24e6bf;
+    color: #374153;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 14px;
+    font-family: Source Sans Pro;
+	border-radius:7px;
+	margin-bottom:5px;
 }

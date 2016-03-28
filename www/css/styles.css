@@ -5,6 +5,12 @@
 	
 	
 }
+.socailmedia img
+{
+	margin-bottom:1px
+	
+	
+}
 /* for homw_patron.html*/
 .wrapper {
     width:100%;
@@ -1128,7 +1134,7 @@ border:none;
     font-family: Source Sans Pro;
     font-size: 12px;
     opacity: .9;
-    padding: 5px 16px;
+  padding: 5px 10px;
 }
 
 .artist-btn:hover {
@@ -1138,7 +1144,7 @@ border:none;
     font-family: Source Sans Pro;
     font-size: 12px;
     opacity: .9;
-    padding: 5px 24px 5px 16px;
+   padding: 5px 10px;
 }
 
 
@@ -1150,7 +1156,7 @@ border:none;
     border-color: #24e6bf;
     font-family: Source Sans Pro;
     font-size: 12px;
-    padding: 5px 24px 5px 16px;
+    padding: 5px 10px;
     opacity: .9;
 }
 
@@ -1161,7 +1167,7 @@ border:none;
     font-family: Source Sans Pro;
     font-size: 12px;
     opacity: .9;
-    padding: 5px 16px;
+   padding: 5px 10px;
 }
 
 .artist-btn_active {
@@ -1170,7 +1176,7 @@ border:none;
     border-color: #24e6bf;
     font-family: Source Sans Pro;
     font-size: 12px;
-    padding: 5px 24px 5px 16px;
+   padding: 5px 10px;
     font-weight: bold;
 }
 .artist-btn{
@@ -1179,7 +1185,7 @@ border:none;
     border-color: #24e6bf;
     font-family: Source Sans Pro;
     font-size: 12px;
-    padding: 5px 24px 5px 16px;
+    padding: 5px 10px;
     opacity: .9;
 }
 
@@ -1189,7 +1195,7 @@ border:none;
     border-color: #24e6bf;
     font-family: Source Sans Pro;
     font-size: 12px;
-    padding: 5px 24px 5px 16px;
+   padding: 5px 10px;
     opacity: .9;
 }
 
@@ -1200,7 +1206,7 @@ border:none;
     font-family: Source Sans Pro;
     font-size: 12px;
     opacity: .9;
-    padding: 5px 16px;
+    padding: 5px 10px;
 }
 
 .artist-btn_active:hover {
@@ -1209,7 +1215,7 @@ border:none;
     border-color: #24e6bf;
     font-family: Source Sans Pro;
     font-size: 12px;
-    padding: 5px 24px 5px 16px;
+   padding: 5px 10px;
     font-weight: bold;
 }
 
@@ -1539,16 +1545,14 @@ div.upload {
 div.upload input {
     cursor: inherit;
     display: block;
-    font-size: 999px;
-    filter: alpha(opacity=0);
-   /* min-height: 100%;*/
-    min-width: 100%;
+    font-size: 12px;
+    max-width: 31%;
+    min-height: 22%;
     opacity: 0;
-    position: fixed;
-    right: 0;
-    text-align: right;
-    top: 0;
-	
+    position: absolute;
+    right: 34.6%;
+    text-align: center;
+    top: -17.6%;
 }
 
 .support_text {
@@ -1975,4 +1979,16 @@ margin-left:0 !important; margin-right:0 !important;
     font-family: Source Sans Pro;
 	border-radius:7px;
 	margin-bottom:5px;
+}
+
+.top-buttons  {
+   vertical-align:-24px;
+  }
+  
+  .my-content_text {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    margin-top: -32px;
+    font-family: Source Sans Pro;
 }

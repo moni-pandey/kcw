@@ -150,7 +150,12 @@ function sendQuery()
         success: function(data) {
           
           console.log(data);
-		  
+		  navigator.notification.alert(
+    'Email Sent',  // message
+    alertDismissed,         // callback
+    'KCW',            // title
+    'OK'                  // buttonName
+);
 
         },
         error: function(xhr, status, errorThrown) {
@@ -164,4 +169,7 @@ function sendQuery()
 	
 	
 	
+}
+function alertDismissed() {
+    // do something
 }

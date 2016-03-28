@@ -120,13 +120,14 @@ $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
 	if(slideTo=='0')
 	{   
        console.log('slide to ')
-		if(newindex>lastindex)
+		if(newindex>=lastindex || newindex==0)
 		{ newindex =0
 	      console.log('images over ')
 		  firsttime=true
 	      SetCrousel();
 	    }
-	     else	 {  console.log('images left')
+	     else	 {
+			console.log('images left')
 		 $('.type-of-art-ccount').text(parsedata.art[newindex].commentcount);
         $('.type-of-art-lcount').text(parsedata.art[newindex].likecount);
 	    $('.type-of-art').text(parsedata.art[newindex].artType);
@@ -150,6 +151,7 @@ localStorage.setItem('fromArtistPage','true');
   var imagid =$('.carousel-inner .active').attr('id')
   //alert(imagid);
   localStorage.setItem('crouselartid' ,imagid)
+  localStorage.setItem('fromartistprof' ,'true')
 window.location = 'comment_Page_new.html' ;
 
 
@@ -256,7 +258,8 @@ function importart()
 //initiate_geolocation();
 
    var encoded = encodeURIComponent(localStorage.getItem('uploadedimageurl'));
-
+   console.log(encoded)
+$("body").addClass('loading')
 //if (checkConnection()) {	
 $.ajax({
       type: 'POST',
@@ -274,7 +277,7 @@ $.ajax({
 },
       success: function(data){
       // alert(JSON.stringify(data));
-      
+      $("body").removeClass('loading')
 
 	  //alert(data);
          console.log(data);
@@ -289,6 +292,7 @@ $.ajax({
   //var err = eval("(" + xhr.responseText + ")");
   showAlert(xhr.status);
  // alert(xhr.status);
+ $("body").removeClass('loading')
   console.log(xhr);
 }
     });
@@ -385,6 +389,9 @@ console.log(parsedata);
 	
 	firsttime= false
 	}
+	if(newindex==lastindex-1)
+		var target = newindex+1
+	else
 	var target = newindex+3 ;
        /*******************************************/
 	   if(newindex < lastindex) 
@@ -395,13 +402,20 @@ console.log(parsedata);
 		   for(var k=newindex ; k < target ;k++)
 	{    console.log(target)
 	    console.log(k)
+		
+		
 		var uri_dec = decodeURIComponent(parsedata.art[k].url)
+	
+		
 		if(uri_dec!="null")
 		{}
 	else
 	{	console.log('null')
 uri_dec='./assets/img/no_img.jpg'
    }
+     
+   
+       
     if(lastindex%3 == 2)
 	
     {  if(lastindex==2)
@@ -410,7 +424,7 @@ uri_dec='./assets/img/no_img.jpg'
 										  {
 										     if(parsedata.art[k+1].url!=='null')
 											 {
-												var b = parsedata.art[k+1].url!=='null'
+												var b = decodeURIComponent(parsedata.art[k+1].url)
 											 }
 											 else 
 											 {
@@ -419,8 +433,7 @@ uri_dec='./assets/img/no_img.jpg'
 											 }
 											  if(parsedata.art[0].url!=='null')
 											 {
-												var bk = parsedata.art[0].url!=='null'
-											 }
+												var bk = decodeURIComponent(parsedata.art[0].url)								 }
 											 else 
 											 {
 												 var bk = './assets/img/no_img.jpg'
@@ -492,7 +505,7 @@ uri_dec='./assets/img/no_img.jpg'
 										  {
 										     if(parsedata.art[k+1].url!=='null')
 											 {
-												var b = parsedata.art[k+1].url!=='null'
+												var b = decodeURIComponent(parsedata.art[k+1].url)
 											 }
 											 else 
 											 {
@@ -501,7 +514,7 @@ uri_dec='./assets/img/no_img.jpg'
 											 }
 											  if(parsedata.art[0].url!=='null')
 											 {
-												var bk = parsedata.art[0].url!=='null'
+												var bk = decodeURIComponent(parsedata.art[0].url)
 											 }
 											 else 
 											 {
@@ -699,9 +712,11 @@ else if(lastindex%3==1)
 	
 					 if(k==lastindex-1)	
 						{
+							 console.log(parsedata.art[0].url)  
+							 console.log(parsedata.art[1].url)  
 							 if(parsedata.art[0].url!=='null')
 											 {
-												var b0 = parsedata.art[0].url!=='null'
+												var b0 = decodeURIComponent(parsedata.art[0].url)
 											 }
 											 else 
 											 {
@@ -710,7 +725,7 @@ else if(lastindex%3==1)
 											 }
 											  if(parsedata.art[1].url!=='null')
 											 {
-												var b1 = parsedata.art[1].url!=='null'
+												var b1 = decodeURIComponent(parsedata.art[1].url)
 											 }
 											 else 
 											 {
@@ -773,8 +788,10 @@ else if(lastindex%3==1)
                                         }	
 							
 						newindex=0
+						
 						 firsttime=true
 					   setTimeout(callforcarouselimages, 20000);
+					   
 						}							
 
 else{
@@ -940,7 +957,7 @@ else{
 			
 			newindex=k
 			console.log(newindex)
-			/**********************************************************/
+			  	/**********************************************************/
 		//localStorage.setItem('crouselartid' ,parsedata.art[0].artID)
 				//alert(lastindex);
 			
@@ -967,7 +984,7 @@ if(localStorage.bckbtn)
 firsttime=true
 localStorage.bckbtn=false;
 }
-	
+	//$("body").addClass("loading")
 	
 	//alert(localStorage.getItem('loggedINuserartistid'));
 	console.log(localStorage.getItem('fbsignup'));
@@ -985,7 +1002,8 @@ localStorage.bckbtn=false;
 			    { 
 				//alert('inside getArtistSuccess loaddddddddd');
 				//alert(data);
-				
+				//$("body").removeClass("loading")
+				console.log(data)
 			    var cdat = JSON.stringify(data);
 				console.log(cdat);
 				localStorage.setItem('cdata','');
@@ -1001,7 +1019,9 @@ localStorage.bckbtn=false;
 	} ,
 	
 	error   : function (xhr, status, error)
-	{console.log(xhr);}						 
+	{console.log(xhr);
+	//$("body").removeClass("loading")
+	}						 
 		
 		
 		});//end of ajax call 

@@ -3,7 +3,7 @@ var comment ='';
 //alert(localStorage.getItem('crouselartid')
 if(localStorage.getItem('fromfeedtrend')=='true')
 {
-localStorage.getItem('fromfeedtrend','false');
+//localStorage.getItem('fromfeedtrend','false');
 console.log('calling getArt');
 
  getArtComments();
@@ -14,10 +14,14 @@ else{
 getcomments(); } 
 
 	  $('.cross-icon').click(function(){
-	
-	   localStorage.crossicon=true;
-	  
-		parent.history.back();
+	if(localStorage.getItem('fromartistprof')=='true')
+	{
+		localStorage.setItem('fromartistprof' ,'false')
+	  history.back()}
+else
+	window.location='home1_Patron.html'
+    
+
 		//return false;
 	}); 
 

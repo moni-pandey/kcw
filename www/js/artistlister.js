@@ -205,6 +205,33 @@ $.ajax({
 				</div>');
 				
 				
+				/*$('.artistlistcontainer').append('	<div class="row fbbox" id="'+val.art[i].artID+'" >\
+				    <div class="col-xs-12">\
+					    <div class="artist-detail-bg">\
+						    <p class="artist-work-detail">\
+							    <img src="./assets/img/people.png"  class ="artistpic" height="50" width="58" id="'+val.artistID+'" >\
+								'+val.name+'\
+								<span class="follow_text"><img src="./assets/img/Follow.png">Follow</span>\
+                                </span></p>\
+							<h5 class="name-of-occupation" '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</h5>\
+							<div class="row" style="margin-left:0;margin-right:0;">\
+							    <h6 class="recent-uploaded_text">Recent uploaded images</h6>\
+							    <div class="col-xs-4" style="padding-right:5px;">\
+								    <img src="'+first+'" class="img-responsive center-block recent-works">\
+								</div>\
+								<div class="col-xs-4" style="padding-right:10px; padding-left:10px;">\
+								    <img src="'+second+'" class="img-responsive center-block recent-works">\
+								</div>\
+								<div class="col-xs-4" style="padding-left:5px;">\
+								    <img src="'+third+'" class="img-responsive center-block recent-works">\
+									\
+								</div>\
+							</div>\
+						</div>\
+					</div>\
+				</div>')
+				
+				*/
 				
 				});
 				

@@ -14,7 +14,7 @@ $(document).ready(function(){
 			
 $('.search').hide();
 
-if(localStorage.crossicon == 'true')
+/*if(localStorage.crossicon == 'true')
 {
 	
 	if(localStorage.getItem('feedclicked')=='true')
@@ -30,7 +30,7 @@ if(localStorage.crossicon == 'true')
 	window.location='home2_Patron.html'
 
 localStorage.crossicon = false 
-}
+}*/
  $(document).on('click' , '.feed-btn', function () {
        localStorage.setItem('feedclicked' ,'true');
 	 localStorage.setItem('trendclicked' ,'false');

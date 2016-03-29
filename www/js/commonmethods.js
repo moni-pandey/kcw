@@ -38,4 +38,4 @@ function openBrowser(url){
   else
 	  $('.nav-toggle-btn').css({"left":'178px'})
   }
-  
+ 

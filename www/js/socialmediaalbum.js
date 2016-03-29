@@ -7,10 +7,16 @@
 
 	  
 	  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
-         localStorage.fbLinked = true ;
+       //  localStorage.fbLinked = true ;
+		 //localStorage.bckbtn=true
+		// parent.history.back();
+	});
+	
+	  $(document).on('click' ,'.go-back',function(){
+     localStorage.fbLinked = true ;
 		 localStorage.bckbtn=true
 		 parent.history.back();
-	}, false);
+ })
 	var userid = localStorage.getItem('fbuserid');
     var albums;
      facebookConnectPlugin.api('/'+userid+'/albums?fields=picture,name,id,count', ["user_photos"], function(response){

@@ -7,10 +7,18 @@ $("document").ready(function() {
 	//alert('ready')
 	//$('video, audio').mediaelementplayer();
 	  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
-         localStorage.youLinked = true ;
+        // localStorage.youLinked = true ;
+		// localStorage.bckbtn=true
+		 //parent.history.back();
+	});
+	
+	
+	  $(document).on('click' ,'.go-back',function(){
+   localStorage.youLinked = true ;
 		 localStorage.bckbtn=true
 		 parent.history.back();
-	}, false);
+ })
+ 
 document.addEventListener('deviceready', function()
 {  window.plugins.googleplus.login({
 			'offline': true,
@@ -108,7 +116,7 @@ function retriveVideos() {
 	
 
 		 for(var k=0;k < parsedata.items.length; k++)
-		 {$('.container-fluids').append('<div class="row" width="300px" style="border: 1px solid white;margin-bottom:5px" >\
+		 {$('.container-fluid').append('<div class="row" width="300px" style="border: 1px solid white;margin-bottom:5px" >\
 	                                    <div class="col-xs-12 ">\
 									 			<video preload="auto" width="100%" height="200px" preload="auto" id="'+parsedata.items[k].snippet.resourceId.videoId+'"  controls="controls"  poster="'+parsedata.items[k].snippet.thumbnails.medium.url+'">\
                                                 <source type="video/youtube" src="https://www.youtube.com/watch?v='+parsedata.items[k].snippet.resourceId.videoId+'" >\

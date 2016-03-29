@@ -6,8 +6,8 @@
 	 at=''
 	 document.addEventListener('deviceready', function() {
 	 
-/*	 if(localStorage.access_tokeng )
-	 { //alert(localStorage.access_tokeng)
+	/* if(localStorage.access_tokeng )
+	 { alert(localStorage.access_tokeng)
 	 loadalbum();}
 		else
 		{
@@ -40,11 +40,17 @@
 		}*/
 	
 	 });
-	 	document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
-         localStorage.googleLinked = true ;
+	 
+	  $(document).on('click' ,'.go-back',function(){
+    localStorage.googleLinked = true ;
 		 localStorage.bckbtn=true
 		 parent.history.back();
-	}, false); 
+ })
+	 	document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
+         //localStorage.googleLinked = true ;
+		// localStorage.bckbtn=true
+		 //parent.history.back();
+	}); 
 	loadalbum();
 	
 			//connectg()
@@ -168,7 +174,32 @@ function loadalbum()
 	} ,
 	
 	error   : function (xhr, status, error)
-	{console.log(xhr);}						 
+	{console.log(xhr);
+	if(xhr.status=='403')
+		
+		{
+			
+			     window.plugins.googleplus.login({
+			'offline': true,
+		'scopes': 'https://picasaweb.google.com/data/ https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/plus.stream.read' 
+
+			
+            }, function(gpUserData) {
+				
+				//alert(JSON.stringify(gpUserData));
+	userid = gpUserData.email 
+	//at=gpUserData.oauthToken;
+	localStorage.usergpmail=gpUserData.email 
+	localStorage.access_tokeng = gpUserData.oauthToken
+ loadalbum();
+	
+				
+			},
+            function(gpLoginError) {
+                showAlert('gpLoginError: ' + gpLoginError);
+            });
+		}
+	}						 
 		
 		
 		});//end of ajax call 

@@ -34,7 +34,7 @@
 		    <div class="container-fluid login_bg">
 			    <div class="row">
 				    <div class="col-xs-2">
-				       
+				        <img src="./assets/img/Back_arrow.png" class="go-back">
 					</div>
 				    <div class="col-xs-8">
 				        <p class="page-title">Album Pics</p>
@@ -65,11 +65,16 @@
 		
 			
 		  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
-         localStorage.refreshgoogletoken = true ;
+        // localStorage.refreshgoogletoken = true ;
+		// localStorage.instaLinked = true ;
+         // parent.history.back();
+	});
+ $(document).on('click' ,'.go-back',function(){
+  localStorage.refreshgoogletoken = true ;
 		 localStorage.instaLinked = true ;
           parent.history.back();
-	}, false);
  
+ })
  
  $('.insertpic').html('')
 	if(localStorage.fromgoogle=='true')

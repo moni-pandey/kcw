@@ -10,7 +10,16 @@ $("document").ready(function() {
 	      $(document).bind("deviceready", function() {
 
 			});
+  $(document).on('click' ,'.go-back',function(){
 
+		 parent.history.back();
+ })
+ 
+  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
+       //  localStorage.fbLinked = true ;
+		 //localStorage.bckbtn=true
+		// parent.history.back();
+	});
 
   /***** loading images for crousel*******/
 
@@ -955,7 +964,7 @@ localStorage.bckbtn=false;
 			 localStorage.setItem('crouseldata' ,crouseldat);
 			 console.log('calling set')
 			 var userdata =JSON.parse(localStorage.getItem('loggeduser'))
-			 alert(userdata.user.patronID)
+			 //alert(userdata.user.patronID)
 			 for(var k =0 ;k<data.followers.length ;k++)
 				 
 			        {   

@@ -206,7 +206,48 @@ window.location = 'comment_Page_new.html' ;
 	  
 	  
 	  
-	  
+	    var modalc = $(document).find(".carousel");
+	    var hammerobj = new Hammer(modalc[0]);
+	    modalc.carousel({
+	        pause: true,
+	        interval: false
+	    });
+	    modalc.carousel('pause');
+
+	    hammerobj.on('swipeleft', function(e) {
+	        console.log("touch left");
+			
+	        modalc.carousel('next');
+ var cc = $('.carousel-inner .active').next().data('comment')
+	 var lc = $('.carousel-inner .active').next().data('likecount')
+	$('#likecounter').text(cc);
+     $('#cmntcounter').text(lc);
+	 var ta = $('.carousel-inner .active').next().data('art')
+	 var na = $('.carousel-inner .active').next().data('caption')
+	//$('.type-of-art-ccount').text(cc);
+	console.log(ta)
+	console.log(na)
+    //$('.type-of-art-lcount').text(lc);
+	 $('.type-of-art').text(ta);
+	 $('.name-of-art').text(na);
+	    })
+	    hammerobj.on('swiperight', function() {
+	        console.log("touch right");
+	        modalc.carousel('prev');
+			 var cc = $('.carousel-inner .active').prev().data('comment')
+	 var lc = $('.carousel-inner .active').prev().data('likecount')
+	$('#likecounter').text(cc);
+     $('#cmntcounter').text(lc);
+	 var ta = $('.carousel-inner .active').prev().data('art')
+	 var na = $('.carousel-inner .active').prev().data('caption')
+	 //$('.type-of-art-ccount').text(cc);
+     //$('.type-of-art-lcount').text(lc);
+	 $('.type-of-art').text(ta);
+	 $('.name-of-art').text(na);
+	 	console.log(ta)
+	console.log(na)
+	    })
+
    
 	  
       	
@@ -225,15 +266,31 @@ var direction =e.direction;
 	 {
 	 var cc = $('.carousel-inner .active').next().data('comment')
 	 var lc = $('.carousel-inner .active').next().data('likecount')
-	$('.type-of-art-ccount').text(cc);
-     $('.type-of-art-lcount').text(lc);
+	$('#cmntcounter').text(cc);
+     $('#likecounter').text(lc);
+	 	 var ta = $('.carousel-inner .active').next().data('art')
+	 var na = $('.carousel-inner .active').next().data('caption')
+	
+	 $('.type-of-art').text(ta);
+	 $('.name-of-art').text(na);
+	 	console.log(cc)
+	 	console.log(lc)
+	 	console.log(ta)
+	console.log(na)
 	 
 	 }else{
 		 
 		 var cc = $('.carousel-inner .active').prev().data('comment')
 	 var lc = $('.carousel-inner .active').prev().data('likecount')
-	$('.type-of-art-ccount').text(cc);
-     $('.type-of-art-lcount').text(lc); 
+	$('#likecounter').text(cc);
+     $('#cmntcounter').text(lc); 
+	  var ta = $('.carousel-inner .active').prev().data('art')
+	 var na = $('.carousel-inner .active').prev().data('caption')
+
+	 $('.type-of-art').text(ta);
+	 $('.name-of-art').text(na);
+	 	console.log(ta)
+	console.log(na)
 		 
 	 }
 	if(slideTo=='0')
@@ -386,9 +443,9 @@ uri_dec='./assets/img/no_img.jpg'
 						{
 						if(uri_dec.indexOf('video')> -1)
 										  {
-										     if(parsedata.art[k+1].url!=='null')
+										     if(parsedata.art[lastindex-1].url!=='null')
 											 {
-												var b = parsedata.art[k+1].url!=='null'
+												var b = parsedata.art[lastindex-1].url!=='null'
 											 }
 											 else 
 											 {
@@ -455,7 +512,7 @@ uri_dec='./assets/img/no_img.jpg'
                                         }	
 							
 						newindex=0
-					  setTimeout(callforcarouselimages, 20000);
+					  setTimeout(SetCrousel, 20000);
 						}							
 
 else{
@@ -667,7 +724,7 @@ else if(lastindex%3==1)
                                         }	
 							
 						newindex=0
-					   setTimeout(callforcarouselimages, 20000);
+					   setTimeout(SetCrousel, 20000);
 						}							
 
 else{
@@ -859,7 +916,7 @@ else{
 else 
 {
 	newindex=0
-  setTimeout(callforcarouselimages, 20000);
+  setTimeout(SetCrousel, 20000);
 }
 
 }
@@ -898,9 +955,11 @@ localStorage.bckbtn=false;
 			 localStorage.setItem('crouseldata' ,crouseldat);
 			 console.log('calling set')
 			 var userdata =JSON.parse(localStorage.getItem('loggeduser'))
+			 alert(userdata.user.patronID)
 			 for(var k =0 ;k<data.followers.length ;k++)
 				 
 			        {   
+					console.log(data.followers[k].patronid)
 					if(userdata.user.patronID==data.followers[k].patronid)
 			             {
 							 $('#followbtn').html('Unfollow');
@@ -953,11 +1012,10 @@ console.log(parsedata);
 	var lastindex = parsedata.art.length 
 	if(firsttime)
 	{
-	$('.type-of-art-ccount').text(parsedata.art[0].commentcount);
-	$('.type-of-art-lcount').text(parsedata.art[0].likecount);
+	$('#likecounter').text(parsedata.art[0].likecount);
+	$('#cmntcounter').text(parsedata.art[0].commentcount);
 	$('.type-of-art').text(parsedata.art[0].artType);
-    $('.name-of-art').text(parsedata.art[0].caption);
-	
+	$('.name-of-art').text(parsedata.art[0].caption);
 	firsttime= false
 	}
 	if(newindex==lastindex-1)
@@ -1144,7 +1202,7 @@ uri_dec='./assets/img/no_img.jpg'
 							
 						newindex=0
 						 firsttime=true
-					  setTimeout(callforcarouselimages, 20000);
+					  setTimeout(SetCrousel, 20000);
 						}							
 
 else{
@@ -1361,7 +1419,7 @@ else if(lastindex%3==1)
 						newindex=0
 						
 						 firsttime=true
-					   setTimeout(callforcarouselimages, 20000);
+					   setTimeout(SetCrousel, 20000);
 					   
 						}							
 
@@ -1542,7 +1600,7 @@ else
 {
 	newindex=0
 	 firsttime=true
-  setTimeout(callforcarouselimages, 20000);
+  setTimeout(SetCrousel, 20000);
 }
 
 }

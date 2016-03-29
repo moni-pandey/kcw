@@ -29,7 +29,8 @@ $(".cancelbtn").bind('click', function(e){
    });	
 	
 	$('#backbtn').bind('click', function() {
-		parent.history.back();
+		//history.back();
+		window.location="profile_Artist.html"
 		return false;
 
 	});

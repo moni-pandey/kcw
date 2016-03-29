@@ -31,4 +31,11 @@ function openBrowser(url){
     return corBrowser;
 }
 /*Common Methods-Ends*/
+  function setnav()
+  {
+	  if($("body").hasClass('active-nav'))
+	  $('.nav-toggle-btn').css({"left":'200px'})
+  else
+	  $('.nav-toggle-btn').css({"left":'178px'})
+  }
   

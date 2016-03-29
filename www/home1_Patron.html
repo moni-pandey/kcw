@@ -6,11 +6,12 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
 		<link href="css/styles.css" rel="stylesheet">
+		<script src="js/commonmethods.js"></script>
 		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 	</head>
 	<body>
 	      <nav class="side_nav">
-         <a href="#" class="nav-toggle-btn"></a>
+         <a href="#" class="nav-toggle-btn" onclick="setnav()"></a>
             <div class = "menu_header">  <p  class="nav_header">MENU</p></div>
             <ul id="test">
 				<li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
@@ -31,18 +32,18 @@
 				    <div class="col-xs-2">
 					
 				     </div>
-				    <div class="col-xs-9 searchdiv "> 
-					    <div class="btn-group">
+				    <div class="col-xs-8 searchdiv "> 
+					   <div class="text-center">					
+					    <div class="btn-group top-buttons">
                             <button type="button" class="btn btn-primary feed-btn">Feed</button>
                             <button type="button" class="btn btn-primary trending-btn">Trending</button>
                             <button type="button" class="btn btn-primary artist-btn_active">Artists</button>
                         </div>
-                        <img src="./assets/img/Search.png" alt="logo" class="search-icon">
-						 
-				
+					  </div>
+                        
 					</div>
-					<div class="col-xs-1">
-					 
+					<div class="col-xs-2">
+					    <img src="./assets/img/Search.png" alt="logo" class="search-icon">
 					</div>
 					 </div>
 					<div class=" row search" >

@@ -79,13 +79,15 @@ $(document).on('click','.dollarbt' ,function(e)
  localStorage.setItem('fromGetArtist','true');
 
 var classname = e.target.id+'name';
-var artistname = document.getElementsByClassName(classname)[0].innerHTML;
+//var artistname = document.getElementsByClassName(classname)[0].innerHTML;
+var artistname = $("."+classname).clone().children().remove().end().text();
 localStorage.setItem('fromartistname',artistname);
 
 localStorage.setItem('fromartistartid',e.target.id);
 
 var classnam = e.target.id+'type';
-var artisttype = document.getElementsByClassName(classnam)[0].innerHTML;
+//var artisttype = document.getElementsByClassName(classnam)[0].innerHTML;
+var artisttype = $("#"+classnam).text();
 console.log(artisttype);
 localStorage.setItem('fromarttype',artisttype);
 window.location="fundArtist_Patron.html";
@@ -93,8 +95,8 @@ window.location="fundArtist_Patron.html";
 
 $(document).on("keyup", "#enterartist",function() {
     var g = $(this).val().toLowerCase();
-    $(".fbbox .name_artist").each(function() {
-        var s = $(this).text().toLowerCase();
+    $(".fbbox .artist-work-detail").each(function() {
+        var s = $(this).clone().children().remove().end().text().toLowerCase();
         $(this).closest('.fbbox')[ s.indexOf(g) !== -1 ? 'show' : 'hide' ]();
     });
 });
@@ -103,15 +105,20 @@ $(document).on('click','.artistpic' ,function(e)
 {
 
  var classname = e.target.id+'name';
-var artistname = document.getElementsByClassName(classname)[0].innerHTML;
+//var artistname = document.getElementsByClassName(classname)[0].innerHTML;
+//var artistname = document.getElementsByClassName(classname)[0].innerHTML;
+var artistname = $("."+classname).clone().children().remove().end().text();
+//alert(artistname)
 localStorage.setItem('fromartistname',artistname);
 
  localStorage.setItem('fromGetArtist','true');
  
 var classnam = e.target.id+'type';
-var artisttype = document.getElementsByClassName(classnam)[0].innerHTML;
+//var artisttype = document.getElementsByClassName(classnam)[0].innerHTML;
 //console.log(artisttype);
-localStorage.setItem('fromarttype',artisttype);
+//var artisttype = $("."+classnam).val();
+//alert(artisttype)
+//localStorage.setItem('fromarttype',artisttype);
 if(localStorage.getItem('unfollowedonlist')=='true')
       {
 	  localStorage.setItem('changenextpageBTN','false');}
@@ -190,7 +197,7 @@ $.ajax({
 												var third  ='./assets/img/no_img.jpg'
 				
 				
-				$('.artistlistcontainer').append('<div class="row fbbox" id="'+val.art[i].artID+'">\
+				/*$('.artistlistcontainer').append('<div class="row fbbox" id="'+val.art[i].artID+'">\
 				    <div class="col-xs-12 ">\
 					    <img src="./assets/img/transparent_bg.png" width="654" height="353" class="img-responsive transparent-bg-img">\
 						<img src="./assets/img/people.png" class="people-img artistpic" id="'+val.artistID+'">\
@@ -203,18 +210,19 @@ $.ajax({
 						<img src="'+third+'" style="height:90px;width:69px" class="img-responsive artwork3_img">\
 					</div>\
 				</div>');
+				*/
+					
 				
-				
-				/*$('.artistlistcontainer').append('	<div class="row fbbox" id="'+val.art[i].artID+'" >\
+				$('.artistlistcontainer').append('<div class="row  side-spacing fbbox" id="'+val.art[i].artID+'" >\
 				    <div class="col-xs-12">\
 					    <div class="artist-detail-bg">\
-						    <p class="artist-work-detail">\
+						    <p class="artist-work-detail '+val.artistID+'name"  >\
 							    <img src="./assets/img/people.png"  class ="artistpic" height="50" width="58" id="'+val.artistID+'" >\
 								'+val.name+'\
-								<span class="follow_text"><img src="./assets/img/Follow.png">Follow</span>\
+								<span class="follow_text"><button class="dollarbt dollaricon" id="'+val.artistID+'">$ &nbsp;</button><img src="./assets/img/unfollow.png" class="unfollow_img" id="'+val.artistID+'">Unfollow</span>\
                                 </span></p>\
 							<h5 class="name-of-occupation" '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</h5>\
-							<div class="row" style="margin-left:0;margin-right:0;">\
+							<div class="row" style="margin-left:10px;margin-right:10px">\
 							    <h6 class="recent-uploaded_text">Recent uploaded images</h6>\
 							    <div class="col-xs-4" style="padding-right:5px;">\
 								    <img src="'+first+'" class="img-responsive center-block recent-works">\
@@ -231,7 +239,7 @@ $.ajax({
 					</div>\
 				</div>')
 				
-				*/
+				
 				
 				});
 				

@@ -7,6 +7,7 @@ location_fetched  = ' ' ;
  userid=''
  firsttime=true;
  socialMediaType =''
+ lastindex=''
 $(document).bind("deviceready", function() {
 			document.addEventListener("backbutton", function() {
 						console.log("Disabled Back button");
@@ -120,10 +121,11 @@ $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
 	if(slideTo=='0')
 	{   
        console.log('slide to ')
-		if(newindex>=lastindex || newindex==0)
+		if(newindex>=lastindex|| newindex==0)
 		{ newindex =0
 	      console.log('images over ')
 		  firsttime=true
+		  //callforcarouselimages();
 	      SetCrousel();
 	    }
 	     else	 {
@@ -139,6 +141,39 @@ $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
 	
 });
 			
+  var modalc = $(document).find(".carousel");
+	    var hammerobj = new Hammer(modalc[0]);
+	    modalc.carousel({
+	        pause: true,
+	        interval: false
+	    });
+	    modalc.carousel('pause');
+
+	    hammerobj.on('swipeleft', function(e) {
+	        console.log("touch left");
+			
+	        modalc.carousel('next');
+	 var cc = $('.carousel-inner .active').next().data('comment')
+	 var lc = $('.carousel-inner .active').next().data('likecount')
+	 var ta = $('.carousel-inner .active').next().data('art')
+	 var na = $('.carousel-inner .active').next().data('caption')
+	$('.type-of-art-ccount').text(cc);
+     $('.type-of-art-lcount').text(lc);
+	 $('.type-of-art').text(ta);
+	 $('.name-of-art').text(na);
+	    })
+	    hammerobj.on('swiperight', function() {
+	        console.log("touch right");
+	        modalc.carousel('prev');
+			 var cc = $('.carousel-inner .active').prev().data('comment')
+	 var lc = $('.carousel-inner .active').prev().data('likecount')
+	 var ta = $('.carousel-inner .active').prev().data('art')
+	 var na = $('.carousel-inner .active').prev().data('caption')
+	 $('.type-of-art-ccount').text(cc);
+     $('.type-of-art-lcount').text(lc);
+	 $('.type-of-art').text(ta);
+	 $('.name-of-art').text(na);
+	    })
 
 	
 		
@@ -281,11 +316,12 @@ $.ajax({
 
 	  //alert(data);
          console.log(data);
-	    showAlert("Uploaded Successfully");
+	   
 	    //ajaxflag=true
 		newindex=0
-		console.log('calling for carousel ')
+		console.log('calling from imortatr ')
 		callforcarouselimages();
+		 showAlert("Uploaded Successfully");
 	  
       },
       error: function(xhr, status, error) {
@@ -379,7 +415,11 @@ console.log(parsedata);
 	if(parsedata.art.length=='0')
 		 return;
 	   
-	var lastindex = parsedata.art.length 
+	 lastindex = parsedata.art.length 
+	 console.log(lastindex)
+	 console.log(decodeURIComponent(parsedata.art[lastindex-1].url))
+	 console.log(decodeURIComponent(parsedata.art[lastindex-1].url))
+	 //console.log(decodeURIComponent(parsedata.art[lastindex].url))
 	if(firsttime)
 	{
 	$('.type-of-art-ccount').text(parsedata.art[0].commentcount);
@@ -399,7 +439,7 @@ console.log(parsedata);
 		   {	
 		   
 		   
-		   for(var k=newindex ; k < target ;k++)
+		   for(var k=newindex ; k <target ;k++)
 	{    console.log(target)
 	    console.log(k)
 		
@@ -418,7 +458,9 @@ uri_dec='./assets/img/no_img.jpg'
        
     if(lastindex%3 == 2)
 	
-    {  if(lastindex==2)
+    {  
+	console.log('lastindex%3 == 2')
+	if(lastindex==2)
 		{
 			if(uri_dec.indexOf('video')> -1)
 										  {
@@ -501,11 +543,12 @@ uri_dec='./assets/img/no_img.jpg'
                      						 
 					 if(k==lastindex-2)	
 						{
+							console.log('lastindex-2')
 						if(uri_dec.indexOf('video')> -1)
 										  {
-										     if(parsedata.art[k+1].url!=='null')
+										     if(parsedata.art[lastindex-1].url!=='null')
 											 {
-												var b = decodeURIComponent(parsedata.art[k+1].url)
+												var b = decodeURIComponent(parsedata.art[lastindex-1].url)
 											 }
 											 else 
 											 {
@@ -573,7 +616,7 @@ uri_dec='./assets/img/no_img.jpg'
 							
 						newindex=0
 						 firsttime=true
-					  setTimeout(callforcarouselimages, 20000);
+					  setTimeout(SetCrousel, 20000);
 						}							
 
 else{
@@ -661,7 +704,7 @@ else{
 
 else if(lastindex%3==1)
 {
-	
+	console.log('lastindex%2')
 	   if(lastindex==1)
 	   {
 		   if(uri_dec.indexOf('video')> -1)
@@ -711,7 +754,7 @@ else if(lastindex%3==1)
 	   }
 	
 					 if(k==lastindex-1)	
-						{
+						{console.log('lastindex-1')
 							 console.log(parsedata.art[0].url)  
 							 console.log(parsedata.art[1].url)  
 							 if(parsedata.art[0].url!=='null')
@@ -790,7 +833,7 @@ else if(lastindex%3==1)
 						newindex=0
 						
 						 firsttime=true
-					   setTimeout(callforcarouselimages, 20000);
+					   setTimeout(SetCrousel, 20000);
 					   
 						}							
 
@@ -971,7 +1014,7 @@ else
 {
 	newindex=0
 	 firsttime=true
-  setTimeout(callforcarouselimages, 20000);
+  setTimeout(SetCrousel, 20000);
 }
 
 }

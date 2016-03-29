@@ -17,7 +17,9 @@ getcomments(); }
 	if(localStorage.getItem('fromartistprof')=='true')
 	{
 		localStorage.setItem('fromartistprof' ,'false')
-	  history.back()}
+		localStorage.crossclicked = true
+	  history.back()
+	  }
 else
 	window.location='home1_Patron.html'
     

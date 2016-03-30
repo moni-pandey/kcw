@@ -475,7 +475,21 @@ function getprof(id)
 	localStorage.setItem('fromartistname',artistname)
 	 localStorage.setItem('loggedINuserartistid' ,imgartid);
 	 localStorage.setItem('fromGetArtistID',imgartid),
-     
+     localStorage.frmfeed=true
+	 window.location="profile_Patron.html"
+	 
+	
+	
+	
+}function getproffe(id)
+{
+	var imgartid = $(id).attr("id")
+	var nameid= imgartid +'name'
+	var artistname = $('#'+nameid).text();
+	localStorage.setItem('fromartistname',artistname)
+	 localStorage.setItem('loggedINuserartistid' ,imgartid);
+	 localStorage.setItem('fromGetArtistID',imgartid),
+     localStorage.frmtrnd=true
 	 window.location="profile_Patron.html"
 	 
 	

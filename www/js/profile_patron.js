@@ -12,7 +12,13 @@ $("document").ready(function() {
 			});
   $(document).on('click' ,'.go-back',function(){
 
-		 parent.history.back();
+		 //parent.history.back();
+		 if(localStorage.frmfeed)
+		 {window.location="home3_Patron.html"
+	 localStorage.frmfeed=false
+	 }
+		 else
+		  window.location="home2_Patron.html"
  })
  
   document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');

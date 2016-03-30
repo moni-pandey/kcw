@@ -219,7 +219,7 @@ $.ajax({
 						    <p class="artist-work-detail '+val.artistID+'name"  >\
 							    <img src="./assets/img/people.png"  class ="artistpic" height="50" width="58" id="'+val.artistID+'" >\
 								'+val.name+'\
-								<span class="follow_text"><button class="dollarbt dollaricon" id="'+val.artistID+'">$ &nbsp;</button><img src="./assets/img/unfollow.png" class="unfollow_img" id="'+val.artistID+'">Unfollow</span>\
+								<span class="follow_text" id="'+val.artistID+'follow"><button class="dollarbt dollaricon" id="'+val.artistID+'">$ &nbsp;</button><img src="./assets/img/unfollow.png" class="unfollow_img" id="'+val.artistID+'">Unfollow</span>\
                                 </span></p>\
 							<h5 class="name-of-occupation" '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</h5>\
 							<div class="row" style="margin-left:10px;margin-right:10px">\
@@ -261,7 +261,7 @@ $(document).on('click' ,'.follow_img',function(e) {
 
 //alert('.foll_img');
 var id = e.target.id 
-
+var followid= e.target.id+'follow'
  $.ajax({
 	    type : 'POST',
 	    url: localStorage.getItem('webserviceurl')+"artist/follow",
@@ -277,8 +277,10 @@ var id = e.target.id
 				  console.log(data);
 			
 				 localStorage.setItem('unfollowedonlist' ,'false');
-				 $('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/unfollow.png" class="unfollow_img">Unfollow');
-				 $('.follow_text').css('color', '#24e6bf');
+				 $("#"+followid).html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/unfollow.png" class="unfollow_img">Unfollow');
+				 //$('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/unfollow.png" class="unfollow_img">Unfollow');
+				// $('.follow_text').css('color', '#24e6bf');
+				 $("#"+followid).css('color', '#24e6bf');
 	
 		    
 				
@@ -303,7 +305,7 @@ var id = e.target.id
 $(document).on('click' ,'.unfollow_img', function(e){
 
 var id= e.target.id
-
+var followid= e.target.id+'follow'
 $.ajax({
 	    type : 'POST',
 	    url: localStorage.getItem('webserviceurl')+"artist/unfollow",
@@ -318,9 +320,11 @@ $.ajax({
 				
 				 console.log(data.error);
 			localStorage.setItem('unfollowedonlist' ,'true');
-               $('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/Follow.png" class="follow_img" id="followArtist">Follow');
+              // $('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/Follow.png" class="follow_img" id="followArtist">Follow');
+               $("#"+followid).html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/Follow.png" class="follow_img" id="followArtist">Follow');
 				 
-				 $('.follow_text').css('color', '#24e6bf');
+				 //$('.follow_text').css('color', '#24e6bf');
+				 $("#"+followid).css('color', '#24e6bf');
 				} ,
 	     error   : function (xhr, status, error)
                  {console.log(xhr);}						 

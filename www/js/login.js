@@ -162,6 +162,14 @@ function logEIn() {
         success: function(data) {
          
             console.log(data);
+			if(data.message=='success')
+			{
+				
+			}else
+			{$("#indexpass").val(' ')
+		$("#indexusername").val(' ')
+				showAlert(data.message)
+			}
 			var loggeduser = JSON.stringify(data)
 			//var lastloggeduser = JSON.stringify(data)
 			localStorage.setItem('loggeduser',loggeduser);

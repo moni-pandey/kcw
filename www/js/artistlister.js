@@ -186,7 +186,7 @@ $.ajax({
 											 {
 											 if(val.art[(val.art.length)-3].url!=='null')
 											 {
-												var third =val.art[(val.art.length)-3].url
+												var third =decodeURIComponent(val.art[(val.art.length)-3].url)
 											 }
 											 else 
 											 {
@@ -219,7 +219,7 @@ $.ajax({
 						    <p class="artist-work-detail '+val.artistID+'name"  >\
 							    <img src="./assets/img/people.png"  class ="artistpic" height="50" width="58" id="'+val.artistID+'" >\
 								'+val.name+'\
-								<span class="follow_text" id="'+val.artistID+'follow"><button class="dollarbt dollaricon" id="'+val.artistID+'">$ &nbsp;</button><img src="./assets/img/unfollow.png" class="unfollow_img" id="'+val.artistID+'">Unfollow</span>\
+								<span class="follow_text" id="'+val.artistID+'follow"><img class="dollarbt dollaricon" src="./assets/img/dollar_20x20.png" id="'+val.artistID+'"> &nbsp;<img src="./assets/img/unfollow_20x20.png" class="unfollow_img" id="'+val.artistID+'">&nbsp;Unfollow</span>\
                                 </span></p>\
 							<h5 class="name-of-occupation" '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</h5>\
 							<div class="row" style="margin-left:10px;margin-right:10px">\
@@ -277,7 +277,7 @@ var followid= e.target.id+'follow'
 				  console.log(data);
 			
 				 localStorage.setItem('unfollowedonlist' ,'false');
-				 $("#"+followid).html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/unfollow.png" class="unfollow_img">Unfollow');
+				 $("#"+followid).html('<img class="dollarbt dollaricon" src="./assets/img/dollar_20x20.png" id="'+id+'"> &nbsp;<img src="./assets/img/unfollow_20x20.png" class="unfollow_img">&nbsp;Unfollow');
 				 //$('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/unfollow.png" class="unfollow_img">Unfollow');
 				// $('.follow_text').css('color', '#24e6bf');
 				 $("#"+followid).css('color', '#24e6bf');
@@ -321,7 +321,7 @@ $.ajax({
 				 console.log(data.error);
 			localStorage.setItem('unfollowedonlist' ,'true');
               // $('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/Follow.png" class="follow_img" id="followArtist">Follow');
-               $("#"+followid).html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/Follow.png" class="follow_img" id="followArtist">Follow');
+               $("#"+followid).html('<img class="dollarbt dollaricon" src="./assets/img/dollar_20x20.png"  id="'+id+'"> &nbsp;<img src="./assets/img/follow_20x20.png" class="follow_img" id="'+id+'">&nbsp;Follow');
 				 
 				 //$('.follow_text').css('color', '#24e6bf');
 				 $("#"+followid).css('color', '#24e6bf');

@@ -150,6 +150,9 @@ function sendQuery()
         success: function(data) {
           
           console.log(data);
+		  
+		   $('#subject').val(' ');
+	      $('#message').val(' ');
 		  navigator.notification.alert(
     'Email Sent',  // message
     alertDismissed,         // callback

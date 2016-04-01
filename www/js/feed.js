@@ -45,6 +45,13 @@ localStorage.setItem('trendclicked' ,'true');
 	  });
 	  
 	  $(document).on('click' , '.artist-btn_active', function () {
+		  if(localStorage.getItem('profileartist')=='true')
+		  {
+			localStorage.setItem('profileartist','false')
+            window.location='profile_Artist.html'			
+			  
+		  }
+	  else
      window.location='home2_Patron.html'
 	  });
 

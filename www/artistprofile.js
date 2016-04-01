@@ -13,6 +13,23 @@ $(document).bind("deviceready", function() {
 						console.log("Disabled Back button");
 			});
 			});
+	//feed trent btn		
+ $(document).on('click' , '.feed-btn', function () {
+       localStorage.setItem('feedclicked' ,'true');
+	 localStorage.setItem('trendclicked' ,'false');
+	 localStorage.setItem('loggedINuserpatronid' ,0)
+	 localStorage.profileartist=true
+      window.location='home1_Patron.html'
+	  });
+	  
+$(document).on('click' , '.trending-btn', function () {
+	
+localStorage.setItem('feedclicked' ,'false');
+localStorage.setItem('trendclicked' ,'true');
+localStorage.setItem('loggedINuserpatronid' ,0)
+localStorage.profileartist=true
+     window.location='home3_Patron.html'
+	  });
 
 $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
      

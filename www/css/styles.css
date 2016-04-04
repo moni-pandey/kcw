@@ -2094,3 +2094,20 @@ display: block;
  margin-top:10px;
  padding-left:25px;
 }
+
+/*  added   4/4/2016  */
+
+.follow-artist-btn, .unfollow-artist-btn  {
+  background-color:#24E6BF;
+  color:#00514e;
+  border-radius:5px;
+  padding:3px 2px;
+ border-color:#24E6BF;
+}
+
+.dollar-btn {
+  background-color:#24E6BF;
+  border-radius:5px;
+  padding:3px 2px;
+   border-color:#24E6BF;
+}

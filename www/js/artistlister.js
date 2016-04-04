@@ -74,7 +74,7 @@ $(document).on('click' , '.trending-btn', function () {
 	  });
 	  
 	
-$(document).on('click','.dollarbt' ,function(e)
+/*$(document).on('click','.dollarbt' ,function(e)
 {
  localStorage.setItem('fromGetArtist','true');
 
@@ -91,7 +91,7 @@ var artisttype = $("#"+classnam).text();
 console.log(artisttype);
 localStorage.setItem('fromarttype',artisttype);
 window.location="fundArtist_Patron.html";
-});
+});*/
 
 $(document).on("keyup", "#enterartist",function() {
     var g = $(this).val().toLowerCase();
@@ -213,7 +213,7 @@ $.ajax({
 				*/
 					
 				
-				$('.artistlistcontainer').append('<div class="row  side-spacing fbbox" id="'+val.art[i].artID+'" >\
+				/*$('.artistlistcontainer').append('<div class="row  side-spacing fbbox" id="'+val.art[i].artID+'" >\
 				    <div class="col-xs-12">\
 					    <div class="artist-detail-bg">\
 						    <p class="artist-work-detail '+val.artistID+'name"  >\
@@ -221,6 +221,33 @@ $.ajax({
 								'+val.name+'\
 								<span class="follow_text" id="'+val.artistID+'follow"><img class="dollarbt dollaricon" src="./assets/img/dollar_20x20.png" id="'+val.artistID+'"> &nbsp;<img src="./assets/img/unfollow_20x20.png" class="unfollow_img" id="'+val.artistID+'">&nbsp;Unfollow</span>\
                                 </span></p>\
+							<h5 class="name-of-occupation" '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</h5>\
+							<div class="row" style="margin-left:10px;margin-right:10px">\
+							    <h6 class="recent-uploaded_text">Recent uploaded images</h6>\
+							    <div class="col-xs-4" style="padding-right:5px;">\
+								    <img src="'+first+'" class="img-responsive center-block recent-works">\
+								</div>\
+								<div class="col-xs-4" style="padding-right:10px; padding-left:10px;">\
+								    <img src="'+second+'" class="img-responsive center-block recent-works">\
+								</div>\
+								<div class="col-xs-4" style="padding-left:5px;">\
+								    <img src="'+third+'" class="img-responsive center-block recent-works">\
+									\
+								</div>\
+							</div>\
+						</div>\
+					</div>\
+				</div>')*/
+				$('.artistlistcontainer').append('<div class="row  side-spacing fbbox" id="'+val.art[i].artID+'" >\
+				    <div class="col-xs-12">\
+					    <div class="artist-detail-bg">\
+						    <p class="artist-work-detail '+val.artistID+'name"  >\
+							    <img src="./assets/img/people.png"  class ="artistpic" height="50" width="58" id="'+val.artistID+'" >\
+								'+val.name+'\
+								<span class="follow_text" id="'+val.artistID+'">\
+								 <button type="button" class="dollar-btn" id="'+val.artistID+'" onclick="getexpensepage(this)"><img class="dollarbt dollaricon" src="./assets/img/dollar_20x20-cGreen.png"></button> \
+									<button type="button" class="follow-artist-btn" id="'+val.artistID+'" data-follow="f" onclick="unfollowartist(this)"><img  src="./assets/img/follow20x20-cGreen.png">Follow</button></span>\
+								</p>\
 							<h5 class="name-of-occupation" '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</h5>\
 							<div class="row" style="margin-left:10px;margin-right:10px">\
 							    <h6 class="recent-uploaded_text">Recent uploaded images</h6>\
@@ -256,7 +283,7 @@ $.ajax({
 
 
 
-                 /**************************************************/
+                 /**************************************************
 $(document).on('click' ,'.follow_img',function(e) {
 
 //alert('.foll_img');
@@ -293,13 +320,7 @@ var followid= e.target.id+'follow'
 
 
 });
-/**************end of .follow_img click event ******************/
 
-
-
-
-
-/************** .unfollow_img click event ******************/
 
 
 $(document).on('click' ,'.unfollow_img', function(e){
@@ -335,8 +356,98 @@ $.ajax({
 });//end:unfollow
 
 
-
+*/
 
 
 
 });//endofdoc.ready
+
+
+function getexpensepage(id)
+{
+ localStorage.setItem('fromGetArtist','true');
+
+var classname = $(id).attr('id')+'name';
+//var artistname = document.getElementsByClassName(classname)[0].innerHTML;
+var artistname = $("."+classname).clone().children().remove().end().text();
+localStorage.setItem('fromartistname',artistname);
+
+localStorage.setItem('fromartistartid',$(id).attr('id'));
+
+var classnam =$(id).attr('id')+'type';
+//var artisttype = document.getElementsByClassName(classnam)[0].innerHTML;
+var artisttype = $("#"+classnam).text();
+console.log(artisttype);
+localStorage.setItem('fromarttype',artisttype);
+window.location="fundArtist_Patron.html";
+	
+}
+
+
+function unfollowartist(id)
+{
+	var vid= $(id).attr('id')
+var followid= $(id).attr('id')+'follow'
+if($(id).data('follow')=='f')
+{
+$.ajax({
+	    type : 'POST',
+	    url: localStorage.getItem('webserviceurl')+"artist/unfollow",
+		contentType: "application/json",
+	    dataType: "json",
+		data : JSON.stringify({
+		"patronID" : vid,
+        "artistID"  :localStorage.getItem('loggedINuserpatronid'),
+        }),
+	     success : function(data)
+			    {// alert(data.message);
+				
+				 console.log(data.error);
+				 $(id).data('follow','u')
+				 $(id).html('<img src="./assets/img/unfollow_20x20.png">Unfollow')
+			//localStorage.setItem('unfollowedonlist' ,'true');
+              // $('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/Follow.png" class="follow_img" id="followArtist">Follow');
+               //$("#"+followid).html('<img class="dollarbt dollaricon" src="./assets/img/dollar_20x20.png"  id="'+id+'"> &nbsp;<img src="./assets/img/follow_20x20.png" class="follow_img" id="'+id+'">&nbsp;Follow');
+				 
+				 //$('.follow_text').css('color', '#24e6bf');
+				// $("#"+followid).css('color', '#24e6bf');
+				} ,
+	     error   : function (xhr, status, error)
+                 {console.log(xhr);}						 
+		});
+}
+else{
+	$.ajax({
+	    type : 'POST',
+	    url: localStorage.getItem('webserviceurl')+"artist/follow",
+		contentType: "application/json",
+	    dataType: "json",
+		data : JSON.stringify({
+		"patronID" : vid,
+        "artistID"  :localStorage.getItem('loggedINuserpatronid'),
+        }),
+	     success : function(data)
+			    {
+			
+				  console.log(data);
+			
+				 localStorage.setItem('unfollowedonlist' ,'false');
+				// $("#"+followid).html('<img class="dollarbt dollaricon" src="./assets/img/dollar_20x20.png" id="'+id+'"> &nbsp;<img src="./assets/img/unfollow_20x20.png" class="unfollow_img">&nbsp;Unfollow');
+				 //$('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/unfollow.png" class="unfollow_img">Unfollow');
+				// $('.follow_text').css('color', '#24e6bf');
+				// $("#"+followid).css('color', '#24e6bf');
+	
+		    
+				 $(id).data('follow','f')
+				 $(id).html('<img  src="./assets/img/follow20x20-cGreen.png">Follow')
+				} ,
+	     error   : function (xhr, status, error)
+                 {
+				 console.log(xhr);
+				 }						 
+		});
+}
+	
+}
+
+

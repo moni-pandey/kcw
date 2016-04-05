@@ -160,25 +160,24 @@ function logEIn() {
 
         }),
         success: function(data) {
-         
-            
+        
 			if(data.message=='success')
 			{
 							var loggeduser = JSON.stringify(data)
 			//var lastloggeduser = JSON.stringify(data)
 			localStorage.setItem('loggeduser',loggeduser);
-		localStorage.setItem('lastloggeduser','')
+		    localStorage.setItem('lastloggeduser','')
 			localStorage.setItem('lastloggeduser',loggeduser);
             console.log(data.user.usertype);
             
             console.log(data.user.artistID);
            
             localStorage.setItem('loggedINusertype', data.user.usertype);
-            localStorage.setItem('loggedINusercity', data.user.city);
+          //  localStorage.setItem('loggedINusercity', data.user.city);
 
-            localStorage.setItem('loggedINuserartistType', data.user.artistType);
-            localStorage.setItem('loggedINuserprofilepicurl', data.user.profilePicURL);
-            localStorage.setItem('loggedINusername', data.user.name);
+            //localStorage.setItem('loggedINuserartistType', data.user.artistType);
+            //localStorage.setItem('loggedINuserprofilepicurl', data.user.profilePicURL);
+         //   localStorage.setItem('loggedINusername', data.user.name);
             if (localStorage.getItem('loggedINusertype') == 'P')
                 localStorage.setItem('loggedINuserpatronid', data.user.patronID);
             else

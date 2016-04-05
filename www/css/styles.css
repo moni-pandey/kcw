@@ -30,6 +30,19 @@
 	
 	
 }
+/*moni 5 april */
+.carousel-indicators {
+    
+    display: none !important;
+}
+.carousel-caption 
+{
+	bottom:-20px;
+	color :#24e6bf;
+}
+.lazy-load {
+    background: url("http://www.mozart.it/images/preloader.gif") center center no-repeat;
+}
 /* for homw_patron.html*/
 .wrapper {
     width:100%;

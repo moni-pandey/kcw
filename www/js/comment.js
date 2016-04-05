@@ -13,21 +13,29 @@ else{
 
 getcomments(); } 
 
-	  $('.cross-icon').click(function(){
+ $('.cross-icon').click(function(){
+		
+		  console.log(localStorage.comment)
 	if(localStorage.getItem('fromartistprof')=='true')
 	{
 		localStorage.setItem('fromartistprof' ,'false')
 		localStorage.crossclicked = true
 	  history.back()
 	  }
+else if(localStorage.getItem('commentv')=='trend')
+	
+	window.location='home3_Patron.html'
+    else if(localStorage.getItem('commentv')=='feed')
+	{localStorage.setItem('feedclicked' ,'true')
+	window.location='home1_Patron.html'}
 else
 	window.location='home1_Patron.html'
-    
-
 		//return false;
 	}); 
 
 
+	
+	
    $('#commentbox').on('change', function () {
     comment = $("#txtYear").val();
 

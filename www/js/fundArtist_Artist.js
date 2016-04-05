@@ -18,6 +18,7 @@ $('a.save-text').click(saveexpense);
 
 $("#addexpense").bind('click', function () {
       $('#add_dynamic_div1').show();
+      $('#addexpense').hide();
 		//alert('inside new func');
 
 		
@@ -26,6 +27,7 @@ $("#addexpense").bind('click', function () {
 $(".cancelbtn").bind('click', function(e){
 	  
     $('#add_dynamic_div1').hide();
+	$('#addexpense').show();
    });	
 	
 	$('#backbtn').bind('click', function() {
@@ -473,6 +475,7 @@ function explode()
 							 document.getElementsByClassName(classname)[0].style.display='none';
 
 						});*/
+						$('#addexpense').hide();
 
 	
 }

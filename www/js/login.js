@@ -173,11 +173,11 @@ function logEIn() {
             console.log(data.user.artistID);
            
             localStorage.setItem('loggedINusertype', data.user.usertype);
-          //  localStorage.setItem('loggedINusercity', data.user.city);
+          localStorage.setItem('loggedINusercity', data.user.city);
 
-            //localStorage.setItem('loggedINuserartistType', data.user.artistType);
-            //localStorage.setItem('loggedINuserprofilepicurl', data.user.profilePicURL);
-         //   localStorage.setItem('loggedINusername', data.user.name);
+           localStorage.setItem('loggedINuserartistType', data.user.artistType);
+            localStorage.setItem('loggedINuserprofilepicurl', data.user.profilePicURL);
+          localStorage.setItem('loggedINusername', data.user.name);
             if (localStorage.getItem('loggedINusertype') == 'P')
                 localStorage.setItem('loggedINuserpatronid', data.user.patronID);
             else

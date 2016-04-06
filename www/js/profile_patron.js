@@ -15,7 +15,7 @@ $('.artist-info').html(userdata.user.artistType+'<br><span class="artist-fund-am
 	      $(document).bind("deviceready", function() {
 
 			});
-  $(document).on('click' ,'.go-back',function(){
+  $(document).on('click' ,'.bck-text',function(){
 
 		 //parent.history.back();
 		 if(localStorage.frmfeed)

@@ -43,24 +43,24 @@ $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
 	 	
 	    if(localStorage.googleLinked=='true')
 		{
-			   $('.googl_pic').attr('src' ,'./assets/img/Red_google_plus.png')
+			   $('.googl_pic').attr('src' ,'./assets/img/g+-31x31-color.png')
 			//localStorage.googleLinked =false
 			}
      
 	     if(localStorage.fbLinked=='true')
 		 {
-          $('#fb_pic').attr('src' ,'./assets/img/Facebook_circle.png')
+          $('#fb_pic').attr('src' ,'./assets/img/fb-31x31-color.png')
      
 		//localStorage.fbLinked =false 
 		}  
 	     if(localStorage.youLinked=='true')
 		 {
-           $('.youtube_pic').attr('src' ,'./assets/img/Youtube.png')
+           $('.youtube_pic').attr('src' ,'./assets/img/YT-31x31-color.png')
         // localStorage.youLinked=false       
 		 }      
 		 if(localStorage.instaLinked=='true')
 		 {
-	     $('.instagram_pic').attr('src' ,'./assets/img/Instagram.png')
+	     $('.instagram_pic').attr('src' ,'./assets/img/ins-31x31-color.png')
 	  //localStorage.instaLinked=false
 	  }
 	  
@@ -321,7 +321,7 @@ $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
 	
 $(document).on('click' , '#fb_pic' ,function(e){
 console.log('fb_pic');
-$(this).attr('src' ,'./assets/img/Facebook_circle.png')
+$(this).attr('src' ,'./assets/img/fb-31x31-color.png')
 getfbuserid();
 socialMediaType='F'
 //getsocialmedia()
@@ -330,7 +330,7 @@ socialMediaType='F'
 
 $(document).on('click' , '.twitter_pic' ,function(e){
 console.log('fb_pic');
-$(this).attr('src' ,'./assets/img/Twitter_circle.png')
+$(this).attr('src' ,'./assets/img/twi-31x31-color.png')
 //getfbuserid();
 gettwitter()
 
@@ -338,20 +338,20 @@ gettwitter()
 $(document).on('click' , '.youtube_pic' ,function(){
 console.log('you_pic');
 
-$(this).attr('src' ,'./assets/img/Youtube.png')
+$(this).attr('src' ,'./assets/img/YT-31x31-color.png')
 //localStorage.setItem('youtubeclicked' ,'true')
 window.location='youtube.html'
 
 });
 
 $(document).on('click' , '.instagram_pic' ,function(){
-linkInstagram()
-//$(this).attr('src' ,'./assets/img/Instagram.png')
 
+$(this).attr('src' ,'./assets/img/ins-31x31-color.png')
+linkInstagram()
 
 });
 $(document).on('click' , '.googl_pic' ,function(){
-$(this).attr('src' ,'./assets/img/Red_google_plus.png')
+$(this).attr('src' ,'./assets/img/g+-31x31-color.png')
 //getUserid()
 //localStorage.refreshgoogletoken=false
 localStorage.gpfrstime=true;

@@ -56,9 +56,9 @@
     <preference name="exit-on-suspend" value="false" />
     <preference name="TwitterConsumerKey" value="g3nq2n2CUO66WnhLUgkXqDdhL" />
     <preference name="TwitterConsumerSecret" value="hFEd1G8YMcHNqNsn4GaM321m78bvAJLNtT4Il1kCuHaHmDGHEh" />
-    <plugin name="twitter-connect-plugin" spec="~0.5.0">
+   <!-- <plugin name="twitter-connect-plugin" spec="~0.5.0">
         <param name="FABRIC_KEY" value="7647ab5a13d67d7d9d28c9ed3768558c27e91fd2" />
-    </plugin>
+    </plugin>-->
     <plugin name="cordova-plugin-facebook4" spec="~1.6.3">
         <param name="APP_ID" value="741117309366534" />
         <param name="APP_NAME" value="KCW" />

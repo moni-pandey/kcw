@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.ls.kcw" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>KCW</name>
+    <description>
+        KCW
+    </description>
+    <author email="vineet@logic-square.com" href="http://logic-square.com">
+        Vineet
+    </author>
+    <content src="index.html" />
+    <platform name="ios">
+        <icon height="60" src="res/ios/Tab-bar-icon.png" width="60" />
+        <icon height="120" src="res/ios/Icon-120.png" width="120" />
+        <icon height="76" src="res/ios/Icon-76.png" width="76" />
+        <icon height="152" src="res/ios/Icon-152.png" width="152" />
+        <icon height="40" src="res/ios/toolbar-icon.png.png" width="40" />
+        <icon height="57" src="res/ios/Icon.png" width="57" />
+        <icon height="114" src="res/ios/Icon@2x.png" width="114" />
+        <icon height="72" src="res/ios/Icon-72.png" width="72" />
+        <icon height="29" src="res/ios/Icon-Small.png" width="29" />
+        <icon height="58" src="res/ios/Icon-Small@2x.png" width="58" />
+        <icon height="50" src="res/ios/Icon-Small-50.png" width="50" />
+        <icon height="100" src="res/ios/Icon-Small-100.png" width="100" />
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="15" />
+    </platform>
+    <icon density="ldpi" src="res/android/ldpi.png" />
+    <icon density="mdpi" src="res/android/mdpi.png" />
+    <icon density="hdpi" src="res/android/hdpi.png" />
+    <icon density="xhdpi" src="res/android/xhdpi.png" />
+   
+    <preference name="android-build-tool" value="gradle" />
+    <plugin name="cordova-plugin-x-socialsharing" source="npm" />
+    <plugin name="cordova-plugin-apprate" spec="https://github.com/pushandplay/cordova-plugin-apprate.git" />
+    <plugin name="cordova-plugin-googleplus" spec="~4.0.6">
+        <param name="REVERSED_CLIENT_ID" value="41731640131-151bkq734u5gl6lm27js0qnhsj3t2cm1.apps.googleusercontent.com" />
+    </plugin>
+    <preference name="orientation" value="portrait" />
+    <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
+    <plugin name="cordova-plugin-network-information" spec="~1.1.0" />
+    <plugin name="cordova-plugin-geolocation" spec="~1.0.0" />
+    <plugin name="cordova-plugin-device" spec="~1.1.0" />
+    <plugin name="cordova-plugin-dialogs" spec="~1.2.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~1" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="TwitterConsumerKey" value="g3nq2n2CUO66WnhLUgkXqDdhL" />
+    <preference name="TwitterConsumerSecret" value="hFEd1G8YMcHNqNsn4GaM321m78bvAJLNtT4Il1kCuHaHmDGHEh" />
+    <plugin name="twitter-connect-plugin" spec="~0.5.0">
+        <param name="FABRIC_KEY" value="7647ab5a13d67d7d9d28c9ed3768558c27e91fd2" />
+    </plugin>
+    <plugin name="cordova-plugin-facebook4" spec="~1.6.3">
+        <param name="APP_ID" value="741117309366534" />
+        <param name="APP_NAME" value="KCW" />
+    </plugin>
+</widget>

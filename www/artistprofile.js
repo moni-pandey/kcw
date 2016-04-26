@@ -11,6 +11,7 @@ location_fetched  = ' ' ;
  var cHeight = 0;
 var userdata =JSON.parse(localStorage.getItem('loggeduser'))
 console.log(userdata)
+console.log(localStorage.getItem('lastloggeduser'))
 //$('#city').html('in Funds ,' userdata.data.city)
 $('.artist-info').html(userdata.user.artistType+'<br><span class="artist-fund-amt">$0</span> in Funds ,'+userdata.user.city+ '</span>')
 $(document).bind("deviceready", function() {
@@ -804,9 +805,9 @@ function fetchFBDetails() {
 			 localStorage.fbaccesstoken=fbPermissions.accessToken
 			 localStorage.email=fbPermissions.email
 			 //for adddsocila
-		localStorage.addtoken=fbPermissions.accessToken
-	 localStorage.addemail=fbPermissions.email
-	 localStorage.addid=fbPermissions.id
+		    localStorage.addtoken=fbPermissions.accessToken
+	       localStorage.addemail=fbPermissions.email
+	      localStorage.addid=fbPermissions.id
 			 window.location='facebook_Gallery.html'
 		
 			

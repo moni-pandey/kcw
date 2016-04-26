@@ -1,299 +1,276 @@
 <!DOCTYPE html>
 <html lang=en>
-	<head>
-		<title>Album Name</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/styles.css" rel="stylesheet">
-		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
-	    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/commonmethods.js"></script>
 
-		
-		
-	</head>
-	<body>
-	      
-	 <nav class="side_nav">
-         <a href="#" class="nav-toggle-btn" onclick="setnav()"></a>
-            <div class = "menu_header">  <p  class="nav_header">MENU</p></div>
-            <ul id="test">
-				<li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
-				<li><a href="tech_support.html"><i class="fa fa-cog"></i>Tech Support</span></a></li>
-				<li> <a href="privacy.html"><i class="fa fa-lock"></i>Privacy Policy </span></a>
-				</li>
-				<li><a href="Contact-Us.html"><i class="fa fa-mobile"></i>Contact Us</a></li>
-				<li><a  href="index.html" class="signout" ><i class="fa fa-sign-out"></i>Sign Out</a></li>
-				<li onclick="rateus()"><a  ><i class="fa fa-star-o"></i>Rate</a></li>
-				<li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
-            </ul>
-          </nav>
-		    <div class="container-fluid login_bg">
-			    <div class="row">
-				    <div class="col-xs-2">
-				        <img src="./assets/img/Back_arrow.png" class="go-back">
-					</div>
-				    <div class="col-xs-8">
-				        <p class="page-title">Album Pics</p>
-					</div>
-					<div class="col-xs-2">
-                    </div>
-				</div>
-				
-				<div class="row insertpic zero-side-margin">
-				    
-				</div>
-				
+<head>
+    <title>Album Name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/commonmethods.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
+</head>
 
-				
-			</div>
-        
-		
-		<script src="js/bootstrap.min.js"></script>
-		
-		<script type="text/javascript" src="js/sidemenu.js"></script>
-				<script>
-		
-		$(document).ready(function() {
-		
-		var album_id = localStorage.getItem('albumid');
-		//alert(album_id);
-		
-		
-			
-		  document.addEventListener('backbutton', function(e) {  console.log('backbuttonpressed');
-        // localStorage.refreshgoogletoken = true ;
-		// localStorage.instaLinked = true ;
-         // parent.history.back();
-	});
- $(document).on('click' ,'.go-back',function(){
-  localStorage.refreshgoogletoken = true ;
-		 localStorage.instaLinked = true ;
-          parent.history.back();
- 
- })
- 
- $('.insertpic').html('')
-	if(localStorage.fromgoogle=='true')
-	{localStorage.fromgoogle=false
-	 $.ajax({
-	    type : 'GET',
-	    url: 'https://picasaweb.google.com/data/feed/api/user/'+localStorage.picuserId+'/albumid/'+localStorage.picalbumid  ,
-		
-		data : {
-		'alt':'json',
-	     "access_token":localStorage.access_tokeng ,
-		"access":'all'
-},
-	   success : function(data)
-			    { 
-				//returns all the album 
-				
-				console.log(data);
-				/************************/
-				
-if(data.feed.entry.length!=0) {
-			
-		 if(data.feed.entry.length%2==0)
-		{ 
-		//localStorage.picuserId=data.feed.entry[0].gphoto$user.$t
-		for(var i=0;i < data.feed.entry.length; i += 2)
-		 {
-		        
-		  $('.insertpic').append('<div class="row pic-top-margin">\
+<body>
+    <nav class="side_nav">
+        <a href="#" class="nav-toggle-btn" onclick="setnav()"></a>
+        <div class="menu_header">
+            <p class="nav_header">MENU</p>
+        </div>
+        <ul id="test">
+            <li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
+            <li><a href="tech_support.html"><i class="fa fa-cog"></i>Tech Support</span></a></li>
+            <li> <a href="privacy.html"><i class="fa fa-lock"></i>Privacy Policy </span></a>
+            </li>
+            <li><a href="Contact-Us.html"><i class="fa fa-mobile"></i>Contact Us</a></li>
+            <li><a href="index.html" class="signout"><i class="fa fa-sign-out"></i>Sign Out</a></li>
+            <li onclick="rateus()"><a><i class="fa fa-star-o"></i>Rate</a></li>
+            <li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
+        </ul>
+    </nav>
+    <div class="container-fluid login_bg">
+        <div class="row">
+            <div class="col-xs-2">
+                <img src="./assets/img/Back_arrow.png" class="go-back">
+            </div>
+            <div class="col-xs-8">
+                <p class="page-title">Album Pics</p>
+            </div>
+            <div class="col-xs-2">
+            </div>
+        </div>
+        <div class="row insertpic zero-side-margin">
+        </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/sidemenu.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        var album_id = localStorage.getItem('albumid');
+        //alert(album_id);
+
+
+
+        document.addEventListener('backbutton', function(e) {
+            console.log('backbuttonpressed');
+            // localStorage.refreshgoogletoken = true ;
+            // localStorage.instaLinked = true ;
+            // parent.history.back();
+        });
+        $(document).on('click', '.go-back', function() {
+            localStorage.refreshgoogletoken = true;
+            localStorage.instaLinked = true;
+            parent.history.back();
+
+        })
+
+        $('.insertpic').html('')
+        if (localStorage.fromgoogle == 'true') {
+            localStorage.fromgoogle = false
+            $.ajax({
+                type: 'GET',
+                url: 'https://picasaweb.google.com/data/feed/api/user/' + localStorage.picuserId + '/albumid/' + localStorage.picalbumid,
+
+                data: {
+                    'alt': 'json',
+                    "access_token": localStorage.access_tokeng,
+                    "access": 'all'
+                },
+                success: function(data) {
+                    //returns all the album 
+
+                    console.log(data);
+                    /************************/
+
+                    if (data.feed.entry.length != 0) {
+
+                        if (data.feed.entry.length % 2 == 0) {
+                            //localStorage.picuserId=data.feed.entry[0].gphoto$user.$t
+                            for (var i = 0; i < data.feed.entry.length; i += 2) {
+
+                                $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
-						<img src="'+data.feed.entry[i].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i].gphoto$id.$t+'" class="img-responsive album-image">\
+						<img src="' + data.feed.entry[i].media$group.media$thumbnail[1].url + '"  id="' + data.feed.entry[i].gphoto$id.$t + '" class="img-responsive album-image">\
 						<p class="album-name" ></p>\
-						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[i].gphoto$commentCount.$t+'</p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">' + data.feed.entry[i].gphoto$commentCount.$t + '</p>\
 					</div>\
 					<div class="col-xs-6">\
 					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
-						<img src="'+data.feed.entry[i+1].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i+1].gphoto$id.$t+'" class="img-responsive album-image">\
+						<img src="' + data.feed.entry[i + 1].media$group.media$thumbnail[1].url + '"  id="' + data.feed.entry[i + 1].gphoto$id.$t + '" class="img-responsive album-image">\
 						<p class="album-name" ></p>\
-						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[i+1].gphoto$commentCount.$t+'</p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">' + data.feed.entry[i + 1].gphoto$commentCount.$t + '</p>\
 					</div>\
 				</div>');
-		 
-		 
-		 } }
-		 
-		 else
-		 {
-	
-		 for(i=0;i < data.feed.entry.length-1; i += 2)
-		 {
-		  $('.insertpic').append('<div class="row pic-top-margin">\
+
+
+                            }
+                        } else {
+
+                            for (i = 0; i < data.feed.entry.length - 1; i += 2) {
+                                $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					    <img src="./assets/img/Frame.png" class="img-responsive frame">\
-						<img src="'+data.feed.entry[i].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i].gphoto$id.$t+'" class="img-responsive album-image">\
+						<img src="' + data.feed.entry[i].media$group.media$thumbnail[1].url + '"  id="' + data.feed.entry[i].gphoto$id.$t + '" class="img-responsive album-image">\
 						<p class="album-name" ></p>\
-						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[i].gphoto$commentCount.$t+'</p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">' + data.feed.entry[i].gphoto$commentCount.$t + '</p>\
 					</div>\
 					<div class="col-xs-6">\
 					     <img src="./assets/img/Frame.png" class="img-responsive frame">\
-						<img src="'+data.feed.entry[i+1].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[i+1].gphoto$id.$t+'" class="img-responsive album-image">\
+						<img src="' + data.feed.entry[i + 1].media$group.media$thumbnail[1].url + '"  id="' + data.feed.entry[i + 1].gphoto$id.$t + '" class="img-responsive album-image">\
 						<p class="album-name" ></p>\
-						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[i+1].gphoto$commentCount.$t+'</p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">' + data.feed.entry[i + 1].gphoto$commentCount.$t + '</p>\
 					</div>\
 				</div>');
-		 
-		 
-		 }
-		            
-		  //var lastname =data.feed.entry[data.feed.entry.length-1].gphoto$name.$t.replace(/^(.{8}[^\s]*).*/, "$1");
-		  $('.insertpic').append('<div class="row pic-top-margin">\
+
+
+                            }
+
+                            //var lastname =data.feed.entry[data.feed.entry.length-1].gphoto$name.$t.replace(/^(.{8}[^\s]*).*/, "$1");
+                            $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
 					      <img src="./assets/img/Frame.png" class="img-responsive frame">\
-						<img src="'+data.feed.entry[data.feed.entry.length-1].media$group.media$thumbnail[1].url+'"  id="'+data.feed.entry[data.feed.entry.length-1].gphoto$id.$t+'" class="img-responsive album-image">\
+						<img src="' + data.feed.entry[data.feed.entry.length - 1].media$group.media$thumbnail[1].url + '"  id="' + data.feed.entry[data.feed.entry.length - 1].gphoto$id.$t + '" class="img-responsive album-image">\
 						<p class="album-name" ></p>\
-						<p class="album-pic-count"><img src="./assets/img/image-icon.png">'+data.feed.entry[data.feed.entry.length-1].gphoto$commentCount.$t+'</p>\
+						<p class="album-pic-count"><img src="./assets/img/image-icon.png">' + data.feed.entry[data.feed.entry.length - 1].gphoto$commentCount.$t + '</p>\
 										</div>\
 					<div class="col-xs-6">\
 				</div>\
 				</div>');
-		 
-		 }
-		 }else
-		 showAlert("No Album found");
-				
-				
-				
-				/************************/
-				
-	
-	} ,
-	
-	error   : function (xhr, status, error)
-	{console.log(xhr);}						 
-		
-		
-		});//end of ajax call 
-	}
-	else if(localStorage.frominstagram=='true')
-	{
-	localStorage.frominstagram=false
-	var data = JSON.parse(localStorage.instaAlbum)
-		 console.log(data)
-	     console.log(data.data.length)
-	   
-	   		   if(data.data.length % 2 ==0)
-		{
-		 for(var j=0 ; j< data.data.length; j += 2)
-		{  
-		    $('.insertpic').append('<div class="row pic-top-margin">\
+
+                        }
+                    } else
+                        showAlert("No Album found");
+
+
+
+                    /************************/
+
+
+                },
+
+                error: function(xhr, status, error) {
+                    console.log(xhr);
+                }
+
+
+            }); //end of ajax call 
+        } else if (localStorage.frominstagram == 'true') {
+            localStorage.frominstagram = false
+            var data = JSON.parse(localStorage.instaAlbum)
+            console.log(data)
+            console.log(data.data.length)
+
+            if (data.data.length % 2 == 0) {
+                for (var j = 0; j < data.data.length; j += 2) {
+                    $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
-					    <img src="'+data.data[j].images.low_resolution.url+'" class="img-responsive album-pic">\
+					    <img src="' + data.data[j].images.low_resolution.url + '" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 					<div class="col-xs-6">\
-						<img src="'+data.data[j+1].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<img src="' + data.data[j + 1].images.low_resolution.url + '" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 				</div>');
-				
-			}	
-		
-		
-		}
-		
-		else
-		{
-		for(var j=0 ; j< data.data.length-1; j += 2)
-				{
-				
-		
-			  $('.insertpic').append('<div class="row pic-top-margin">\
+
+                }
+
+
+            } else {
+                for (var j = 0; j < data.data.length - 1; j += 2) {
+
+
+                    $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
-					    <img src="'+data.data[j].images.low_resolution.url+'" class="img-responsive album-pic">\
+					    <img src="' + data.data[j].images.low_resolution.url + '" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 					<div class="col-xs-6">\
-						<img src="'+data.data[j+1].images.low_resolution.url+'" class="img-responsive album-pic">\
+						<img src="' + data.data[j + 1].images.low_resolution.url + '" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 				</div>');
-				
-				}
-		
-		  $('.insertpic').append('<div class="row pic-top-margin">\
+
+                }
+
+                $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
-					    <img src="'+data.data[data.data.length-1].images.low_resolution.url+'" class="img-responsive album-pic">\
+					    <img src="' + data.data[data.data.length - 1].images.low_resolution.url + '" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 					<div class="col-xs-6">\
 						\
 					</div>\
 				</div>');
-				
-		
-		/******/
-		
-		}
-	   
-	   
-	   
-	   
-	  
-	
-	}
-else{
 
-$(document).bind("deviceready", function() {
-			//document.addEventListener("backbutton", function() {
-						//console.log("Disabled Back button");
-		
-	facebookConnectPlugin.api('/'+album_id+'/photos?fields=images&limit=100', ["user_photos"], function(response){
-      if (!response || response.error) {
-        albums = response.error;
-      } else {
-       	console.log(response);
-		console.log("response: " + JSON.stringify(response));
-			    
-			    var albumdata = JSON.stringify(response);
-				localStorage.setItem('albumdata' ,' ');
-				localStorage.setItem('albumdata' ,albumdata);
-				var parsealbumdata =JSON.parse(localStorage.getItem('albumdata'));
-	
-			  for(j=0 ; j< parsealbumdata.data.length; j += 2)
-		{  console.log(j)
-		       var source1 ='./assets/img/no_img.jpg'
-				var source2 ='./assets/img/no_img.jpg'
-		    
-		   // console.log(parsealbumdata.data[j].images[j].source);
-		   // console.log(parsealbumdata.data[j+1].images[j+1].source);
-			
-			if(parsealbumdata.data[j].images[0])
-			    source1=parsealbumdata.data[j].images[0].source
-			if(parsealbumdata.data[j+1].images[0])
-			    source2=parsealbumdata.data[j+1].images[0].source
-			
-			  $('.insertpic').append('<div class="row pic-top-margin">\
+
+                /******/
+
+            }
+
+
+
+
+
+
+        } else {
+
+            $(document).bind("deviceready", function() {
+                //document.addEventListener("backbutton", function() {
+                //console.log("Disabled Back button");
+
+                facebookConnectPlugin.api('/' + album_id + '/photos?fields=images&limit=100', ["user_photos"], function(response) {
+                    if (!response || response.error) {
+                        albums = response.error;
+                    } else {
+                        console.log(response);
+                        console.log("response: " + JSON.stringify(response));
+
+                        var albumdata = JSON.stringify(response);
+                        localStorage.setItem('albumdata', ' ');
+                        localStorage.setItem('albumdata', albumdata);
+                        var parsealbumdata = JSON.parse(localStorage.getItem('albumdata'));
+
+                        for (j = 0; j < parsealbumdata.data.length; j += 2) {
+                            console.log(j)
+                            var source1 = './assets/img/no_img.jpg'
+                            var source2 = './assets/img/no_img.jpg'
+
+                            // console.log(parsealbumdata.data[j].images[j].source);
+                            // console.log(parsealbumdata.data[j+1].images[j+1].source);
+
+                            if (parsealbumdata.data[j].images[0])
+                                source1 = parsealbumdata.data[j].images[0].source
+                            if (parsealbumdata.data[j + 1].images[0])
+                                source2 = parsealbumdata.data[j + 1].images[0].source
+
+                            $('.insertpic').append('<div class="row pic-top-margin">\
 				    <div class="col-xs-6">\
-					    <img src="'+source1+'" class="img-responsive album-pic">\
+					    <img src="' + source1 + '" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 					<div class="col-xs-6">\
-						<img src="'+source2+'" class="img-responsive album-pic">\
+						<img src="' + source2 + '" class="img-responsive album-pic">\
 						<p class="pic-name"></p>\
 					</div>\
 				</div>');
-				
-				
-				}
-   
-}
-});	
-});
-		 }
-		
-});
-	
-		
-		</script>
-	
-	</body>
+
+
+                        }
+
+                    }
+                });
+            });
+        }
+
+    });
+    </script>
+</body>
+
 </html>

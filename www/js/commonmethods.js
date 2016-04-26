@@ -26,16 +26,27 @@ function showAlert(alertMsg) {
     }, "KCW");
 }
 
-function openBrowser(url){
-    var corBrowser=cordova.InAppBrowser.open(url, '_blank', 'location=no');
+function openBrowser(url) {
+    var corBrowser = cordova.InAppBrowser.open(url, '_blank', 'location=no');
     return corBrowser;
 }
 /*Common Methods-Ends*/
-  function setnav()
-  {
-	  if($("body").hasClass('active-nav'))
-	  $('.nav-toggle-btn').css({"left":'200px'})
-  else
-	  $('.nav-toggle-btn').css({"left":'178px'})
-  }
- 
+function setnav() {
+    if ($("body").hasClass('active-nav'))
+        $('.nav-toggle-btn').css({ "left": '200px' })
+    else
+        $('.nav-toggle-btn').css({ "left": '178px' })
+}
+$(function() {
+    FastClick.attach(document.body);
+});
+/* $(window).scroll(function(){
+    console.warn("scrolled");
+    if($("body").hasClass('active-nav')){
+        console.log("panel shown");
+        $(".side_nav").toggle();
+        $(".side_nav .nav-toggle-btn").show();
+        //$('.nav-toggle-btn').css({"left":'178px'});
+        //$("body").toggleClass('active-nav')
+    }
+ });*/

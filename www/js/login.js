@@ -247,7 +247,9 @@ function checkalreadyregisterd()
 
         }),
         success: function(data) {
-          
+          alert(JSON.stringify(data))
+		   localStorage.setItem('loggeduser','')
+		   localStorage.setItem('loggeduser',JSON.stringify(data))
           console.log(data);
 		  if(data.user)
 		  {

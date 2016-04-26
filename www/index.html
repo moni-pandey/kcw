@@ -1,120 +1,105 @@
 <!DOCTYPE html>
 <html lang=en>
-    <head>
-        <title>Login Page</title>
 
+<head>
+    <title>Login Page</title>
+    <meta http-equiv="Content-Security-Policy" content="unsafe-inline 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="js/fastclick.js"></script>
+</head>
 
-<meta http-equiv="Content-Security-Policy" content="unsafe-inline 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-    
- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
-		<script type="text/javascript" src="MaskedPassword.js"></script>
-
-    </head>
-    <body>
-          
-            <div class="container login_bg">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <img src="./assets/img/Logo.png" alt="logo" class="logo-center">
-                    </div>
-                </div>
-                
-                <div class="row placeholder_top-margin">
-                    <form class=" form-horizontal" id="demo-form">
-                        <div class="col-sm-12">
-                            <div class="form-group placeholder-padding">
-							
-                                <input type="email" class="form-control form-text text-color" id="indexusername" placeholder="Username" >
-                                <input type="password" class="form-control form-text text-color " id="indexpass"  placeholder="Password" >
-								<input type="text" id="txthidden" style="display:none" name="txthidden" size="15"/>
-								
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12 login-button_padding">
-                        <button class="btn btn-block login_button " id="logINbtn"  type="submit">LOGIN</button>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p class="forgot-password"><a href="resetPassword.html">Forgot Password ?</a></p>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p class="sign-in_text">Sign In / Sign Up with</p>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-xs-3">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="./assets/img/facebook.png" alt="logo" id="fb-icon" onclick="fbLogin();">
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="./assets/img/twitter.png" alt="logo" id="twitter-icon" onclick='twitterLogin();'>
-                    </div>
-                    <div class="col-xs-2">
-                        <img src="./assets/img/google.png" alt="logo" id="google-icon" onclick="gpLogin();">
-                    </div>
-                    <div class="col-xs-3">
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12">
-                        <p class="want-to-create_text">Want To create a new account ? <span id="sign-up_text">
-                        <a href="newAccount.html">Sign Up</a></span></p>
-                    </div>
-                </div>
+<body>
+    <div class="container login_bg">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="./assets/img/Logo.png" alt="logo" class="logo-center">
             </div>
-        
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/commonmethods.js"></script>
-        <script type="text/javascript" src="js/login.js"></script>
-		  <script type="text/javascript">
-        $(document).ready(function() {
-		//alert('mon')
-		//alert(localStorage.lastloggeduser)
-		
-		if(localStorage.signout== 'true')
-		{
-		localStorage.removeItem('lastloggeduser');
-		localStorage.signout=false
-		}
-         if(localStorage.lastloggeduser == undefined)
-		 {
-		
-		 }
-		 else {
-		 
-		 
-		   console.log('mkmkmmkmkmkmk')
-		  if (localStorage.getItem('loggedINusertype') === 'P') { // alert('if');
-      //  $('#patronname').text(localStorage.getItem('loggedINusername'));
-        window.location = "home2_Patron.html";
-    } else {
-        //alert('else');
-		
-		//$('#patronname').text(localStorage.getItem('loggedINusername'));
-        window.location = "profile_Artist.html";
+        </div>
+        <div class="row placeholder_top-margin">
+            <form class=" form-horizontal" id="demo-form">
+                <div class="col-sm-12">
+                    <div class="form-group placeholder-padding">
+                        <input type="email" class="form-control form-text text-color" id="indexusername" placeholder="Username">
+                        <input type="password" class="form-control form-text text-color " id="indexpass" placeholder="Password">
+                        <input type="text" id="txthidden" style="display:none" name="txthidden" size="15" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 login-button_padding">
+                <button class="btn btn-block login_button " id="logINbtn" type="submit">LOGIN</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="forgot-password"><a href="resetPassword.html">Forgot Password ?</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="sign-in_text">Sign In / Sign Up with</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">
+            </div>
+            <div class="col-xs-2">
+                <img src="./assets/img/facebook.png" alt="logo" id="fb-icon" onclick="fbLogin();">
+            </div>
+            <div class="col-xs-2">
+                <img src="./assets/img/twitter.png" alt="logo" id="twitter-icon" onclick='twitterLogin();'>
+            </div>
+            <div class="col-xs-2">
+                <img src="./assets/img/google.png" alt="logo" id="google-icon" onclick="gpLogin();">
+            </div>
+            <div class="col-xs-3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p class="want-to-create_text">Want To create a new account ? <span id="sign-up_text">
+                        <a href="newAccount.html">Sign Up</a></span></p>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/commonmethods.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        //alert('mon')
+        //alert(localStorage.lastloggeduser)
 
-    }
-		 
-		 }
-		 
-        });
-        </script>
+        if (localStorage.signout == 'true') {
+            localStorage.removeItem('lastloggeduser');
+            localStorage.signout = false
+        }
+        if (localStorage.lastloggeduser == undefined) {
 
-    </body>
+        } else {
+
+
+            console.log('mkmkmmkmkmkmk')
+            if (localStorage.getItem('loggedINusertype') === 'P') { // alert('if');
+                //  $('#patronname').text(localStorage.getItem('loggedINusername'));
+                window.location = "home2_Patron.html";
+            } else {
+                //alert('else');
+
+                //$('#patronname').text(localStorage.getItem('loggedINusername'));
+                window.location = "profile_Artist.html";
+
+            }
+
+        }
+
+    });
+    </script>
+</body>
+
 </html>

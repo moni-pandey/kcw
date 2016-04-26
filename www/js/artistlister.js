@@ -246,7 +246,7 @@ $.ajax({
 								'+val.name+'\
 								<span class="follow_text" id="'+val.artistID+'">\
 								 <button type="button" class="dollar-btn" id="'+val.artistID+'" onclick="getexpensepage(this)"><img class="dollarbt dollaricon" src="./assets/img/dollar_20x20-cGreen.png"></button> \
-									<button type="button" class="follow-artist-btn" id="'+val.artistID+'" data-follow="f" onclick="unfollowartist(this)"><img  src="./assets/img/follow20x20-cGreen.png">Follow</button></span>\
+									<button type="button" class="follow-artist-btn" id="'+val.artistID+'" data-follow="f" onclick="unfollowartist(this)"><img  src="./assets/img/unfollow_20x20.png">Unfollow</button></span>\
 								</p>\
 							<h5 class="name-of-occupation" '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</h5>\
 							<div class="row" style="margin-left:10px;margin-right:10px">\
@@ -404,7 +404,7 @@ $.ajax({
 				
 				 console.log(data.error);
 				 $(id).data('follow','u')
-				 $(id).html('<img src="./assets/img/unfollow_20x20.png">Unfollow')
+				 $(id).html('<img src="./assets/img/follow20x20-cGreen.png">Follow')
 			//localStorage.setItem('unfollowedonlist' ,'true');
               // $('.follow_text').html('<button class="dollarbt dollaricon" id="'+id+'">$ &nbsp;&nbsp</button><img src="./assets/img/Follow.png" class="follow_img" id="followArtist">Follow');
                //$("#"+followid).html('<img class="dollarbt dollaricon" src="./assets/img/dollar_20x20.png"  id="'+id+'"> &nbsp;<img src="./assets/img/follow_20x20.png" class="follow_img" id="'+id+'">&nbsp;Follow');
@@ -439,7 +439,7 @@ else{
 	
 		    
 				 $(id).data('follow','f')
-				 $(id).html('<img  src="./assets/img/follow20x20-cGreen.png">Follow')
+				 $(id).html('<img  src="./assets/img/unfollow_20x20.png">Unfollow')
 				} ,
 	     error   : function (xhr, status, error)
                  {

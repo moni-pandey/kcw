@@ -6,57 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
+    <link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
     <script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	 <script type="text/javascript" src="js/commonmethods.js"></script>
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-	<script type="text/javascript" src="artistprofile.js"></script>
-	
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
+    <script type="text/javascript" src="js/commonmethods.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="artistprofile.js"></script>
 </head>
 
 <body>
-<nav class="side_nav" >
-         <a href="#"  onclick="setnav()" class="nav-toggle-btn"></a>
-            <div class = "menu_header">  <p  class="nav_header">MENU</p></div>
-            <ul id="test">
-				<li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
-				<li><a href="tech_support.html"><i class="fa fa-cog"></i>Tech Support</span></a></li>
-				<li> <a href="privacy.html"><i class="fa fa-lock"></i>Privacy Policy </span></a>
-				</li>
-				<li><a href="Contact-Us.html"><i class="fa fa-mobile"></i>Contact Us</a></li>
-				<li><a href="index.html" class="signout" ><i class="fa fa-sign-out"></i>Sign Out</a></li>
-				<li onclick="rateus()"><a  ><i class="fa fa-star-o"></i>Rate</a></li>
-				<li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
-            </ul>
-          </nav>
-
-
+    <nav class="side_nav">
+        <a href="#" onclick="setnav()" class="nav-toggle-btn" data-toggle="collapse"></a>
+        <div class="menu_header">
+            <p class="nav_header">MENU</p>
+        </div>
+        <ul id="test">
+            <li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
+            <li><a href="tech_support.html"><i class="fa fa-cog"></i>Tech Support</span></a></li>
+            <li> <a href="privacy.html"><i class="fa fa-lock"></i>Privacy Policy </span></a>
+            </li>
+            <li><a href="Contact-Us.html"><i class="fa fa-mobile"></i>Contact Us</a></li>
+            <li><a href="index.html" class="signout"><i class="fa fa-sign-out"></i>Sign Out</a></li>
+            <li onclick="rateus()"><a><i class="fa fa-star-o"></i>Rate</a></li>
+            <li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
+        </ul>
+    </nav>
     <div class="container login_bg">
-    
         <div class="row">
             <div class="col-xs-2">
-                
             </div>
             <div class="col-xs-8">
-                <div class="text-center">					
-					<div class="btn-group top-buttons">
-                            <button type="button" class="btn btn-primary feed-btn">Feed</button>
-                            <button type="button" class="btn btn-primary trending-btn">Trending</button>
-                            <button type="button" class="btn btn-primary artist-btn_active">Artists</button>
+                <div class="text-center">
+                    <div class="btn-group top-buttons">
+                        <button type="button" class="btn btn-primary feed-btn">Feed</button>
+                        <button type="button" class="btn btn-primary trending-btn">Trending</button>
+                        <button type="button" class="btn btn-primary artist-btn_active">Artists</button>
                     </div>
-				</div>
+                </div>
             </div>
             <div class="col-xs-2 socailmedia">
-              <!--  <img src="./assets/img/Search.png" alt="logo" class="search-icon"> -->
-				
-				<img id='fb_pic' src="./assets/img/fb-31x31.png" class="fb_pic">
-				<img id="youtube_pic" src="./assets/img/YT-31x31-gray.png"  class="youtube_pic">
-				<img src="./assets/img/g+-31x31-gray.png" class="vine_pic googl_pic">
-				<img src="./assets/img/ins-31x31-gray.png" class="instagram_pic">
+                <!--  <img src="./assets/img/Search.png" alt="logo" class="search-icon"> -->
+                <img id='fb_pic' src="./assets/img/fb-31x31.png" class="fb_pic">
+                <img id="youtube_pic" src="./assets/img/YT-31x31-gray.png" class="youtube_pic">
+                <img src="./assets/img/g+-31x31-gray.png" class="vine_pic googl_pic">
+                <img src="./assets/img/ins-31x31-gray.png" class="instagram_pic">
                 <img src="./assets/img/twi-31x31-gray.png" class="twitter_pic">
-				
-                
             </div>
         </div>
         <div class="row">
@@ -75,26 +70,20 @@
                 </div>
             </div>
         </div>
-		<br>
-		<br>
+        <br>
+        <br>
         <div class="row zero-side-margin">
             <div class="col-xs-12 your-class">
-	
-          <div id="myCarousel" class="carousel slide"  style="height:200px" data-interval="false">
-    <!-- Indicators -->
-    <ol class="carousel-indicators" id="crouselOrderedList">
-	<!-- append indicatore-!-->
-   
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox" id='crouselItems'>
-         	<!--append item class!-->
-
-  
-    </div>
-
-    <!-- Left and right controls 
+                <div id="myCarousel" class="carousel slide" style="height:200px" data-interval="false">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" id="crouselOrderedList">
+                        <!-- append indicatore-!-->
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox" id='crouselItems'>
+                        <!--append item class!-->
+                    </div>
+                    <!-- Left and right controls 
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
       <i class="fa fa-angle-left" ></i>
       <span class="sr-only">Previous</span>
@@ -103,36 +92,31 @@
       <i class="fa fa-angle-right" ></i>
       <span class="sr-only">Next</span>
     </a>-->
-  </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <p class="name-of-art"></p>
-                <p class="type-of-art"></p>
-                <p class="small-line">________</p>
-                <p class="like-amt"><img src="./assets/img/fav.png" class="fav-img"  data-like="unlike" ><span class='type-of-art-lcount'></span> <img src="./assets/img/Comment.png" class="comment-img"><span class="type-of-art-ccount"></span></p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 fund-me-button_padding">
-                <button class="btn btn-block fund-me_btn" type="submit" id="fundbtn" style='padding-bottom:10px'>FUND ME!</button>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="name-of-art"></p>
+                    <p class="type-of-art"></p>
+                    <p class="small-line">________</p>
+                    <p class="like-amt"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike"><span class='type-of-art-lcount'></span> <img src="./assets/img/Comment.png" class="comment-img"><span class="type-of-art-ccount"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 fund-me-button_padding">
+                    <button class="btn btn-block fund-me_btn" type="submit" id="fundbtn" style='padding-bottom:10px'>FUND ME!</button>
+                </div>
             </div>
         </div>
     </div>
-    </div>
-
-    
     <script type="text/javascript" src="js/cloudinary/jquery.ui.widget.js"></script>
     <script type="text/javascript" src="js/cloudinary/jquery.iframe-transport.js"></script>
     <script type="text/javascript" src="js/cloudinary/jquery.fileupload.js"></script>
     <script type="text/javascript" src="js/cloudinary/jquery.cloudinary.js"></script>
-   <script type="text/javascript" src="js/sidemenu.js"></script>
-   <script type="text/javascript" src="js/hammer.js"></script>
-   <script type="text/javascript" src="js/jquery.hammer.js"></script>
-		<script type="text/javascript" src="cordova.js"></script>
-	
-	
-
+    <script type="text/javascript" src="js/sidemenu.js"></script>
+    <script type="text/javascript" src="js/hammer.js"></script>
+    <script type="text/javascript" src="js/jquery.hammer.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
 </body>
 
 </html>

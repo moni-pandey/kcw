@@ -1,84 +1,73 @@
 <!DOCTYPE html>
 <html lang=en>
-	<head>
-		<title>Artist List</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
-		<link href="css/styles.css" rel="stylesheet">
-		<script src="js/commonmethods.js"></script>
-		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-	</head>
-	<body>
-	      <nav class="side_nav">
-         <a href="#" class="nav-toggle-btn" onclick="setnav()"></a>
-            <div class = "menu_header">  <p  class="nav_header">MENU</p></div>
-            <ul id="test">
-				<li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
-				<li><a href="tech_support.html"><i class="fa fa-cog"></i>Tech Support</span></a></li>
-				<li> <a href="privacy.html"><i class="fa fa-lock"></i>Privacy Policy </span></a>
-				</li>
-				<li><a href="Contact-Us.html"><i class="fa fa-mobile"></i>Contact Us</a></li>
-				<li><a  href="index.html" class="signout" ><i class="fa fa-sign-out"></i>Sign Out</a></li>
-				<li onclick="rateus()"><a  ><i class="fa fa-star-o"></i>Rate</a></li>
-				<li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
-            </ul>
-          </nav>
-		 
-		    <div class="basewrapper login_bg">		
-			<div class="wrapper">
 
-		    <div class="row  hideforsearch " >
-				    <div class="col-xs-2">
-					
-				     </div>
-				    <div class="col-xs-8 searchdiv "> 
-					   <div class="text-center">					
-					    <div class="btn-group top-buttons">
+<head>
+    <title>Artist List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="sidemenu.css"></link>
+    <link href="css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="js/fastclick.js"></script>
+    
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <nav class="side_nav">
+        <a href="#" class="nav-toggle-btn" data-toggle="collapse" onclick="setnav()"></a>
+        <div class="menu_header">
+            <p class="nav_header">MENU</p>
+        </div>
+        <ul id="test">
+            <li><a href="FAQ.html" class='active'><i class="fa fa-question-circle "></i><p class="io">FAQ</p></a></li>
+            <li><a href="tech_support.html"><i class="fa fa-cog"></i>Tech Support</span></a></li>
+            <li> <a href="privacy.html"><i class="fa fa-lock"></i>Privacy Policy </span></a>
+            </li>
+            <li><a href="Contact-Us.html"><i class="fa fa-mobile"></i>Contact Us</a></li>
+            <li><a href="index.html" class="signout"><i class="fa fa-sign-out"></i>Sign Out</a></li>
+            <li onclick="rateus()"><a><i class="fa fa-star-o"></i>Rate</a></li>
+            <li onclick='sharewith()'><a><i class="fa fa-share-alt-square"></i>Share</a></li>
+        </ul>
+    </nav>
+    <div class="basewrapper login_bg">
+        <div class="wrapper">
+            <div class="row  hideforsearch ">
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-8 searchdiv ">
+                    <div class="text-center">
+                        <div class="btn-group top-buttons">
                             <button type="button" class="btn btn-primary feed-btn">Feed</button>
                             <button type="button" class="btn btn-primary trending-btn">Trending</button>
                             <button type="button" class="btn btn-primary artist-btn_active">Artists</button>
                         </div>
-					  </div>
-                        
-					</div>
-					<div class="col-xs-2">
-					    <img src="./assets/img/Search.png" alt="logo" class="search-icon">
-					</div>
-					 </div>
-					<div class=" row search" >
-					 <div class="col-xs-2">
-				     </div>
-					  <span class="fa fa-arrow-left" ></span>
-					  <input placeholder="Search  Artist" id="enterartist">
-					  <span class="fa fa-times" ></span>
-					</div>
-					</div>
-				
-				 
-                  
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <img src="./assets/img/Search.png" alt="logo" class="search-icon">
+                </div>
+            </div>
+            <div class=" row search">
+                <div class="col-xs-2">
+                </div>
+                <span class="fa fa-arrow-left"></span>
+                <input placeholder="Search  Artist" id="enterartist">
+                <span class="fa fa-times"></span>
+            </div>
+        </div>
+        <div class="bottom-wrapper">
+            <div class="content" id="showpcontent">
+                <div class='artistlistcontainer '>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/commonmethods.js"></script>
+    <script type="text/javascript" src="js/feed.js"></script>
+    <script type="text/javascript" src="js/sidemenu.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+</body>
 
-               <div class="bottom-wrapper">
-					
-					
-					<div class="content" id="showpcontent">
-				<div class='artistlistcontainer '>
-		
-				</div>
-				</div>
-				
-			
-				
-			</div>	
-			</div>	
-
-			
-		
-		<script src="js/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/feed.js"></script>
-		<script type="text/javascript" src="js/sidemenu.js"></script>
-		<script type="text/javascript" src="cordova.js"></script>
-		
-	</body>
 </html>

@@ -17,7 +17,7 @@ $.ajax({
 		dataType: "json",
 		async :'false',
 		data : {
-       artistID : localStorage.getItem('fromartistartid')
+       artistID : localStorage.getItem('fromGetArtistID')
       },
 	   success : function(data)
 			    {
@@ -25,14 +25,14 @@ $.ajax({
 			var fundartistpdata = JSON.stringify(data);
 			localStorage.setItem('fundartistpdata' ,fundartistpdata);
 		
-				
-				loadprof();
+				console.log(data)
+				loadprof(data);
 				  
 },error :function (xhr,status,error)
 {
-alert('error')
-alert(xhr.status);
-alert(xhr.responseText);
+showAlert('error')
+showAlert(xhr.status);
+showAlert(xhr.responseText);
 }
 				  
 });
@@ -57,8 +57,8 @@ $.ajax({
 
 				var fundartistpdata = JSON.stringify(data);
 			localStorage.setItem('fundartistpdata' ,fundartistpdata);
-				 
-				loadprof();
+				 console.log(data)
+				loadprof(data);
 				  
 },error :function (xhr,status,error)
 {
@@ -81,37 +81,12 @@ parent.history.back();
 		return false;
   
 });
-/*$('#payexp').on('click',function(e){
+$('#payexp').on('click',function(e){
          
-		 //authentication 
-		 
-    var venmoClientId = "2449c6ccef5e4d75ad8e5a0118797058";
-    var redirect_uri = "http://localhost/callback/";
-    if (checkConnection()) {
-        if (localStorage.getItem('venmotoken') == null)
-            var instaWindow = openBrowser("https://api.venmo.com/v1/oauth/authorize?client_id=" + instagramClientId + "&scope=make_payments&response_type=token");
-        else {
-			
-			//showAlert("You have already Linked Instagram")
-		//getinstaalbum()};
-		makepay()};
-    } else showAlert("Please Connect to Internet to Login");
-    instaWindow.addEventListener('loadstart', function(event) {
-        if ((event.url).indexOf(redirect_uri) === 0) {
-            var venmotoken = (event.url).split('#access_token=')[1] || '';
-            if (venmotoken !== null)
-			{
-			localStorage.setItem('venmotoken', venmotoken);
-			makepay()}
-            else
-                showAlert("Couldn't Authenticate your Instagram account");
-            instaWindow.close();
-        }
-
-    });
-
+	//go to payment page 
+window.location="payment_Page.html"
   
-});  */
+});  
 
 $('#subform').bind('click',function(e){
 $('#venmo-form').hide();
@@ -121,10 +96,10 @@ $('#venmo-form').hide();
 });//end of document.ready
 
 
-function loadprof()
+function loadprof(parsedata)
 {
 //alert('loadprof');
-  var parsedata =JSON.parse(localStorage.getItem('fundartistpdata'));
+ // var parsedata =JSON.parse(localStorage.getItem('fundartistpdata'));
   //alert(parsedata);
   //alert(localStorage.getItem('fundartistpdata'));
   
@@ -173,30 +148,80 @@ function loadprof()
 }
 
 
+function submitform() {
+	//alert('clicked')
+	 var $form = $('#payment-form');
+  $form.submit(function(event) {
+    // Disable the submit button to prevent repeated clicks:
+   $form.find('.submit').prop('disabled', true);
 
+    // Request a token from Stripe:
+    Stripe.card.createToken($form, stripeResponseHandler);
 
-/*function makepay()
+    // Prevent the form from being submitted:
+    return false;
+  });
+}
+
+function stripeResponseHandler(status, response) {
+  // Grab the form:
+  var $form = $('#payment-form');
+
+  if (response.error) { // Problem!
+   showAlert(response.error.message)
+    // Show the errors on the form:
+   // $form.find('.payment-errors').text(response.error.message);
+  $form.find('.submit').prop('disabled', false); // Re-enable submission
+
+  } else { // Token was created!
+       
+    // Get the token ID:
+    var token = response.id;
+	console.log(token)
+  // showAlert(token)
+   
+    // Insert the token ID into the form so it gets submitted to the server:
+  
+	makepay(response.id)
+  }
+  
+};
+function gotoo()
 {
+ window.location="home2_Patron.html"
+	
+}
+function makepay(v)
+{
+	  var $form = $('#payment-form');
+	  
 	$.ajax({
 	    type : 'POST',
-	    url:"https://api.venmo.com/v1/payments",
+	    url : localStorage.getItem('webserviceurl')+"paymentconfirm",
 		contentType: "application/json",
 		dataType: "json",
 
-		data : {
-       access_token : ,
-       email : ,
-       note : ,
-	   amount : 
-      },
+		data:JSON.stringify({ 
+		token:v,
+		amount: parseInt($('#chargedamt').val()),
+		desc: "Description of  transaction"
+         })
+       ,
 	   success : function(data)
 			    {
-
-			console.log(data);
-				  
+				if(data.error=='true')
+             showAlert('payment successful')
+                 else
+			showAlert('payment declined')	
+		
+		console.log(data);
+		$form.append($('<input type="hidden" name="stripeToken">').val(v));
+    $form.get(0).submit(); 
+ window.location="home2_Patron.html"
+		
 },error :function (xhr,status,error)
 {
-onsole.log('error')
+console.log('error')
 console.log(xhr.status);
 console.log(xhr.responseText);
 }
@@ -205,4 +230,4 @@ console.log(xhr.responseText);
 	
 	
 	
-}*/
+}

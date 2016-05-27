@@ -2124,3 +2124,42 @@ display: block;
   padding:3px 2px;
    border-color:#24E6BF;
 }
+
+
+
+/* added 26 april 2016 */
+
+.bottom-line  {
+  border-bottom:1px solid #3f475e; padding-bottom:20px;
+ }
+ 
+.form-text  {
+  box-shadow:none;
+}
+
+select {
+    background:#5e6470 !important;
+    color:#fff !important;
+	border-color: #5e6470 !important;
+	opacity:.8;
+	box-shadow:none !important;
+	height:37px !important;
+	font-size: 14px !important;
+	padding:6px 8px !important;
+}
+
+option:not(:checked) {
+    background:#5e6470 !important;
+}
+
+.pay-stripe {
+    color: #374153;
+    background-color: #24e6bf;
+    font-family: Source Sans Pro;
+    padding: 4px 20px;
+    margin-top: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+}

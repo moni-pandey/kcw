@@ -85,7 +85,7 @@ function cleardata() {
 }
 
 function goback() {
-    alert('imageclicked');
+  
     parent.history.back();
     return false;
 }

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title>FAQ Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500italic' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/sidemenu.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
+   
+	<script src="js/commonmethods.js"></script>   
+    <script src="js/fundArtist_patron.js"></script>
+</head>
+
+<body>
+    <div class="content login_bg">
+        <div class="row zero-side-margin">
+            <div class="col-xs-3">
+                <p class="back-text"><img  src="./assets/img/Back_white.png" alt="logo" class="back-img">Back</p>
+            </div>
+            <div class="col-xs-8">
+                <p class="tech-support_text">
+                    <center class="tech-support_text bottom-line" style="margin-left:-56px;">Card Details </center>
+                </p>
+            </div>
+            <div class="col-xs-1">
+            </div>
+        </div>
+		
+		<div class="row zero-side-margin">
+            
+			<div class="col-xs-12">
+			    <div class="form-group placeholder-padding">
+				<form action="" method="POST" id="payment-form">
+                    <input type="text" class="form-control form-text text-color" placeholder="Name">
+                    <input type="number" class="form-control form-text text-color" placeholder="Card Number" data-stripe="number">
+					
+					<div class="row" style="margin-top:10px; margin-bottom:-15px">
+					    <div class="col-xs-6" style="padding-right:5px;">
+						    <fieldset class="form-group">
+                                <select class="form-control highlight" id="exampleSelect1" data-stripe="exp_month">
+                                    <option>MM</option>
+                                    <option>01</option>
+                                    <option>02</option>
+                                    <option>03</option>
+                                    <option>04</option>
+                                    <option>05</option>
+                                    <option>06</option>
+                                    <option>07</option>
+                                    <option>08</option>
+                                    <option>09</option>
+                                    <option>10</option>
+                                    <option>11</option>
+                                    <option>12</option>
+                                </select>
+						    </fieldset>
+						</div>
+						<div class="col-xs-6" style="padding-left:5px;">
+						    <fieldset class="form-group">
+                                <select class="form-control highlight" id="exampleSelect1" data-stripe="exp_year">
+                                    <option>YY</option>
+                                    <option>2016</option>
+                                    <option>2017</option>
+                                    <option>2018</option>
+                                    <option>2019</option>
+                                    <option>2020</option>
+                                    <option>2021</option>
+                                    <option>2022</option>
+                                    <option>2023</option>
+                                    <option>2024</option>
+                                    
+                                </select>
+						    </fieldset>
+						</div>
+					</div>
+					<input type="password" class="form-control form-text text-color" placeholder="CVV" data-stripe="CVC" >
+					
+					<fieldset class="form-group" style="margin-top:25px; margin-bottom:10px">
+                        <select class="form-control highlight" id="exampleSelect1">
+                            <option>Repeat one time/monthly</option>
+                            <option>One Time</option>
+							<option>Monthly</option>
+                        </select>
+					</fieldset>
+					
+					<input type="number" class="form-control form-text text-color" id="chargedamt" placeholder="Amount">
+					
+					<button class="btn pay-stripe" type="submit" onclick="submitform()">Pay with Stripe</button>
+					</form>
+                </div>
+		    </div>
+		
+		</div>
+    
+	</div>
+</body>
+<script type="text/javascript">
+Stripe.setPublishableKey('pk_test_qS34NgvyGRja6JLnqpCOIDp5');
+
+$(document).bind("deviceready", function() {
+			console.log('ready')
+			});
+</script>
+</html>

@@ -93,8 +93,7 @@
 }); 
         
       }); 
-   
-	$(document).on('click','.album-image' ,function(e){ 
+$(document).on('click','.album-image' ,function(e){ 
 
     
 	var album_id = e.target.id ;

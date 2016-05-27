@@ -64,13 +64,7 @@ $('.name-of-artist').text(localStorage.getItem('loggedINusername'));
 	     $('.instagram_pic').attr('src' ,'./assets/img/ins-31x31-color.png')
 	  //localStorage.instaLinked=false
 	  }
-	  
-	  
-	  
-                
-                    
-
-					  /**on click for fund me button **/
+                 /**on click for fund me button **/
 					 $('#fundbtn').on('click',function(){
 
 				              //alert('indside fundme');
@@ -798,6 +792,8 @@ function fetchFBDetails() {
     /**added name parameter ,reuired for signin/login api included picture**/
     facebookConnectPlugin.api("/me?fields=email,name,picture", ['public_profile' ,"user_photos"],
         function(fbPermissions) {
+			
+			
          
 		     localStorage.id=fbPermissions.id
 		     localStorage.fbuserid=fbPermissions.id
@@ -805,9 +801,9 @@ function fetchFBDetails() {
 			 localStorage.fbaccesstoken=fbPermissions.accessToken
 			 localStorage.email=fbPermissions.email
 			 //for adddsocila
-		    localStorage.addtoken=fbPermissions.accessToken
-	       localStorage.addemail=fbPermissions.email
-	      localStorage.addid=fbPermissions.id
+		     localStorage.addtoken=fbPermissions.accessToken
+	         localStorage.addemail=fbPermissions.email
+	          localStorage.addid=fbPermissions.id
 			 window.location='facebook_Gallery.html'
 		
 			

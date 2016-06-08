@@ -77,7 +77,9 @@ $('#venmo-form').show();
 
 
 $('.back-img').bind('click',function(e){
+	localStorage.setItem('fromGetArtist','true');
 parent.history.back();
+
 		return false;
   
 });

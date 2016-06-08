@@ -75,7 +75,12 @@ $("document").ready(function() {
 			  
 		  }
 		  */
-
+function logout()
+{
+	//alert('clear')
+	//localStorage.clear()
+	window.location="index.html"
+}
 function cleardata() {
     //alert('')  ;
     localStorage.removeItem('lastloggeduser');

@@ -18,6 +18,55 @@ function checkConnection() {
     }
 }
 
+function changeToPreviousPage() {
+    if (localStorage.clickedButton != undefined) {
+        if (localStorage.clickedButton == "feed") {
+            debugger;
+            /*$('.trending-btn,.artist-btn_active').css({
+                "background-color": "transparent",
+                "color": "white"
+            });
+            $('.feed-btn').css({
+                "background-color": "rgb(36, 230, 191)",
+                "color": "rgb(39, 48, 77)"
+            });*/
+            localStorage.temClickedButton = localStorage.clickedButton;
+            //localStorage.removeItem("clickedButton");
+            $('.feed-btn').trigger("click");
+            console.warn("Feed clicked");
+        } else if (localStorage.clickedButton == "trending") {
+            debugger;
+            /*$('.feed-btn,.artist-btn_active').css({
+                "background-color": "transparent",
+                "color": "white"
+            });
+            $('.trending-btn').css({
+                "background-color": "rgb(36, 230, 191)",
+                "color": "rgb(39, 48, 77)"
+            });*/
+            localStorage.temClickedButton = localStorage.clickedButton;
+            //localStorage.removeItem("clickedButton");
+            $('.trending-btn').trigger("click");
+            console.warn("Trending clicked");
+        } else if (localStorage.clickedButton == "artists") {
+            debugger;
+            $('.feed-btn,.trending-btn').css({
+                "background-color": "transparent",
+                "color": "white"
+            });
+            $('.artist-btn_active').css({
+                "background-color": "rgb(36, 230, 191)",
+                "color": "rgb(39, 48, 77)"
+            });
+            $('.artist-btn_active').trigger("click");
+            /*if (localStorage.temClickedButton == undefined) {
+                localStorage.clickedButton = localStorage.temClickedButton;
+                localStorage.removeItem("temClickedButton");
+            }*/
+        }
+    }
+}
+
 function showAlert(alertMsg) {
     //Method to show native Alerts
 

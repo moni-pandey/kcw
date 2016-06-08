@@ -13,7 +13,7 @@
     <div class="container login_bg">
         <div class="row">
             <div class="col-xs-3 no-right-padding">
-                <p class="back-text"><img src="./assets/img/Back_white.png" alt="logo" class="back-img" id='backbtn'>Back</p>
+                <p class="back-text" onclick="changeToPreviousPage()"><img src="./assets/img/Back_white.png" alt="logo" class="back-img" id='backbtn'>Back</p>
             </div>
             <div class="col-xs-9">
                 <p class="artist-expenses_text">Artist Expenses</p>
@@ -58,7 +58,7 @@
                             <input type="text" class="form-control fund-page_form text-color" placeholder="Expense title" id="title_expense">
                         </div>
                         <div class="form-group placeholder_side-margin">
-                            <input type="text" class="form-control fund-page_form text-color" placeholder="enter your expense" id="amount_expense">
+                            <input type="number" class="form-control fund-page_form text-color" placeholder="enter your expense" id="amount_expense">
                         </div>
                         <div class="form-group placeholder_side-margin">
                             <input type="text" class="form-control fund-page_form text-color" placeholder="Comments" id="comments_expense">
@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="row">
-            <p class="total-amt_text_artist" id="total_fund">Total:<span class="total-amt_number"> $2,370</span></p>
+            <p class="total-amt_text_artist" id="total_fund">Total:<span class="total-amt_number"> $0</span></p>
         </div>
     </div>
     <script src="js/jquery.min.js"></script>

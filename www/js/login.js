@@ -67,7 +67,7 @@ checkalreadyregisterd()
 	
         },
         function(fetchFBDetailsError) {
-            alert("fetchFBDetailsError: " + JSON.stringify(fetchFBDetailsError));
+            showAlert("fetchFBDetailsError: " + JSON.stringify(fetchFBDetailsError));
         }
 
 
@@ -198,7 +198,7 @@ function logEIn() {
 
         },
         error: function(xhr, status, errorThrown) {
-            alert('Re-try login');
+            showAlert('Re-try login');
           //  alert(xhr.responseText);
             console.log(xhr.status);
 
@@ -247,7 +247,7 @@ function checkalreadyregisterd()
 
         }),
         success: function(data) {
-          alert(JSON.stringify(data))
+          //alert(JSON.stringify(data))
 		   localStorage.setItem('loggeduser','')
 		   localStorage.setItem('loggeduser',JSON.stringify(data))
           console.log(data);
@@ -272,7 +272,7 @@ function checkalreadyregisterd()
 
         },
         error: function(xhr, status, errorThrown) {
-            alert('Re-try login');
+            showAlert('Re-try login');
           //  alert(xhr.responseText);
             console.log(xhr.status);
 localStorage.mediaicon=false

@@ -325,11 +325,18 @@ $(document).ready(function() {
                             <div class="bgGrouper" onclick="getprof(this)" id="' + val.artistID + '"><img src="./assets/img/people-small.png" class="small-img">\
                             <div class="fixedBlockRight"><p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
                             <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p></div></div>\
+							<div class="bottomGrouper">\
+							<div style="float:left">\
                             <p class="art-name">' + val.caption + '</p>\
+							</br>\
                             <p class="art-type ">' + val.tag + '</p>\
+							</div>\
+							<div style="float:right">\
                             <p class="fav-count" id="' + val.artID + 'fav"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike" onclick="callLikeUnlike(this)" id="' + val.artID + 'img"> <span class="likeimg" id="' + val.artID + 'likecounter">' + val.likecount + '</span></p>\
                             <div class="share-count"><p>' + val.commentcount + '</p></div>\
                             <img src="./assets/img/Comment.png"  class="share-img" id="' + val.artID + 'cmt">\
+							</div>\
+							</div>\
                         </div></div> \
                     </div>');
 
@@ -455,11 +462,18 @@ function getfeed() {
                         <div class="bgGrouper" id="' + val.artistID + '" onclick="getprof(this)"><img src="./assets/img/people-small.png" class="small-img" id="' + val.artistID + '">\
                         <div class="fixedBlockRight"><p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
                         <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p></div></div>\
+						<div class="bottomGrouper">\
+						<div style="float:left"> \
                         <p class="art-name">' + val.caption + '</p>\
+						</br>\
                         <p class="art-type ">' + val.tag + '</p>\
+						</div>\
+						<div style="float:right"> \
                         <p class="fav-count" id="' + val.artID + 'fav"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike" onclick="callLikeUnlike(this)" id="' + val.artID + 'img"> <span class="likeimg" id="' + val.artID + 'likecounter">' + val.likeCount + '</span></p>\
                         <div class="share-count"><p>' + val.commentcount + '</p></div>\
                         <img src="./assets/img/Comment.png"  class="share-img" id="' + val.artID + 'cmt">\
+						</div>\
+						</div>\
                     </div></div> \
                 </div>');
                 //localStorage.setItem('feedclicked', 'false');

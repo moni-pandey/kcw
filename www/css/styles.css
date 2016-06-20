@@ -994,9 +994,19 @@
         opacity: .8;
     }
     
-    .art-name {
+   /* .art-name {
         position: absolute;
         top: 83%;
+        left: 7%;
+        float: left;
+        color: white;
+        font-family: Source Sans Pro;
+        font-size: 14px;
+        opacity: .9;
+    }*/
+	.art-name {
+        position: absolute;
+      
         left: 7%;
         float: left;
         color: white;
@@ -1016,7 +1026,7 @@
         opacity: .9;
     }
     
-    .art-type {
+   /* .art-type {
         position: absolute;
         top: 90%;
         left: 7%;
@@ -1025,7 +1035,17 @@
         opacity: .8;
         font-family: Source Sans Pro;
         font-size: 12px;
-    }
+    } */
+	 .art-type {
+        position: absolute;
+
+        left: 7%;
+        float: left;
+        color: #24e6bf;
+        opacity: .8;
+        font-family: Source Sans Pro;
+        font-size: 12px;
+    } 
     
     .art-type2 {
         position: absolute;
@@ -1041,6 +1061,7 @@
     .fav-img {
         margin-top: -2px;
         padding-right: 2px;
+		
     }
     
     .fav-img2 {
@@ -1050,7 +1071,7 @@
     
     .fav-count {
         position: absolute;
-        top: 87%;
+        top: 8%;
         right: 85px;
         float: right;
         font-family: Source Sans Pro;
@@ -1072,7 +1093,7 @@
     
     .share-count {
         position: absolute;
-        top: 87%;
+    top:8%;
         right: 50px;
         float: right;
         font-family: Source Sans Pro;
@@ -1080,6 +1101,16 @@
         opacity: .8;
         color: white;
     }
+    /* .share-count {
+        position: absolute;
+        top: 87%;
+        right: 50px;
+        float: right;
+        font-family: Source Sans Pro;
+        font-size: 12px;
+        opacity: .8;
+        color: white;
+    }*/
     
     .share-count2 {
         position: absolute;
@@ -1094,10 +1125,16 @@
     
     .share-img {
         position: absolute;
-        top: 87%;
+       top:8%;
         right: 30px;
         float: right;
     }
+/*	.share-img {
+        position: absolute;
+        top: 87%;
+        right: 30px;
+        float: right;
+    }*/
     
     .share-img2 {
         position: absolute;
@@ -2200,6 +2237,18 @@
         left: 0;
         right: 0;
         z-index: 999;
+        background: rgba(0, 0, 0, 0.5);
+    }
+	.bottomGrouper {
+        /* background-color: red; */
+        /* display: inline-block; */
+        width: 100%;
+        position: absolute;
+        top: 84%;
+		height:40px;
+        left: 0;
+        right: 0;
+        z-index: 900;
         background: rgba(0, 0, 0, 0.5);
     }
     

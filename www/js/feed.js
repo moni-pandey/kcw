@@ -321,16 +321,16 @@ $(document).ready(function() {
                     //alert('each');
                     $('.artistlistcontainer').append('<div class="row fbbox" id="' + val.artID + '">\
                         <div class="col-xs-12">\
-                            <img src="' + decodeURIComponent(val.url) + '" width="647" height="408" class="img-responsive pic1">\
-                            <img src="./assets/img/people-small.png" class="small-img" id="' + val.artistID + '" onclick="getprof(this)">\
-                            <p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
-                            <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p>\
+                            <div class="fixedBlock"><img src="' + decodeURIComponent(val.url) + '" width="647" height="408" class="img-responsive pic1">\
+                            <div class="bgGrouper" onclick="getprof(this)" id="' + val.artistID + '"><img src="./assets/img/people-small.png" class="small-img">\
+                            <div class="fixedBlockRight"><p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
+                            <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p></div></div>\
                             <p class="art-name">' + val.caption + '</p>\
                             <p class="art-type ">' + val.tag + '</p>\
                             <p class="fav-count" id="' + val.artID + 'fav"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike" onclick="callLikeUnlike(this)" id="' + val.artID + 'img"> <span class="likeimg" id="' + val.artID + 'likecounter">' + val.likecount + '</span></p>\
-                            <p class="share-count">' + val.commentcount + '</p>\
+                            <div class="share-count"><p>' + val.commentcount + '</p></div>\
                             <img src="./assets/img/Comment.png"  class="share-img" id="' + val.artID + 'cmt">\
-                        </div> \
+                        </div></div> \
                     </div>');
 
 
@@ -451,16 +451,16 @@ function getfeed() {
 
                 $('.artistlistcontainer').append('<div class="row fbbox" id="' + val.artID + '">\
                     <div class="col-xs-12">\
-                        <img src="' + decodeURIComponent(val.url) + '" width="647" height="408" class="img-responsive pic1">\
-                        <img src="./assets/img/people-small.png" class="small-img" id="' + val.artistID + '" onclick="getprof(this)">\
-                        <p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
-                        <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p>\
+                        <div class="fixedBlock"><img src="' + decodeURIComponent(val.url) + '" width="647" height="408" class="img-responsive pic1">\
+                        <div class="bgGrouper" id="' + val.artistID + '" onclick="getprof(this)"><img src="./assets/img/people-small.png" class="small-img" id="' + val.artistID + '">\
+                        <div class="fixedBlockRight"><p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
+                        <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p></div></div>\
                         <p class="art-name">' + val.caption + '</p>\
                         <p class="art-type ">' + val.tag + '</p>\
                         <p class="fav-count" id="' + val.artID + 'fav"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike" onclick="callLikeUnlike(this)" id="' + val.artID + 'img"> <span class="likeimg" id="' + val.artID + 'likecounter">' + val.likeCount + '</span></p>\
-                        <p class="share-count">' + val.commentcount + '</p>\
+                        <div class="share-count"><p>' + val.commentcount + '</p></div>\
                         <img src="./assets/img/Comment.png"  class="share-img" id="' + val.artID + 'cmt">\
-                    </div> \
+                    </div></div> \
                 </div>');
                 //localStorage.setItem('feedclicked', 'false');
 

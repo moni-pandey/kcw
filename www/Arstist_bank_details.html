@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+    <title>Artist Bank details Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500italic' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/sidemenu.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
+   
+	<script src="js/commonmethods.js"></script>   
+   
+</head>
+
+<body>
+    <div class="content login_bg">
+        <div class="row zero-side-margin">
+            <div class="col-xs-3">
+                <p class="back-text"><img  src="./assets/img/Back_white.png" alt="logo" class="back-img">Back</p>
+            </div>
+            <div class="col-xs-8">
+                <p class="tech-support_text">
+                    <center class="tech-support_text bottom-line" style="margin-left:-56px;">Card Details </center>
+                </p>
+            </div>
+            <div class="col-xs-1">
+            </div>
+        </div>
+		
+		<div class="row zero-side-margin">
+            
+			<div class="col-xs-12">
+			    <div class="form-group placeholder-padding">
+				<form action="" method="POST" id="payment-form">
+                    <input type="text" class="form-control form-text text-color" placeholder="Name">
+                    <input type="text" class="form-control form-text text-color" placeholder="Bank Name">
+                    <input type="text" class="form-control form-text text-color" placeholder="Account  Number" >
+                    <input type="text" class="form-control form-text text-color" placeholder="IFSC code" >
+					
+
+				
+					<button class="btn pay-stripe" type="submit" onclick="">Save Details</button>
+					</form>
+                </div>
+		    </div>
+		
+		</div>
+    
+	</div>
+</body>
+<script type="text/javascript">
+
+
+$(document).bind("deviceready", function() {
+			console.log('ready')
+			});
+</script>
+</html>

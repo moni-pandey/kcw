@@ -125,6 +125,7 @@ $('#screatebtn').bind('click', function() {
 						
 						//alert('success');
 						//alert('data.message');
+						localStorage.setItem('profileartist', 'false')
 						console.log(data);
 						window.location="index.html";
 						

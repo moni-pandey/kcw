@@ -9,14 +9,10 @@
     <link href="css/styles.css" rel="stylesheet">
     <script src="js/jquery.min.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500italic' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
     <script src="js/bootstrap.min.js"></script>
     <script src="cordova.js"></script>
-    <script src="js/sidemenu.js"></script>
-    <script type="text/javascript" src="js/fastclick.js"></script>
-   
-	<script src="js/commonmethods.js"></script>   
-   
+
 </head>
 
 <body>
@@ -39,14 +35,14 @@
 			<div class="col-xs-12">
 			    <div class="form-group placeholder-padding">
 				<form action="" method="POST" id="payment-form">
-                    <input type="text" class="form-control form-text text-color" placeholder="Name">
-                    <input type="text" class="form-control form-text text-color" placeholder="Bank Name">
-                    <input type="text" class="form-control form-text text-color" placeholder="Account  Number" >
-                    <input type="text" class="form-control form-text text-color" placeholder="IFSC code" >
+                    <input type="text" class="form-control form-text text-color"  id="username" placeholder="Name">
+                    <input type="text" class="form-control form-text text-color" id="userbankname" placeholder="Bank Name">
+                    <input type="text" class="form-control form-text text-color" id="accountno" placeholder="Account  Number" >
+                    <input type="text" class="form-control form-text text-color" id="iifsccode" placeholder="IFSC code" >
 					
 
 				
-					<button class="btn pay-stripe" type="submit" onclick="">Save Details</button>
+					<button class="btn pay-stripe" type="submit" onclick="edit_details()" data-bankid="0" data-way="save"  id="savebtn">Save Details</button>
 					</form>
                 </div>
 		    </div>
@@ -55,11 +51,13 @@
     
 	</div>
 </body>
+ <script type="text/javascript" src="js/sidemenu.js"></script>
 <script type="text/javascript">
 
 
 $(document).bind("deviceready", function() {
 			console.log('ready')
+			bank_details();
 			});
 </script>
 </html>

@@ -178,6 +178,184 @@ function sendQuery() {
 
 }
 
+function bank_details()
+{
+/*	//1) check if details already present
+	// yes- prefilled 
+    // add new details  :: if prefilled update new details 	
+	// 
+	
+	  $.ajax({
+        type: 'POST',
+        url: localStorage.getItem('webserviceurl')+"artist/bank/get",
+        contentType: "application/json",
+        dataType: "json",
+        data: {
+			"artistid":localStorage.getItem('loggedINuserartistid')
+			
+		},
+        success: function(data) {
+
+            console.log(data);
+
+
+        },
+        error: function(xhr, status, errorThrown) {
+            //alert('Re-try login');
+            //  alert(xhr.responseText);
+            console.log(xhr.status);
+
+            //console.log(error);
+        }
+    }); */
+	var bankid ;
+	var url;
+	
+	  $.post(localStorage.getItem('webserviceurl')+"artist/bank/get",
+    {
+        "artistid":localStorage.getItem('loggedINuserartistid')
+    },
+    function(data, status){
+        console.log("Data: " + data + "\nStatus: " + status);
+		console.log(data.data[0].accountnumber)
+		//console.log(data.data.accountnumber)
+		if(data.data.length)
+		{
+		
+ $('#accountno').val(data.data[0].accountnumber) // required
+$('#userbankname').val(data.data[0].bankname) // required
+   $('#iifsccode').val(data.data[0].isfccode), // required
+   $('#username').val(data.data[0].nameoncard) 
+
+   $('#savebtn').data('bankid', data.data[0].bankid)
+   $('#savebtn').data('way', 'update')
+   console.log($('#savebtn').data('bankid'))
+   console.log($('#savebtn').data('way'))
+			
+		}
+			else{
+				console.log('no records')
+				
+			}
+    });
+	
+	
+	
+	
+	
+}
+
+function edit_details()
+{
+	var bankid ;
+	var url;
+	  
+	if($('#username').val().length==0 ||$('#accountno').val().length==0  || $('#userbankname').val().length==0  || $('#iifsccode').val().length==0  )
+	{
+		
+		navigator.notification.alert(
+                'All fields are mandatory', // message
+                alertDismissed, // callback
+                'KCW', // title
+                'OK' // buttonName
+            );
+			
+	}
+	else if(!$.isNumeric($('#accountno').val()) || $('#accountno').val().length <16)
+	{
+		
+		 navigator.notification.alert(
+                'Enter valid account number', // message
+                alertDismissed, // callback
+                'KCW', // title
+                'OK' // buttonName
+            );
+	}
+	else
+	{
+		if($('#savebtn').data('way')=='save')
+		{
+			bankid=0
+			url = ' http://107.170.201.114:5001/artist/bank/insert'
+			
+		}
+		else{
+			bankid= $('#savebtn').data('bankid')
+			url=' http://107.170.201.114:5001/artist/bank/update'
+			
+		}
+		save_details(bankid ,url)
+		
+	}
+		
+	
+
+	
+	
+}
+function save_details(bankid ,url)
+{
+	var d = { 
+	"bankid":bankid, 
+    "artistid":localStorage.getItem('loggedINuserartistid'), // required
+    "accountnumber": parseInt($('#accountno').val()), // required
+    "bankname":$('#userbankname').val(), // required
+    "isfccode": $('#iifsccode').val(), // required
+    "nameoncard": $('#username').val() // require
+	
+	}
+		
+		console.log(d) ;
+		console.log(url) ;
+		
+/*	  $.ajax({
+        type: 'POST',
+        url: url ,
+        contentType: "application/json",
+        dataType: "json",
+        data: {
+	
+	 "bankid":bankid, 
+    "artistid":localStorage.getItem('loggedINuserartistid'), // required
+    "accountnumber": parseInt($('#accountno').val()), // required
+    "bankname":$('#userbankname').val(), // required
+    "isfccode": $('#iifsccode').val(), // required
+    "nameoncard": $('#username').val() // required
+		},
+        success: function(data) {
+
+            console.log(data);
+
+
+        },
+        error: function(xhr, status, errorThrown) {
+            //alert('Re-try login');
+            //  alert(xhr.responseText);
+            console.log(xhr.status);
+
+            console.log(errorThrown);
+        }
+    });
+	*/
+	
+	
+$.post(url,
+    {
+         "bankid":bankid, 
+    "artistid":localStorage.getItem('loggedINuserartistid'), // required
+    "accountnumber": parseInt($('#accountno').val()), // required
+    "bankname":$('#userbankname').val(), // required
+    "isfccode": $('#iifsccode').val(), // required
+    "nameoncard": $('#username').val() // required
+    },
+    function(data, status){
+        console.log("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+		
+    });
+	
+}
+
 function alertDismissed() {
     // do something
+	return;
 }

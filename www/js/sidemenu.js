@@ -261,7 +261,7 @@ function edit_details()
             );
 			
 	}
-	else if(!$.isNumeric($('#accountno').val()) || $('#accountno').val().length <16)
+	else if(!$.isNumeric($('#accountno').val()) )
 	{
 		
 		 navigator.notification.alert(

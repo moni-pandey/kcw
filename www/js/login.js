@@ -218,6 +218,7 @@ function loadprofile() { //calling getexp
 
     if (localStorage.getItem('loggedINusertype') === 'P') { // alert('if');
       //  $('#patronname').text(localStorage.getItem('loggedINusername'));
+	  localStorage.setItem('profileartist' ,'false')
         window.location = "home2_Patron.html";
     } else {
         //alert('else');

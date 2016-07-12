@@ -73,8 +73,11 @@ callforcarouselimages();
 	  // comment on art 
 	  
 	  $('#ppfundme').bind('click' ,function(){
-	  
-	  window.location='fundArtist_Patron.html';
+	   if (localStorage.getItem('profileartist') == 'true') {
+		   console.log('artist login')
+	   }
+	   else{
+	   window.location='fundArtist_Patron.html'; }
 	  
 	  });
 	  $('#commentOnart').bind('click' ,function(){
@@ -106,11 +109,18 @@ window.location = 'comment_Page_new.html' ;
          }),
 	     success : function(data)
 			    {
-				if(data.message!='alreadyliked')
-				      {Lcounter++}
-					  $('#likecounter').html(Lcounter);
+					console.log(data)
+					var b =''
+			if(data.message!='alreadyliked')
+				      {
+						 b =  parseInt( $('#likecounter').text())
+b++						 //Lcounter++
+				  console.log(b)
+				 }
+					  $('#likecounter').text(b);
 				// alert(data.message);
-				 $('#likecount').toggleClass('notfav-img');
+				 $('#likecount').addClass('notfav-img');
+				 $('#likecount').removeClass('fav-img');
 				} ,
 	     error   : function (xhr, status, error)
                  {console.log(xhr);}						 
@@ -137,12 +147,22 @@ window.location = 'comment_Page_new.html' ;
     
          }),
 	     success : function(data)
-			    {
-				if(data.message!='alreadyliked')
-				      {Lcounter--}
-					  $('#likecounter').html(Lcounter);
+			    { var b =''
+				console.log(data)
+				//if(data.message!='alreadyliked')
+				      //{
+						  b =  parseInt( $('#likecounter').text())
+				 // }
+				 if(b>0)
+				 {
+					  $('#likecounter').text(b);
+				b--	  
+				 }
+					else
+						 $('#likecounter').text(b);
 				// alert(data.message);
-				 $('#likecount').toggleClass('fav-img');
+				 $('#likecount').addClass('fav-img');
+				 $('#likecount').removeClass('notfav-img');
 				} ,
 	     error   : function (xhr, status, error)
                  {console.log(xhr);}						 
@@ -446,7 +466,17 @@ localStorage.bckbtn=false;
 			 localStorage.setItem('crouseldata' ,crouseldat);
 			 console.log('calling set')
 			 var userdata =JSON.parse(localStorage.getItem('loggeduser'))
-			 //alert(userdata.user.patronID)
+			 if (localStorage.getItem('profileartist') == 'true') {
+				 if(data.followers.length>1)
+                 $('#followbtn').html(data.followers.length + ' followers');
+			 else
+                 $('#followbtn').html(data.followers.length + ' follower');
+				  $('#followbtn').removeClass('follow');
+				  console.log('artist login')
+			 }
+			 else{
+				 
+			 
 			 for(var k =0 ;k<data.followers.length ;k++)
 				 
 			        {   
@@ -460,8 +490,10 @@ localStorage.bckbtn=false;
 			             	console.log('following')
 			             }
 			             else 
-			             console.log('not following ')}
-			   
+			             console.log('not following ')
+					 
+					 }
+			 }
 			    //SetCrousel(); 
 			    setcarousel(); 
 				

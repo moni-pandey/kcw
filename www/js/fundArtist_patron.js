@@ -30,9 +30,8 @@ $.ajax({
 				  
 },error :function (xhr,status,error)
 {
-showAlert('error')
-showAlert(xhr.status);
-showAlert(xhr.responseText);
+showAlert(error)
+
 }
 				  
 });
@@ -62,9 +61,9 @@ $.ajax({
 				  
 },error :function (xhr,status,error)
 {
-alert('error')
-alert(xhr.status);
-alert(xhr.responseText);
+//alert('error')
+showAlert(error);
+//alert(xhr.responseText);
 }
 				  
 });

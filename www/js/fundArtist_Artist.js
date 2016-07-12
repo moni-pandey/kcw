@@ -66,7 +66,7 @@ $.ajax({
 			{
 				
 			console.log(data)
-			alert(data.message)
+showAlert(data.message)
 			setTimeout(explode, 2000);
 				
 						
@@ -75,8 +75,8 @@ $.ajax({
 			} ,
 			error   : function (xhr, status, error)
 			{
-				alert('error');
-				alert(xhr.responseText);
+				//showAlert('error');
+				showAlert(status);
 			}						 
 
 
@@ -257,7 +257,7 @@ if (confirm('to confirm deletion click on OK')) {
 			} ,
 			error   : function (xhr, status, error)
 			{
-				alert('inside failure');
+				showAlert(error)
 				console.log(xhr.responseText);
 			}						 
 

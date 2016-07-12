@@ -4,7 +4,7 @@ $(document).ready(function(){
 $('#resetpasswordi').bind('click', function() { 
 if ($("#useremail").val() == "") {
 		   //showAlert("Please Enter your User name");
-		   alert('please enter email id');
+		   showAlert('please enter email id');
 			 $("#useremail").focus();
 		}else 
 		{   resetpassword();
@@ -35,12 +35,12 @@ if($("#useremail").val== " ")
 			}),
 					  success: function(data){
 						//alert(JSON.stringify(data));
-						alert('success');
+						showAlert('password reset successful.Please checj your registered email id ');
 						console.log(data)
 					  },
-					  error: function(){
+					  error: function(xhr,status,error){
 						
-						alert('There was an error');
+						showAlert(error);
 					  }
 					});     
    

@@ -203,9 +203,9 @@ function getcomments()
 							 
 						},error :function (xhr,status,error)
 						{
-						alert('error')
-						alert(xhr.status);
-						alert(xhr.responseText);
+						//alert('error')
+						showAlert(xhr.status);
+						console.log(xhr.responseText);
 						}
 										  
 						});
@@ -273,9 +273,9 @@ function getArtComments()
 							 
 						},error :function (xhr,status,error)
 						{
-						alert('error')
-						alert(xhr.status);
-						alert(xhr.responseText);
+						
+						showAlert(xhr.status);
+						//alert(xhr.responseText);
 						}
 										  
 						});

@@ -12,6 +12,16 @@ $(document).ready(function() {
     });
 
     $('.search').hide();
+	if (localStorage.getItem('profileartist') == 'true') { 
+	$('.artist-btn_active').html('');
+	$('.artist-btn_active').html('Profile');
+	
+	}
+	else{
+			$('.artist-btn_active').html('');
+	$('.artist-btn_active').html('Artists');
+
+	}
 
     /*if(localStorage.crossicon == 'true')
     {
@@ -322,9 +332,18 @@ $(document).ready(function() {
                     $('.artistlistcontainer').append('<div class="row fbbox" id="' + val.artID + '">\
                         <div class="col-xs-12">\
                             <div class="fixedBlock"><img src="' + decodeURIComponent(val.url) + '" width="647" height="408" class="img-responsive pic1">\
-                            <div class="bgGrouper" onclick="getprof(this)" id="' + val.artistID + '"><img src="./assets/img/people-small.png" class="small-img">\
+                           \
+						   <div class="bgGrouper" >\
+						   <div class="bgGclick" style="width:80%" onclick="getprof(this)" id="' + val.artistID + '">\
+						   \
+						   <img src="./assets/img/people-small.png" class="small-img">\
                             <div class="fixedBlockRight"><p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
-                            <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p></div></div>\
+                            <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p></div>\
+							</div>\
+							<div class="fixedright" style="width:20%" id="' + val.artID + '" data-url="'+ decodeURIComponent(val.url) +'"  onclick="sharepic(this)"  >\
+						<i class="fa fa-share-alt trend" ></i>\
+						</div>\
+							</div>\
 							<div class="bottomGrouper">\
 							<div style="float:left">\
                             <p class="art-name">' + val.caption + '</p>\
@@ -378,19 +397,19 @@ function initiate_geolocation() {
 function handle_errors(error) {
     switch (error.code) {
         case error.PERMISSION_DENIED:
-            alert("user did not share geolocation data");
+            showAlert("user did not share geolocation data");
             break;
 
         case error.POSITION_UNAVAILABLE:
-            alert("could not detect current position");
+            showAlert("could not detect current position");
             break;
 
         case error.TIMEOUT:
-            alert("retrieving position timed out");
+            showAlert("retrieving position timed out");
             break;
 
         default:
-            alert("unknown error");
+            showAlert("unknown error");
             break;
     }
 }
@@ -441,27 +460,22 @@ function getfeed() {
             //alert(response.artists);
             //alert(data.artists);
             $(data.artists).each(function(i, val) {
-                //alert('each');
-                /*  $('.artistlistcontainer').append('<div class="row fbbox"  id="'+val.artID+'">\
-                        <div class="col-xs-12">\
-                            <img src="'+decodeURIComponent(val.url)+'" width="647" height="408" class="img-responsive pic1">\
-                            <img src="./assets/img/people-small.png" class="small-img" id="'+val.artistID+'" onclick="getprof(this)">\
-                            <p class="name-artist" value="james"  id="'+val.artistID+'name">"'+val.name+'"</p>\
-                            <p class="name-occupation '+val.artistID+'type "  value="'+val.artType+'">'+val.artType+'</p>\
-                            <p class="art-name">'+val.caption+'</p>\
-                            <p class="art-type ">'+val.tag+'</p>\
-                            <p class="fav-count" id="'+val.artID+'fav"><img src="./assets/img/fav.png" class="fav-img" data-like="unlike" onclick="callLikeUnlike(this)" id="'+val.artID+'img"> <span id="'+val.artID+'likecounter">'+val.likeCount+'</span></p>\
-                            <p  class="comment-img" >'+val.commentcount+'</p>\
-                            <img src="./assets/img/Comment.png"   class="share-img" id="'+val.artID+'cmt">\
-                        </div> \
-                    </div>');*/
+              
 
                 $('.artistlistcontainer').append('<div class="row fbbox" id="' + val.artID + '">\
                     <div class="col-xs-12">\
                         <div class="fixedBlock"><img src="' + decodeURIComponent(val.url) + '" width="647" height="408" class="img-responsive pic1">\
-                        <div class="bgGrouper" id="' + val.artistID + '" onclick="getprof(this)"><img src="./assets/img/people-small.png" class="small-img" id="' + val.artistID + '">\
-                        <div class="fixedBlockRight"><p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
-                        <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p></div></div>\
+                        <div class="bgGrouper" >\
+						   <div class="bgGclick" style="width:80%" onclick="getprof(this)" id="' + val.artistID + '">\
+						   \
+						   <img src="./assets/img/people-small.png" class="small-img">\
+                            <div class="fixedBlockRight"><p class="name-artist" value="james" id="' + val.artistID + 'name" >' + val.name + '</p>\
+                            <p class="name-occupation ' + val.artistID + 'type "  value="' + val.artType + '">' + val.artType + '</p></div>\
+							</div>\
+							<div class="fixedright" style="width:20%" id="' + val.artID + '" data-url="'+ decodeURIComponent(val.url) +'" onclick="sharepic(this)"  >\
+						<i class="fa fa-share-alt trend" ></i>\
+						</div>\
+							</div>\
 						<div class="bottomGrouper">\
 						<div style="float:left"> \
                         <p class="art-name">' + val.caption + '</p>\
@@ -492,6 +506,14 @@ function getfeed() {
 
 }
 
+function sharepic(even)
+{
+	var id = $(even).attr("id")
+
+   var url = $(even).data('url')	
+  
+   window.plugins.socialsharing.share( localStorage.getItem('loggedINusername')+' wants to share this artwork',null, url , null);
+}
 
 function callLikeUnlike(artid) {
     console.log(artid)

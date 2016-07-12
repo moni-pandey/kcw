@@ -2256,3 +2256,16 @@
         float: left;
         margin-left: 10px;
     }
+	
+      .trend {
+		  font-size:20px !important; 
+		color: #24e6bf !important;
+		  
+	  }
+	  .fixedright {
+		  
+		  float:right ;
+		 
+		  margin-top:5px;
+		  z-index:999;
+	  }
